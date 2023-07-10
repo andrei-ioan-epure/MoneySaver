@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using DomainLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using RepositoryLayer;
@@ -12,8 +13,7 @@ namespace PresentationLayer
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<BlogDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString(builder.Configuration["DbOwner"])));
+            builder.Services.AddDbContext<BlogDbContext>();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
