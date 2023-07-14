@@ -1,6 +1,8 @@
 ﻿using System.Runtime.InteropServices;
+using System.Xml.Linq;
 using DomainLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace DomainLayer.Context
 {
@@ -16,6 +18,27 @@ namespace DomainLayer.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+            builder.Entity<User>()
+                .HasMany(x => x.FavoriteArticles)
+                .WithMany(x => x.FavoriteUsers);
+
+            builder.Entity<User>()
+                .HasMany(x => x.LikedComments)
+                .WithMany(x => x.LikedBy);
+
+            builder.Entity<User>()
+                .HasMany(x => x.Comments)
+                .WithOne(x => x.Creator)
+                .HasForeignKey(x => x.CreatorId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            builder.Entity<User>()
+                .HasMany(x => x.CreatedArticles)
+                .WithOne(x => x.Creator)
+                .HasForeignKey(x => x.CreatorId)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
             base.OnModelCreating(builder);
         }
 

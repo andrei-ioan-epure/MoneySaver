@@ -16,14 +16,14 @@ namespace ServiceLayer.Services
 
         public IEnumerable<UserDto> GetAll()
         {
-            return _userRepository.GetAll().Select(u => new UserDto(u.Id, u.UserName, u.FullName));
+            return _userRepository.GetAll().Select(u => new UserDto(u.Id, u.UserName, u.FullName,u.Email,u.Password,u.IsCreator));
         }
 
         public UserDto? Get(int id)
         {
             var user = _userRepository.Get(id);
 
-            return user != null ? new UserDto(user.Id, user.UserName, user.FullName): null;
+            return user != null ? new UserDto(user.Id, user.UserName, user.FullName, user.Email, user.Password, user.IsCreator) : null;
         }
 
         public void Delete(int entityId)
@@ -33,13 +33,13 @@ namespace ServiceLayer.Services
 
         public void Insert(UserDto entity)
         {
-            var user = new User(entity.UserName, entity.FullName);
+            var user = new User(entity.UserName, entity.FullName,entity.Email,entity.Password,entity.IsCreator);
             _userRepository.Insert(user);
         }
 
         public void Update(int id, UserDto entity)
         {
-            var user = new User(entity.UserName, entity.FullName)
+            var user = new User(entity.UserName, entity.FullName, entity.Email, entity.Password, entity.IsCreator)
             {
                 Id = id
             };
