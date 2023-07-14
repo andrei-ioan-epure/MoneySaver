@@ -10,13 +10,15 @@ import { AboutComponent } from './about/about.component';
 import { HttpClientModule } from  '@angular/common/http';
 import { HeaderComponent } from './common-components/header/header.component';
 import { FooterComponent } from './common-components/footer/footer.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
