@@ -23,24 +23,24 @@ namespace ServiceLayer.Services
         {
            var article = _articleRepository.Get(id);
             return article == null ? null :
-                new ArticleDto(article.Id,article.Title,article.Expiration,article.Expiration,article.City,article.Category,article.Code,article.Store,article.Author,article.Content);
+                new ArticleDto(article.Id,article.Title,article.Expiration,article.Expiration,article.City,article.Category,article.Code,article.Store,article.Author,article.Content,article.CreatorId);
         }
 
         public IEnumerable<ArticleDto> GetAll()
         {
-            return _articleRepository.GetAll().Select(article => new ArticleDto(article.Id, article.Title, article.Expiration, article.Expiration, article.City, article.Category, article.Code, article.Store, article.Author, article.Content));
+            return _articleRepository.GetAll().Select(article => new ArticleDto(article.Id, article.Title, article.Expiration, article.Expiration, article.City, article.Category, article.Code, article.Store, article.Author, article.Content, article.CreatorId));
 
         }
 
         public void Insert(ArticleDto entity)
         {
-            var article = new Article(entity.Title, entity.Expiration, entity.Expiration, entity.City, entity.Category, entity.Code, entity.Store, entity.Author, entity.Content);
+            var article = new Article(entity.Title, entity.Expiration, entity.Expiration, entity.City, entity.Category, entity.Code, entity.Store, entity.Author, entity.Content,entity.CreatorId);
             _articleRepository.Insert(article);
         }
 
         public void Update(int id, ArticleDto entity)
         {
-            var article = new Article(entity.Title, entity.Expiration, entity.Expiration, entity.City, entity.Category, entity.Code, entity.Store, entity.Author, entity.Content)
+            var article = new Article(entity.Title, entity.Expiration, entity.Expiration, entity.City, entity.Category, entity.Code, entity.Store, entity.Author, entity.Content, entity.CreatorId)
             {
                 Id = id
             };

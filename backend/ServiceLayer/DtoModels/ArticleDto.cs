@@ -4,7 +4,7 @@ namespace ServiceLayer.DtoModels
 {
     public  class ArticleDto
     {
-        public ArticleDto(int? id,string title, DateTime posted, DateTime expiration, string city, string category, string code, string store,string author, string content)
+        public ArticleDto(int? id,string title, DateTime posted, DateTime expiration, string city, string category, string code, string store,string author, string content,int creatorId)
         {
             Id = id;
             Title = title;
@@ -16,6 +16,7 @@ namespace ServiceLayer.DtoModels
             Store = store;
             Author = author;
             Content = content;
+            CreatorId = creatorId;
         }
 
         public int? Id { get; set; }
@@ -29,6 +30,7 @@ namespace ServiceLayer.DtoModels
         
         public string Author { get; set; }
         public string Content { get; set; }
+        public int CreatorId { get; set; }
 
     }
 }

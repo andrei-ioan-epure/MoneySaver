@@ -2,7 +2,7 @@
 {
     public class Article:BaseEntity
     {
-        public Article(string title, DateTime posted,DateTime expiration,string city,string category,string code,string store, string author,string content)
+        public Article(string title, DateTime posted,DateTime expiration,string city,string category,string code,string store, string author,string content,int creatorId)
         {
             Title = title;
             Posted = posted;
@@ -13,6 +13,7 @@
             Store = store;
             Author = author;
             Content = content;
+            CreatorId = creatorId;
         }
 
         public string Title { get; set; }

@@ -22,24 +22,24 @@ namespace ServiceLayer.Services
         public CommentDto? Get(int id)
         {
            var comment = _commentRepository.Get(id);
-            return comment == null ? null : new CommentDto(comment.Id, comment.Message, comment.Posted);
+            return comment == null ? null : new CommentDto(comment.Id, comment.Message, comment.Posted,comment.CreatorId,comment.ArticleId);
         }
 
         public IEnumerable<CommentDto> GetAll()
         {
-            return _commentRepository.GetAll().Select(u => new CommentDto(u.Id, u.Message, u.Posted));
+            return _commentRepository.GetAll().Select(u => new CommentDto(u.Id, u.Message, u.Posted, u.CreatorId, u.ArticleId));
 
         }
 
         public void Insert(CommentDto entity)
         {
-            var comment = new Comment(entity.Message, entity.Posted);
+            var comment = new Comment(entity.Message, entity.Posted, entity.CreatorId, entity.ArticleId);
             _commentRepository.Insert(comment);
         }
 
         public void Update(int id, CommentDto entity)
         {
-            var comment = new Comment(entity.Message, entity.Posted)
+            var comment = new Comment(entity.Message, entity.Posted, entity.CreatorId, entity.ArticleId)
             {
                 Id=id
             };

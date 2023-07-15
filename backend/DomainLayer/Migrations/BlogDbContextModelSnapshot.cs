@@ -112,7 +112,7 @@ namespace DomainLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ArticleId")
+                    b.Property<int>("ArticleId")
                         .HasColumnType("int");
 
                     b.Property<int>("CreatorId")
@@ -209,15 +209,19 @@ namespace DomainLayer.Migrations
 
             modelBuilder.Entity("DomainLayer.Models.Comment", b =>
                 {
-                    b.HasOne("DomainLayer.Models.Article", null)
+                    b.HasOne("DomainLayer.Models.Article", "Article")
                         .WithMany("Comments")
-                        .HasForeignKey("ArticleId");
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
 
                     b.HasOne("DomainLayer.Models.User", "Creator")
                         .WithMany("Comments")
                         .HasForeignKey("CreatorId")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
+
+                    b.Navigation("Article");
 
                     b.Navigation("Creator");
                 });

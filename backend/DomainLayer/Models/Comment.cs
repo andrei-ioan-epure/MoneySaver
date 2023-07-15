@@ -2,10 +2,12 @@
 {
     public class Comment:BaseEntity
     {
-        public Comment(string message, DateTime posted)
+        public Comment(string message, DateTime posted,int creatorId, int articleId)
         {
             Message = message;
             Posted = posted;
+            CreatorId = creatorId;
+            ArticleId = articleId;
         }
 
         public string Message { get; set; }

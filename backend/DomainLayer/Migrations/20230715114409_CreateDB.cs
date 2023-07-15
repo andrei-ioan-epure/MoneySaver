@@ -92,7 +92,7 @@ namespace DomainLayer.Migrations
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Posted = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorId = table.Column<int>(type: "int", nullable: false),
-                    ArticleId = table.Column<int>(type: "int", nullable: true)
+                    ArticleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
