@@ -1,6 +1,78 @@
-#img_home
-{
-    width: 300px;
-    height: 300px;
-    margin-left: 150px;
-}
+#img_home {
+    display: block;
+    margin: 0 auto; 
+    width: 450px;
+    height: 450px;
+    transform: translate(-200px);
+  }
+  
+  #text_home {
+    text-align: center;
+    margin-top: 20px; 
+    transform: translate(-200px);
+    
+  }
+  #text-magazine {
+    text-align: center;
+    margin-top: 20px; 
+    transform: translate(85px,-590px);
+    
+  }
+  #text-categorii {
+    text-align: center;
+    margin-top: 20px; 
+    transform: translate(100px,-590px);
+  }
+  #text-food {
+    text-align: center;
+    margin-top: 20px; 
+    transform: translate(105px,-590px);
+  }
+  #text-beauty {
+    text-align: center;
+    margin-top: 20px; 
+    transform: translate(110px,-760px);
+  }
+  
+  #text-entertainment {
+    text-align: center;
+    margin-top: 20px; 
+    transform: translate(310px,-920px);
+  }
+  
+  
+  #img_magazine
+  {
+    width: 400px;
+    height: 200px;
+    transform: translate(800px,-590px);
+  }
+  #img_food
+  {
+    width: 80px;
+    height: 100px;
+    transform: translate(800px,-590px);
+  }
+  #text-fashion {
+    text-align: center;
+    margin-top: 20px; 
+    transform: translate(300px,-750px);
+  }
+  #img_fashion
+  {
+    width: 80px;
+    height: 100px;
+    transform: translate(1000px,-750px);
+  }
+  #img_beauty
+  {
+    width: 80px;
+    height: 100px;
+    transform: translate(800px,-770px);
+  }
+  #img_entertainment
+  {
+    width: 80px;
+    height: 100px;
+    transform: translate(1030px,-930px);
+  }
