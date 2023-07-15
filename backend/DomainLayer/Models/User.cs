@@ -9,7 +9,6 @@
             Email = email;
             Password = password;    
             IsCreator = isCreator;
-
         }
 
         public string UserName { get; set; }

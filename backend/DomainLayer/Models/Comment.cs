@@ -15,6 +15,10 @@
 
         public int CreatorId { get; set; }
 
+        public Article Article { get; set; }
+
+        public int ArticleId { get; set; }
+
         public ICollection<User> LikedBy { get; set; }
 
 

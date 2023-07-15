@@ -27,19 +27,27 @@ namespace DomainLayer.Context
                 .HasMany(x => x.LikedComments)
                 .WithMany(x => x.LikedBy);
 
-            builder.Entity<User>()
-                .HasMany(x => x.Comments)
-                .WithOne(x => x.Creator)
+            builder.Entity<Comment>()
+                .HasOne(x => x.Creator)
+                .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.CreatorId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.ClientCascade);
 
-            builder.Entity<User>()
-                .HasMany(x => x.CreatedArticles)
-                .WithOne(x => x.Creator)
+            builder.Entity<Article>()
+                .HasOne(x => x.Creator)
+                .WithMany(x => x.CreatedArticles)
                 .HasForeignKey(x => x.CreatorId)
+                .IsRequired()
                 .OnDelete(DeleteBehavior.ClientCascade);
 
-            base.OnModelCreating(builder);
+            builder.Entity<Comment>()
+                .HasOne(x => x.Article)
+                .WithMany(x => x.Comments)
+                .HasForeignKey(x => x.ArticleId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.ClientCascade);
+            //base.OnModelCreating(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
