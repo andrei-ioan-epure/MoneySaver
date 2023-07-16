@@ -46,5 +46,23 @@ namespace ServiceLayer.Services
             _commentRepository.Update(comment);
 
         }
+
+        public void DeleteByCreatorId(int entityId)
+        {
+            List<int> list = new List<int>();
+            foreach (var article in _commentRepository.GetAll())
+            {
+                if (article.CreatorId == entityId)
+                {
+                    list.Add(article.Id);
+                }
+            }
+            foreach (var id in list)
+            {
+                _commentRepository.Delete(id);
+            }
+        }
+
     }
 }
+

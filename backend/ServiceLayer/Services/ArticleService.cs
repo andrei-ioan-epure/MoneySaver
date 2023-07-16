@@ -1,4 +1,5 @@
-﻿using DomainLayer.Models;
+﻿using DomainLayer.Context;
+using DomainLayer.Models;
 using RepositoryLayer;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
@@ -46,5 +47,23 @@ namespace ServiceLayer.Services
             };
             _articleRepository.Update(article);
         }
+
+
+        public void DeleteByCreatorId(int entityId)
+        {
+            List<int> list = new List<int>();
+            foreach (var article in _articleRepository.GetAll())
+            {
+                if (article.CreatorId == entityId)
+                {
+                    list.Add(article.Id);   
+                }
+            }
+            foreach (var id in list)
+            {
+                _articleRepository.Delete(id);
+            }
+        }
+
     }
 }

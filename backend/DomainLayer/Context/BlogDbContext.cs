@@ -46,7 +46,7 @@ namespace DomainLayer.Context
                 .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.ArticleId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.ClientCascade);
+                .OnDelete(DeleteBehavior.Cascade);
             //base.OnModelCreating(builder);
         }
 

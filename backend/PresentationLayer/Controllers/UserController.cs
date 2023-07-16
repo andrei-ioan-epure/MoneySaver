@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
+using ServiceLayer.Services;
 
 namespace PresentationLayer.Controllers
 {
@@ -9,10 +10,14 @@ namespace PresentationLayer.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IArticleService _articleService;
+        private readonly ICommentService _commentService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IArticleService articleService,ICommentService commentService)
         {
             _userService = userService;
+            _articleService = articleService;
+            _commentService = commentService;
         }
 
         [HttpGet("get")]
@@ -45,6 +50,8 @@ namespace PresentationLayer.Controllers
         [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
         {
+            _commentService.DeleteByCreatorId(id);
+            _articleService.DeleteByCreatorId(id);
             _userService.Delete(id);
             return Ok();
         }

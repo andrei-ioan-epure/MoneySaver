@@ -19,5 +19,7 @@ namespace ServiceLayer.Contracts
         void Insert(ArticleDto entity);
 
         void Update(int id, ArticleDto entity);
+
+        void DeleteByCreatorId(int entityId);
     }
 }
