@@ -1,0 +1,12 @@
+.article-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 16px;
+  margin: 32px;
+  margin-left: 56px;
+ 
+  
+}
+button {
+  margin-bottom: 32px;
+}

@@ -10,7 +10,12 @@
     border: 1px solid #006400;
     margin-left:16px;
 }
-
+.nav button:hover {
+    border: 1px solid #006400;
+    color: #FFFFFF;
+    background-color:#006400 ;
+    margin-left: 16px;
+}
 .nav #search-bar{
     color:#006400;
     background-color: transparent;

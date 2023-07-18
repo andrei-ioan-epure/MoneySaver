@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ArticlesComponent } from './articles/articles.component';
+import { ArticleComponent } from './articles/articles.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ArticlesComponent
+     path: 'article-list',
+    component: ArticleComponent
   },
+  
   {
     path: '**',
-    redirectTo: ''
+    redirectTo: 'article-list'
   }
 ];
 

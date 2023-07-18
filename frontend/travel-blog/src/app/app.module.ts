@@ -9,6 +9,7 @@ import { FooterComponent } from './common-components/footer/footer.component';
 import { HeaderComponent } from './common-components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import { BlogModule } from './blog/blog.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {MatButtonModule} from '@angular/material/button';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BlogModule,
     HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule
