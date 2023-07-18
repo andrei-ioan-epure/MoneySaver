@@ -11,6 +11,8 @@ import { HttpClientModule } from  '@angular/common/http';
 import { HeaderComponent } from './common-components/header/header.component';
 import { FooterComponent } from './common-components/footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { HomeComponent } from './home/home.component';
     AboutComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,9 @@ import { HomeComponent } from './home/home.component';
       BrowserAnimationsModule,
       TuiRootModule,
       TuiDialogModule,
-      TuiAlertModule
+      TuiAlertModule,
+      ReactiveFormsModule,
+      FormsModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]
