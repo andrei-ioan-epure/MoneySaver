@@ -1,147 +1,206 @@
 #img_home {
-    display: block;
-    margin: 0 auto; 
-    width: 450px;
-    height: 450px;
-    transform: translate(-200px);
-  }
-  
-  #text_home {
-    text-align: center;
-    margin-top: 20px; 
-    transform: translate(-200px);
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
-    font-size: 16px;
-    
-  }
-  #text-magazine {
-    text-align: center;
-    margin-top: 20px; 
-    transform: translate(85px,-590px);
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
-    font-size: 18px;
-   
-  }
-  #text-categorii {
-    text-align: center;
-    margin-top: 20px; 
-    transform: translate(100px,-590px);
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
-    font-size: 18px;
-  }
-  #text-food {
-    text-align: center;
-    margin-top: 20px; 
-    transform: translate(105px,-590px);
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
-    font-size: 16px;
-  }
-  #text-beauty {
-    text-align: center;
-    margin-top: 20px; 
-    transform: translate(110px,-760px);
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
-    font-size: 16px;
-  }
-  
-  #text-entertainment {
-    text-align: center;
-    margin-top: 20px; 
-    transform: translate(310px,-920px);
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
-    font-size: 16px;
-  }
-  #text-fashion {
-    text-align: center;
-    margin-top: 20px; 
-    transform: translate(300px,-750px);
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
-    font-size: 16px;
-  }
+  display: block;
+  margin: 0 auto;
+  width: 450px;
+  height: 450px;
+  transform: translate(-200px);
+}
 
-  
-  #img_magazine
-  {
-    width: 400px;
-    height: 200px;
-    transform: translate(800px,-590px);
-  }
-  #img_food
-  {
-    width: 80px;
-    height: 100px;
-    transform: translate(800px,-590px);
-  }
- 
-  #img_fashion
-  {
-    width: 80px;
-    height: 100px;
-    transform: translate(1000px,-750px);
-  }
-  #img_beauty
-  {
-    width: 80px;
-    height: 100px;
-    transform: translate(800px,-770px);
-  }
-  #img_entertainment
-  {
-    width: 80px;
-    height: 100px;
-    transform: translate(1030px,-930px);
-  }
+#text_home {
+  text-align: center;
+  margin-top: 20px;
+  transform: translate(-200px);
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+}
+#text-magazine {
+  text-align: center;
+  margin-top: 20px;
+  transform: translate(230px, -590px);
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  font-size: 18px;
+}
+#text-categorii {
+  text-align: center;
+  margin-top: 20px;
+  transform: translate(220px, -590px);
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  font-size: 18px;
+}
+#text-food {
+  text-align: center;
+  margin-top: 20px;
+  transform: translate(125px, -590px);
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+}
+#text-beauty {
+  text-align: center;
+  margin-top: 20px;
+  transform: translate(125px, -760px);
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+}
 
- 
-  /* footer ul sa fie la finalul paginii de home
-  h5 {
-    color: white;
-    background-color: #006400;
-    padding: 10px;
-    margin: 0;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  */
-  .custom-line {
-    border: none;
-    height:2px;
-    background-color: #006400; /* Modifică culoarea liniei aici */
-    margin: 20px auto;
-    width: 60%; /* Modifică lungimea liniei aici */
-  }
-  .vertical-line {
-    width: 2.4px; /* Lățimea liniei verticale */
-    height: 640px; /* Înălțimea liniei verticale */
-    background-color: #006400; /* Culoarea liniei verticale */
-    position: absolute; /* Poziția absolută */
-    left: 20%; /* Poziționează la 50% distanță de la stânga */
-    top: 63px; /* Poziționează la 50px distanță de sus */
-    transform: translateX(-50%); /* Repozitionează în centru */
-  }
-  .custom-line2 {
-    border: none;
-    height: 3px;
-    background-color: #006400; /* Modifică culoarea liniei aici */
-    margin: 20px auto;
-    width: 60.1%; /* Modifică lungimea liniei aici */
-    transform: translate(0px,-922px);
-  }
-  .vertical-line2 {
-    width: 2.4px; /* Lățimea liniei verticale */
-    height: 640px; /* Înălțimea liniei verticale */
-    background-color: #006400; /* Culoarea liniei verticale */
-    position: absolute; /* Poziția absolută */
-    left: 80%; /* Poziționează la 50% distanță de la stânga */
-    top: 63px; /* Poziționează la 50px distanță de sus */
-    transform: translateX(-50%); /* Repozitionează în centru */
-  }
+#text-entertainment {
+  text-align: center;
+  margin-top: 20px;
+  transform: translate(335px, -920px);
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+}
+#text-fashion {
+  text-align: center;
+  margin-top: 20px;
+  transform: translate(330px, -750px);
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+}
+
+#img_magazine {
+  width: 400px;
+  height: 200px;
+  transform: translate(800px, -590px);
+}
+#img_food {
+  width: 80px;
+  height: 100px;
+  transform: translate(800px, -590px);
+}
+
+#img_fashion {
+  width: 80px;
+  height: 100px;
+  transform: translate(1000px, -750px);
+}
+#img_beauty {
+  width: 80px;
+  height: 100px;
+  transform: translate(800px, -770px);
+}
+#img_entertainment {
+  width: 80px;
+  height: 100px;
+  transform: translate(1030px, -930px);
+}
+
+/* footer ul sa fie la finalul paginii de home
+h5 {
+  color: white;
+  background-color: #006400;
+  padding: 10px;
+  margin: 0;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+*/
+.custom-line {
+  border: none;
+  height: 2px;
+  background-color: #006400; /* Modifică culoarea liniei aici */
+  margin: 20px auto;
+  width: 60%; /* Modifică lungimea liniei aici */
+}
+.vertical-line {
+  width: 2.4px; /* Lățimea liniei verticale */
+  height: 640px; /* Înălțimea liniei verticale */
+  background-color: #006400; /* Culoarea liniei verticale */
+  position: absolute; /* Poziția absolută */
+  left: 20%; /* Poziționează la 50% distanță de la stânga */
+  top: 63px; /* Poziționează la 50px distanță de sus */
+  transform: translateX(-50%); /* Repozitionează în centru */
+}
+.custom-line2 {
+  border: none;
+  height: 3px;
+  background-color: #006400; 
+  margin: 20px auto;
+  width: 60.1%; 
+  transform: translate(0px, -922px);
+}
+.vertical-line2 {
+  width: 2.4px; 
+  height: 640px; 
+  background-color: #006400; 
+  position: absolute; 
+  left: 80%; 
+  top: 63px; 
+  transform: translateX(-50%); 
+}
+
+.custom-line3 {
+  border: none;
+  height: 3px;
+  background-color: #006400; 
+  margin: 20px auto;
+  width: 27.8%; 
+  transform: translate(248px, -1522px);
+}
+.vertical-line3 {
+  width: 2.4px; 
+  height: 640px; 
+  background-color: #006400; 
+  position: absolute; 
+  left: 52.2%; 
+  top: 63px; 
+  transform: translateX(-50%); 
+}
+
+.custom-line4 {
+  border: none;
+  height: 3px;
+  background-color: #006400; 
+  margin: 20px auto;
+  width: 27.8%; 
+  transform: translate(248px, -1333px);
+}
+.custom-line5 {
+  border: none;
+  height: 3px;
+  background-color: #006400; 
+  margin: 20px auto;
+  width: 27.8%; 
+  transform: translate(248px, -1315px);
+}
+.custom-line6 {
+  border: none;
+  height: 3px;
+  background-color: #006400; 
+  margin: 20px auto;
+  width: 27.8%; 
+  transform: translate(248px, -1300px);
+}
+.custom-line7 {
+  border: none;
+  height: 3px;
+  background-color: #006400; 
+  margin: 20px auto;
+  width: 27.8%; 
+  transform: translate(248px, -1166px);
+}
+.vertical-line4 {
+  width: 2.4px; 
+  height: 322px; 
+  background-color: #006400; 
+  position: absolute; 
+  left: 64%;
+  top: 380px; 
+  transform: translateX(-50%); 
+}
+.custom-line8 {
+  border: none;
+  height: 3px;
+  background-color: #006400;
+  margin: 20px auto;
+  width: 27.8%; 
+  transform: translate(248px, -1230px);
+}
