@@ -27,7 +27,7 @@ p{
     color: var(--paragraph, #32403B);
     text-align: center;
     font-family: 'Karla';
-    font-size: 23px;
+    font-size: 24px;
     font-style: normal;
     font-weight: 400;
     line-height: 30px; /* 130% */
@@ -45,10 +45,19 @@ form{
 .input{
     margin-bottom: 16px;
     width: 528px;
+    border: #006400 1px;
 }
 
 .btn{
     width: 326px;
+    color: #006400 !important;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    background-color: #006400;
+    color: #fff !important;
 }
 
 h5{
