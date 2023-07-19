@@ -4,6 +4,16 @@ h5{
     padding:10px;
     margin: 0;
     text-align: center;
-    width:95.3;
-    bottom:0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
+
+ .left-corner {
+     text-align: left;
+ }
+
+ .right-corner {
+     text-align: right;
+ }

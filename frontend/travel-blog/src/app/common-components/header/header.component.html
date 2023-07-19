@@ -1,25 +1,32 @@
 <!--Toolbar din Header-->
 <div class="nav">
-  <p>
+  <div class="left-corner">
     <a href="/home"
       ><img align="left" [src]="ImagePath" style="width: 160px; height: 40px"
     /></a>
-  </p>
+  </div>
 
   <!--<mat-form-field id="search-bar">
         <input matInput placeholder="Search">
     </mat-form-field>  
 -->
-  <button id="blog" mat-raised-button color="#006400" routerLink="/blog">
-    Blog
-  </button>
-  <button id="contact" mat-raised-button color="#006400" routerLink="/contact">
-    Contact
-  </button>
-  <button id="aboutus" mat-raised-button color="#006400" routerLink="/about">
-    About Us
-  </button>
-  <button id="signin" mat-raised-button color="#006400" routerLink="/signin">
-    Sign In
-  </button>
+  <div class="right-corner">
+    <button id="blog" mat-raised-button color="#006400" routerLink="/blog">
+      Blog
+    </button>
+    <button
+      id="contact"
+      mat-raised-button
+      color="#006400"
+      routerLink="/contact"
+    >
+      Contact
+    </button>
+    <button id="aboutus" mat-raised-button color="#006400" routerLink="/about">
+      About Us
+    </button>
+    <button id="signin" mat-raised-button color="#006400" routerLink="/signin">
+      Sign In
+    </button>
+  </div>
 </div>
