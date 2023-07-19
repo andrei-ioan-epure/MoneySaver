@@ -1,0 +1,22 @@
+.box{
+    width: 230px;
+    height: 240px;
+    border: 2px solid #006400;
+    border-radius: 5px;
+    }
+
+.circle{
+  width: 80px;
+  height: 80px;
+  border:1px solid black;
+  border-radius: 50%;
+  transform: translate(75px, 40px);
+  overflow: hidden;
+}
+
+.name{
+    font-family: monospace;
+    position: relative;
+    left:5px;
+    top:80px;
+}

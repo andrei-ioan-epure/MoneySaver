@@ -1,1 +1,22 @@
-<p>about works!</p>
+<h1>About us</h1>
+<br><br><br><br>
+<div class="cards1">
+    <div *ngFor="let card of cards | slice: 0 : 3">
+        <app-card
+            [name]="card.name"
+            [img]="card.img"
+            [description]="card.description"
+        ></app-card>
+    </div>
+</div>
+
+<div class="cards2">
+    <div *ngFor="let card of cards | slice: 3 : 5">
+        <app-card
+            [name]="card.name"
+            [img]="card.img"
+            [description]="card.description"
+        ></app-card>
+    </div>
+</div>
+
