@@ -17,8 +17,18 @@ h1{
     font-weight: 700;
     line-height: 70px; 
 }
-
-
+p{
+    margin-top: 0px;
+    text-align: center;
+    flex-shrink: 0;
+    color: var(--paragraph, #32403B);
+    text-align: center;
+    font-family: 'Karla';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px; /* 130% */
+}
 form{
     display: flex;
     justify-content: center;
@@ -47,34 +57,16 @@ form{
     background-color: #008000; /* Schimba culoarea de fundal la hover */
     cursor: pointer;
   }
-
-h5{
-    margin-bottom: 0px;
-    position: relative;
-    flex-shrink: 0;
-    color: var(--heading, #212B27);
-    text-align: center;
-    font-family: 'Karla';
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 24px; 
-    top:20px;
-}
-h5 a {
-    color: #006400; /* Schimbați culoarea textului în verde */
+  #back
+  {
+      top:50px;
+      left:195px;
+      position: relative;
+      flex-shrink: 0;
+      color: var(--heading, #212B27);
+      font-family: 'Karla';
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 24px; 
   }
-
-#reset_password
-{
-    top:-30px;
-    left:205px;
-    position: relative;
-    flex-shrink: 0;
-    color: var(--heading, #212B27);
-    font-family: 'Karla';
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 24px; 
-}

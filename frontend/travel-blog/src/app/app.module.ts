@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -13,6 +14,13 @@ import { FooterComponent } from './common-components/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './signin/signin.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ResetPassComponent } from './signin/reset-pass/reset-pass.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +29,8 @@ import { SigninComponent } from './signin/signin.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    SigninComponent
+    SigninComponent,
+    ResetPassComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +41,10 @@ import { SigninComponent } from './signin/signin.component';
       TuiDialogModule,
       TuiAlertModule,
       ReactiveFormsModule,
-      FormsModule
+      FormsModule,
+      MatButtonModule,
+      MatInputModule,
+      MatCheckboxModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]

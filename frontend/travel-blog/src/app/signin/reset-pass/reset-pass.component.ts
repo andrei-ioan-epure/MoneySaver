@@ -1,29 +1,24 @@
 import { Component } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  selector: 'app-reset-pass',
+  templateUrl: './reset-pass.component.html',
+  styleUrls: ['./reset-pass.component.scss']
 })
-export class SigninComponent {
+export class ResetPassComponent {
   formGroup: FormGroup = new FormGroup({});
   email: FormControl = new FormControl('',[Validators.required,Validators.email]);
-  password : FormControl = new FormControl('', [Validators.required,Validators.minLength(8)]);
   constructor(private router: Router) {}
-
   ngOnInit(){
     this.formGroup = new FormGroup({
-      email: this.email,
-      password: this.password
+      email: this.email
     });
   }
-
-  submitForm(){
+  submitForm_reset(){
     if (this.formGroup.valid) {
       console.log(this.formGroup.value);
-      //this.router.navigate(['home']); // Redirecționare către pagina de home
+      //this.router.navigate(['signin']); //redirect catre sign in
     }
 
   }
