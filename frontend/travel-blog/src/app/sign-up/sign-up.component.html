@@ -6,19 +6,20 @@
 </div>
 
 <form [formGroup]="formGroup" (ngSubmit)="submitForm()">
-  <mat-form-field class="input">
+  <mat-form-field appearance="outline" class="input">
     <mat-label >Username</mat-label>
     <input
       matInput
       formControlName="username"
       placeholder="Ex. MSeba"
     />
+    <mat-icon matSuffix>person</mat-icon>
     <mat-error *ngIf="email.hasError('required')">
       Username is <strong>required</strong>
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class="input">
+  <mat-form-field appearance="outline" class="input">
     <mat-label >Email</mat-label>
     <input
       type="email"
@@ -26,7 +27,7 @@
       formControlName="email"
       placeholder="Ex. name@example.com"
     />
-
+    <mat-icon matSuffix>mail_outline</mat-icon>
     <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
       Please enter a valid email address
     </mat-error>
@@ -35,21 +36,28 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class="input">
+  <mat-form-field appearance="outline" class="input">
     <mat-label>Full Name</mat-label>
     <input
       matInput
       formControlName="fullName"
       placeholder="Ex. Sebastian Miron"
     />
+    <mat-icon matSuffix>person_outline</mat-icon>
     <mat-error *ngIf="fullName.hasError('required')">
       Your name is <strong>required</strong>
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class="input">
+  <mat-form-field appearance="outline" class="input">
     <mat-label>Password</mat-label>
-    <input type="password" matInput formControlName="password" />
+    <!-- <input type="password" matInput formControlName="password" /> -->
+
+    <input type="password" matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+
     <mat-error
       *ngIf="password.hasError('length') && !password.hasError('required')"
     >

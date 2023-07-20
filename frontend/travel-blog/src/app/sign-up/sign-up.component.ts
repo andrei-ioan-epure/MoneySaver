@@ -16,6 +16,7 @@ function checkLength(c: AbstractControl): ValidationErrors|null{
 })
 
 export class SignUpComponent {
+  hide = true;
   formGroup: FormGroup = new FormGroup({});
   username: FormControl = new FormControl('',[Validators.required]);
   email: FormControl = new FormControl('',[Validators.required,Validators.email]);
