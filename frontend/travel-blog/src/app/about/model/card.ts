@@ -1,6 +1,7 @@
 export type Card={
     img: string;
-    name:string;
+    lname:string;
+    fname:string;
     description:string;
 }
 

@@ -3,8 +3,9 @@
 <div class="cards1">
     <div *ngFor="let card of cards | slice: 0 : 3">
         <app-card
-            [name]="card.name"
             [img]="card.img"
+            [lname]="card.lname"
+            [fname]="card.fname"
             [description]="card.description"
         ></app-card>
     </div>
@@ -13,8 +14,9 @@
 <div class="cards2">
     <div *ngFor="let card of cards | slice: 3 : 5">
         <app-card
-            [name]="card.name"
             [img]="card.img"
+            [lname]="card.lname"
+            [fname]="card.fname"
             [description]="card.description"
         ></app-card>
     </div>
