@@ -6,7 +6,19 @@
 </div>
 
 <form [formGroup]="formGroup" (ngSubmit)="submitForm()">
-  <mat-form-field class="input emailInput">
+  <mat-form-field class="input">
+    <mat-label >Username</mat-label>
+    <input
+      matInput
+      formControlName="username"
+      placeholder="Ex. MSeba"
+    />
+    <mat-error *ngIf="email.hasError('required')">
+      Username is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input">
     <mat-label >Email</mat-label>
     <input
       type="email"

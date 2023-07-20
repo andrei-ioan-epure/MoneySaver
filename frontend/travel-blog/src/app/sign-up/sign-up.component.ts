@@ -17,6 +17,7 @@ function checkLength(c: AbstractControl): ValidationErrors|null{
 
 export class SignUpComponent {
   formGroup: FormGroup = new FormGroup({});
+  username: FormControl = new FormControl('',[Validators.required]);
   email: FormControl = new FormControl('',[Validators.required,Validators.email]);
   fullName : FormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
   password : FormControl = new FormControl('', [Validators.required, checkLength]);
@@ -24,6 +25,7 @@ export class SignUpComponent {
 
   ngOnInit(){
     this.formGroup = new FormGroup({
+      username:this.username,
       email: this.email,
       fullName: this.fullName,
       password: this.password,
