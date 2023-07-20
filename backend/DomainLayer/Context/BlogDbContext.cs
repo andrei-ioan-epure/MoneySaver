@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using System.Xml.Linq;
+using DomainLayer.Mappings;
 using DomainLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
@@ -47,6 +48,10 @@ namespace DomainLayer.Context
                 .HasForeignKey(x => x.ArticleId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
+
+            UserMapping.Map(builder);
+            CommentMapping.Map(builder);
+            ArticleMapping.Map(builder);
             //base.OnModelCreating(builder);
         }
 
