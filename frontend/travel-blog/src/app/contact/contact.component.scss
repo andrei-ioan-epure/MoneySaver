@@ -1,0 +1,40 @@
+h1{
+    text-align: center;
+    font-family: 'Karla';
+    color: #212B27;
+    font-weight: bold;
+}
+
+h3{
+    text-align: center;
+    font-family: 'Karla';
+    color:#32403B ;
+
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input{
+    margin-bottom: 6px;
+    width: 528px;
+    height: 70px;
+}
+
+.message{
+    width: 528px;
+    height: 100px;
+}
+
+.sendBtn{
+    width:320px;
+    height: 40px;
+    color: white;
+    background-color: #005A28;
+    border-radius: 8px;
+    font-size: 16px;
+}

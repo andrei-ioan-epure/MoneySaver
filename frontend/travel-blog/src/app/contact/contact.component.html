@@ -1,0 +1,41 @@
+<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
+
+<h1>Contact</h1>
+<h3>The MoneySaver team is always looking for ways <br> to improve the site and your experience.</h3>
+<h3>Please tell us your opinion about that.</h3>
+<br><br><br>
+
+<form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Full name</mat-label>
+      <input matInput
+        formControlName="name"
+        placeholder="Ex. Iustina">
+        <mat-icon matSuffix>person_outline</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="input">
+        <mat-label>Email address </mat-label>
+        <input 
+          type="email"  
+          matInput
+          formControlName="email"
+          placeholder="Ex. name@example.com">
+          <mat-icon matSuffix>mail_outline</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="input">
+        <mat-label>Message subject </mat-label>
+        <input matInput
+          formControlName="msgsj"
+          >
+        <mat-icon matSuffix>chat_bubble_outline</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="message">
+        <mat-label matTextPrefix>Message </mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class="sendBtn">Send message</button>
+</form>
