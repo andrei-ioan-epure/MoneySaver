@@ -9,6 +9,8 @@ import { FooterComponent } from './common-components/footer/footer.component';
 import { HeaderComponent } from './common-components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {MatButtonModule} from '@angular/material/button';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

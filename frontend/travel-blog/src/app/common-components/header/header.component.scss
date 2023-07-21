@@ -1,18 +1,43 @@
 .nav{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     font-size: 30px;
     text-align: right;
     color:#006400;
     border: 2px solid #006400;
     padding: 10px 24px 10px 24px;
-
 }
 .nav button{
     border: 1px solid #006400;
     margin-left:16px;
 }
 
-.nav #search-bar{
-    color:#006400;
+.search > input{
+    color: #006400;
     background-color: transparent;
-    width:400px;
+    width: 400px;
+    height: 32px;
+    border-radius: 16px;
+    border: 1px #006400 solid;
 }
+
+.nav button:hover {
+    border: 1px solid #006400;
+    color: #FFFFFF;
+    background-color:#006400 ;
+    margin-left: 16px;
+}
+
+#fav{
+    color:#006400;
+    border: none;
+    background-color: #FFFFFF;
+}
+
+
+
+.custom-size{
+    font-size: 26px !important;
+}
+
