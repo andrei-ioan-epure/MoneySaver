@@ -1,0 +1,20 @@
+<div class="article-list-item">
+  <div class="header">
+    <div class="left-corner">
+      <p>Category</p>
+      <p>City</p>
+    </div>
+    <div class="right-corner">
+      <p>Date posted</p>
+      <p>Author</p>
+    </div>
+  </div>
+  <div class="image-container">
+    <img src="../assets/images/netflix.png" alt="{{ title }}" srcset="" />
+    <button class="favoriteBtn" (click)="onClickFavorite()">
+      <mat-icon id="heart">favorite_border</mat-icon>
+    </button>
+  </div>
+  <p>Valid until : {{ publishDate | date : "dd/MM/yyyy" }}</p>
+  <button (click)="onClick()">See Offer</button>
+</div>

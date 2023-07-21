@@ -1,0 +1,113 @@
+
+.filter{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+// #filterButton {
+//     width: 120px;
+//     height: 32px;
+    
+//     margin-left: 300px;
+//     border-radius: 0px 16px 16px 0px;
+//     border: 1px solid #006400;
+//     color: #FFFFFF;
+//     background-color: #006400;
+//     font-weight: bold;
+// }
+
+// #filterButton:hover {
+//     background-color: #FFFFFF;
+//     color: #006400;
+// }
+
+
+// #filterButtonX {
+//     width: 40px;
+//     height: 32px;
+//     margin-left: 300px;
+//     border-radius: 0px 16px 16px 0px;
+//     border: none;
+//     color: #006400;
+//     background-color: #D9D9D9;
+//     font-weight: bold;
+// }
+
+// #filterButtonX:hover {
+//     background-color: #887E7E;
+//     color: #006400;
+// }
+option {
+    font-size: 16px;
+}
+.rectangle {
+    left: 0px;
+    width: 300px;
+    height: calc(87.5%);
+    background-color: #D9D9D9;
+    position: fixed;
+    //margin-right: 300px;
+ }
+ .rectangle > * {
+     margin-left: 20px;
+ }
+ .title{
+    margin-left: 0;
+    margin-right: 32px;
+    margin-top: 32px;
+    font-weight: bold;
+    text-align: center;
+   
+ }
+
+ button {
+     width: 126px;
+     height: 24px;
+     margin-bottom: 16px;
+ }
+
+
+.authorFilter{
+    margin-bottom: 16px;
+}
+ .author-title {
+    font-size: 20px;
+    font-weight: bold;
+     margin-bottom: 10px;
+ }
+
+ .author-checkbox {
+     display: block;
+     margin-bottom: 8px;
+     margin-left: 20px;
+ }
+
+
+ .author-checkbox input[type="checkbox"] {
+     margin-right: 8px;
+     width: 16px;
+     height: 16px;
+ }
+
+.form-field {
+  margin-bottom: 10px;
+}
+
+ .form-field label {
+  font-weight: bold;
+  display: block;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+select {
+  width: 252px;
+  padding: 5px;
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+ label span {
+     font-weight: 500;
+ }

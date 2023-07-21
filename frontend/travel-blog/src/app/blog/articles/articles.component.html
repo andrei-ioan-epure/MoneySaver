@@ -1,1 +1,16 @@
-<p>articles works!</p>
+<div class="blog">
+  <div class="left"><app-filter></app-filter></div>
+
+  <div class="right">
+    <div class="article-container">
+      <div *ngFor="let article of articles | slice : 0 : 8">
+        <app-article-list-item
+          [title]="article.title"
+          [content]="article.content"
+          [publishDate]="article.publishDate"
+          (articleChange)="onArticleChange($event)"
+        ></app-article-list-item>
+      </div>
+    </div>
+  </div>
+</div>
