@@ -1,7 +1,12 @@
 h1{
     font-family: 'Karla';
     text-align: center;
-    color: black;
+    //color: black;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 70px;
+    color: var(--heading, #212B27);
 }
 
 .cards1{

@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactResponseComponent } from './contact/contact-response/contact-response.component';
+import { OfertsComponent } from './oferts/oferts.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ContactResponseComponent } from './contact/contact-response/contact-res
     AboutComponent,
     CardComponent,
     ContactComponent,
-    ContactResponseComponent
+    ContactResponseComponent,
+    OfertsComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,15 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AbstractControl, Form, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+
+function checkLength(c: AbstractControl): ValidationErrors|null{
+  let stringControl:string = c.value;
+  if(stringControl.length>=8){
+    return null;
+  }
+  return {'length':true};
+}
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +25,8 @@ export class ContactComponent {
   email:FormControl=new FormControl('',[Validators.required,Validators.email]);
   msgsj:FormControl=new FormControl('',[Validators.required]);
   message:FormControl=new FormControl('',[Validators.required]);
-  constructor(){}
+  
+  constructor(private router:Router){}
 
   ngOnInit(){
     this.formGroup=new FormGroup({
@@ -27,9 +37,12 @@ export class ContactComponent {
     });
   }
 
+
   submitForm(){
+    //this.formGroup.markAllAsTouched;
     if(this.formGroup.valid){
-      console.log(this.formGroup.value);
+      this.router.navigateByUrl('/contact-response');
     }
+    
   }
 }

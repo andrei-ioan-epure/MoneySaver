@@ -2,13 +2,18 @@ h1{
     text-align: center;
     font-family: 'Karla';
     color: #212B27;
-    font-weight: bold;
+    text-align: center;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 70px;   
 }
 
 h3{
     text-align: center;
     font-family: 'Karla';
     color:#32403B ;
+    font-size: 25px;
 
 }
 
@@ -20,21 +25,36 @@ form{
 }
 
 .input{
-    margin-bottom: 6px;
+    margin-bottom: 10px;
     width: 528px;
     height: 70px;
 }
 
 .message{
     width: 528px;
-    height: 100px;
+    height: 200px;
 }
 
+
+
 .sendBtn{
-    width:320px;
+    width: 326px;
     height: 40px;
-    color: white;
-    background-color: #005A28;
-    border-radius: 8px;
-    font-size: 16px;
+    background-color: #006400 !important;
+    color: #ffffff !important;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    font-size: 16px; 
+    margin-top: 25px;
+    font-weight: bold;
+    font-family: 'Karla';
+}
+.sendBtn:hover {
+    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+  }
+
+
+.textareamsg{
+    height:168px !important;
 }

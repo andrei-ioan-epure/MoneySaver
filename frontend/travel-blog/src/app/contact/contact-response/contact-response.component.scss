@@ -1,12 +1,28 @@
+
 h1{
-    text-align: center;
+    font-size: 40px;
+    color: #212B27;
 }
 
 .homeBtn{
-    width:320px;
+    width: 326px;
     height: 40px;
-    color: white;
-    background-color: #005A28;
-    border-radius: 8px;
-    font-size: 16px;
+    background-color: #006400 !important;
+    color: #ffffff !important;
+    border-radius: 10px;
+    padding: 10px 20px; 
+    font-size: 16px; 
+    font-weight: bold;
+    font-family: 'Karla';
 }
+.homeBtn:hover {
+    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+  }
+
+.response{
+    text-align: center;
+    font-family: 'Karla';
+    
+}
+
