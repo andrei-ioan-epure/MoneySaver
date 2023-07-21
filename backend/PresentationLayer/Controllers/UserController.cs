@@ -57,9 +57,9 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPut("addFavorite")]
-        public IActionResult AddFavorites(int userId, int articleId)
+        public IActionResult AddFavorites(FavoriteArticleDto favoriteArticle)
         {
-            _userService.InsertFavoriteArticle(userId, articleId);
+            _userService.InsertFavoriteArticle(favoriteArticle);
             return Ok();
         }
     }

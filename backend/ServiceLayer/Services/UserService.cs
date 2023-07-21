@@ -41,10 +41,10 @@ namespace ServiceLayer.Services
             _userRepository.Insert(user);
         }
 
-        public void InsertFavoriteArticle(int userId, int articolId)
+        public void InsertFavoriteArticle(FavoriteArticleDto favoriteArticle)
         {
-            var article = _articleRepository.Get(articolId);
-            var user = _userRepository.GetWithLinkedEntities(userId, "FavoriteArticles");
+            var article = _articleRepository.Get(favoriteArticle.articleId);
+            var user = _userRepository.GetWithLinkedEntities(favoriteArticle.userId, "FavoriteArticles");
 
             user.FavoriteArticles.Add(article);
             _userRepository.Update(user);

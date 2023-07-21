@@ -14,6 +14,6 @@ namespace ServiceLayer.Contracts
 
         void Update(int id, UserDto entity);
 
-        void InsertFavoriteArticle(int userId, int articolId);
+        void InsertFavoriteArticle(FavoriteArticleDto favoriteArticle);
     }
 }
