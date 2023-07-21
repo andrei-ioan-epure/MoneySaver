@@ -24,7 +24,7 @@ export class SigninComponent {
   submitForm(){
     if (this.formGroup.valid) {
       console.log(this.formGroup.value);
-      //this.router.navigate(['home']); // Redirecționare către pagina de home
+      this.router.navigate(['home']); // Redirecționare către pagina de home
     }
 
   }

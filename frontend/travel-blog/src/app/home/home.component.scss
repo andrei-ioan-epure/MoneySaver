@@ -6,6 +6,8 @@
   position: absolute;
   top: 100px;
   left: 330px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.7);
+
 
 }
 
@@ -13,73 +15,82 @@
   text-align: center;
   margin-top: 20px;
   font-weight: bold;
-  font-family: "Arial", sans-serif;
+  font-family: "Karla";
   font-size: 16px;
   position: absolute;
   top: 550px;
   left: 400px;
+  color: var(--heading, #212B27);
 
 }
 #text-magazine {
   text-align: center;
   margin-top: 20px;
   font-weight: bold;
-  font-family: "Arial", sans-serif;
+  font-family: "Karla";
   font-size: 18px;
   position: absolute;
   top: 80px;
   left: 970px;
+  text-transform: uppercase;
+  color: var(--heading, #212B27);
 }
 #text-categorii {
   text-align: center;
   margin-top: 20px;
   font-weight: bold;
-  font-family: "Arial", sans-serif;
+  font-family: "Karla";
   font-size: 18px;
   position: absolute;
   top: 330px;
   left: 950px;
+  text-transform: uppercase;
+  color: var(--heading, #212B27);
 }
 #text-food {
   text-align: center;
   margin-top: 20px;
   font-weight: bold;
-  font-family: "Arial", sans-serif;
+  font-family: "Karla";
   font-size: 16px;
   position: absolute;
   top: 380px;
   left: 870px;
+  color: var(--heading, #212B27);
 }
 #text-beauty {
   text-align: center;
   margin-top: 20px;
   font-weight: bold;
-  font-family: "Arial", sans-serif;
+  font-family:"Karla";
   font-size: 16px;
   position: absolute;
   top: 520px;
   left: 865px;
+  color: var(--heading, #212B27);
 }
 
 #text-entertainment {
   text-align: center;
   margin-top: 20px;
   font-weight: bold;
-  font-family: "Arial", sans-serif;
+  font-family: "Karla";
   font-size: 16px;
   position: absolute;
   top: 520px;
   left: 1050px;
+  color: var(--heading, #212B27);
 }
 #text-fashion {
   text-align: center;
   margin-top: 20px;
   font-weight: bold;
-  font-family: "Arial", sans-serif;
+  font-family: "Karla";
   font-size: 16px;
   position: absolute;
   top: 380px;
   left: 1070px;
+  color: var(--heading, #212B27);
 }
 
 #img_magazine {
