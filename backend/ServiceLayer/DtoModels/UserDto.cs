@@ -10,7 +10,6 @@
             Email = email;
             Password = password;
             IsCreator = isCreator;
-
         }
 
         public int? Id { get; set; }

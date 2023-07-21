@@ -55,5 +55,12 @@ namespace PresentationLayer.Controllers
             _userService.Delete(id);
             return Ok();
         }
+
+        [HttpPut("addFavorite")]
+        public IActionResult AddFavorites(int userId, int articleId)
+        {
+            _userService.InsertFavoriteArticle(userId, articleId);
+            return Ok();
+        }
     }
 }

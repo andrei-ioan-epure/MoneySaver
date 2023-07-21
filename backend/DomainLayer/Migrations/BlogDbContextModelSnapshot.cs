@@ -212,8 +212,7 @@ namespace DomainLayer.Migrations
                     b.HasOne("DomainLayer.Models.User", "Creator")
                         .WithMany("CreatedArticles")
                         .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.Navigation("Creator");
                 });
@@ -223,14 +222,12 @@ namespace DomainLayer.Migrations
                     b.HasOne("DomainLayer.Models.Article", "Article")
                         .WithMany("Comments")
                         .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DomainLayer.Models.User", "Creator")
                         .WithMany("Comments")
                         .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.Navigation("Article");
 

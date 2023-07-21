@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DomainLayer.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20230720091607_CreateDB")]
+    [Migration("20230721165354_CreateDB")]
     partial class CreateDB
     {
         /// <inheritdoc />
@@ -215,8 +215,7 @@ namespace DomainLayer.Migrations
                     b.HasOne("DomainLayer.Models.User", "Creator")
                         .WithMany("CreatedArticles")
                         .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.Navigation("Creator");
                 });
@@ -226,14 +225,12 @@ namespace DomainLayer.Migrations
                     b.HasOne("DomainLayer.Models.Article", "Article")
                         .WithMany("Comments")
                         .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DomainLayer.Models.User", "Creator")
                         .WithMany("Comments")
                         .HasForeignKey("CreatorId")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.ClientCascade);
 
                     b.Navigation("Article");
 

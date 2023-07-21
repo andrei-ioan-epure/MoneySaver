@@ -8,11 +8,13 @@ namespace ServiceLayer.Services
     public class UserService : IUserService
     {
         private readonly IRepository<User> _userRepository;
+        private readonly IRepository<Article> _articleRepository;
  
 
-        public UserService(IRepository<User> userRepository)
+        public UserService(IRepository<User> userRepository, IRepository<Article> articleRepository)
         {
             _userRepository = userRepository;
+            _articleRepository = articleRepository;
         }
 
         public IEnumerable<UserDto> GetAll()
@@ -21,8 +23,9 @@ namespace ServiceLayer.Services
         }
 
         public UserDto? Get(int id)
-        {
-            var user = _userRepository.Get(id);
+        { 
+            var user = _userRepository.GetWithLinkedEntities(id, "FavoriteArticles");
+
 
             return user != null ? new UserDto(user.Id, user.UserName, user.FullName, user.Email, user.Password, user.IsCreator) : null;
         }
@@ -36,6 +39,15 @@ namespace ServiceLayer.Services
         {
             var user = new User(entity.UserName, entity.FullName,entity.Email,entity.Password,entity.IsCreator);
             _userRepository.Insert(user);
+        }
+
+        public void InsertFavoriteArticle(int userId, int articolId)
+        {
+            var article = _articleRepository.Get(articolId);
+            var user = _userRepository.GetWithLinkedEntities(userId, "FavoriteArticles");
+
+            user.FavoriteArticles.Add(article);
+            _userRepository.Update(user);
         }
 
         public void Update(int id, UserDto entity)

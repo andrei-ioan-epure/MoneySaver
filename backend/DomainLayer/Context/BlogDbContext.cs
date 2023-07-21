@@ -24,35 +24,56 @@ namespace DomainLayer.Context
                 .HasMany(x => x.FavoriteArticles)
                 .WithMany(x => x.FavoriteUsers);
 
+
             builder.Entity<User>()
                 .HasMany(x => x.LikedComments)
                 .WithMany(x => x.LikedBy);
+
 
             builder.Entity<Comment>()
                 .HasOne(x => x.Creator)
                 .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.CreatorId)
-                .IsRequired()
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.ClientCascade);
 
             builder.Entity<Article>()
                 .HasOne(x => x.Creator)
                 .WithMany(x => x.CreatedArticles)
                 .HasForeignKey(x => x.CreatorId)
-                .IsRequired()
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.ClientCascade);
 
             builder.Entity<Comment>()
                 .HasOne(x => x.Article)
                 .WithMany(x => x.Comments)
                 .HasForeignKey(x => x.ArticleId)
-                .IsRequired()
+                .IsRequired(false)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            //builder.Entity<User>()
+            //    .HasMany(u => u.CreatedArticles)
+            //    .WithOne(a => a.Creator)
+            //    .HasForeignKey(a => a.CreatorId)
+            //    .OnDelete(DeleteBehavior.ClientCascade);
+
+            //builder.Entity<User>()
+            //    .HasMany(u => u.Comments)
+            //    .WithOne(c => c.Creator)
+            //    .HasForeignKey(c => c.CreatorId)
+            //    .IsRequired()
+            //    .OnDelete(DeleteBehavior.ClientCascade);
+
+            //builder.Entity<Article>()
+            //    .HasMany(a => a.Comments)
+            //    .WithOne(c => c.Article)
+            //    .HasForeignKey(c => c.ArticleId)
+            //    .IsRequired()
+            //    .OnDelete(DeleteBehavior.ClientCascade);
 
             UserMapping.Map(builder);
             CommentMapping.Map(builder);
             ArticleMapping.Map(builder);
-            //base.OnModelCreating(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
