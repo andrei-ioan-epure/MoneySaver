@@ -39,11 +39,11 @@
     
 }
 
-.article-list-item > button:hover {
+.article-list-item >button:hover {
     background-color: #CC5A00;
 }
 
-.article-list-item > button:focus {
+.article-list-item >button:focus {
     outline: none;
 }
 
@@ -75,26 +75,41 @@
     margin-bottom: 8px;
  }
 
+//  .article-list-item .centered .deleteBtn{ 
+//     position: absolute;
+//     text-align:centered !important;
+//     width:5px;
+//     top: 22%;
+//     right: 6%;
+//     background-color: #555;
+//     color: white;
+//     font-size: 16px;
+//     //padding: 12px 24px;
+//     border: none;
+//     cursor: pointer;
+//     border-radius: 5px;
+        
+//  }
+
 .image-container {
     position: relative;
     display: inline-block;
 }
 
-.favoriteBtn {
+.deleteBtn {
     position: absolute;
-    text-align: centered !important;
+    text-align:centered !important;
     top: 0;
     right: 0;
     padding: 8px;
-    background-color: #FFFFFF;
-    color: black;
+    background-color: #555;
+    color: white;
     font-size: 16px;
     border: none;
-    border: #000000;
     cursor: pointer;
-    border-radius: 8px 0px 0px 8px;
+    border-radius: 8px 0px 0px 8px ;
 }
-
-.favoriteBtn:hover {
-    color: #ff0000;
+.deleteBtn:hover
+{
+    background-color: #FF0000;
 }
