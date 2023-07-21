@@ -20,5 +20,4 @@ export class ArticleComponent implements OnInit {
   onArticleChange(value: string): void {
     console.log('clicked on', value);
   }
-
 }
