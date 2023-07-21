@@ -5,7 +5,7 @@
 </div>
 
 <form [formGroup]="formGroup" (ngSubmit)="submitForm()">
-  <mat-form-field class="input">
+  <mat-form-field appearance="outline" class="input">
     <mat-label>E-mail</mat-label>
     <input
       type="email"
@@ -14,6 +14,7 @@
       placeholder="Ex. name@gmail.com"
     />
 
+    
     <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
       Please enter a valid email address.
     </mat-error>
@@ -22,9 +23,13 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class="input">
+  <mat-form-field appearance="outline" class="input">
     <mat-label>Password</mat-label>
-    <input type="password" matInput formControlName="password" />
+    <!--<input type="password" matInput formControlName="password" />-->
+    <input type="password" matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
 
     <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
       <ng-container *ngIf="password.hasError('required')">
@@ -44,7 +49,15 @@
     >Forget password?</a
   >
 
-  <button class="btn" type="submit">Log in</button>
+ <!-- <button mat-raised-button class="btn" type="submit">
+    Log in
+    <mat-icon class="mat-icon mat-icon-lg">check_circle_outline</mat-icon>
+  </button>-->
+  <button mat-raised-button class="btn" type="submit">
+    Log in
+    <!--<mat-icon class="custom-icon-size">check_circle_outline</mat-icon>-->
+    <mat-icon>check</mat-icon>
+  </button>
 </form>
 
 <h5>

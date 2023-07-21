@@ -6,7 +6,7 @@
 </div>
 
 <form [formGroup]="formGroup" (ngSubmit)="submitForm_reset()">
-    <mat-form-field class="input">
+  <mat-form-field appearance="outline" class="input">
       <mat-label>E-mail</mat-label>
       <input
         type="email"
@@ -23,7 +23,10 @@
       </mat-error>
     </mat-form-field>
   
-    <button class="btn" type="submit">Send</button>
+   <!-- <button class="btn" type="submit">Send</button>-->
+   <button mat-raised-button class="btn" type="submit">
+    Send
+  </button>
 
     <a
     routerLink="/signin"

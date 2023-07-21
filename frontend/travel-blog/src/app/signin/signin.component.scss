@@ -16,6 +16,7 @@ h1{
     font-style: normal;
     font-weight: 700;
     line-height: 70px; 
+    top:30px;
 }
 
 
@@ -33,10 +34,35 @@ form{
     width: 528px;
 }
 
+
+
+
+.icon{
+    color: #ffffff !important;
+    font-size: 32px;
+
+}
+.custom-icon-size {
+    font-size: 32px; /* Ajustați această valoare la dimensiunea dorită pentru icon */
+  }
+  
+/*.btn{
+    width: 326px;
+    color: #006400 !important;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    background-color: #006400;
+    color: #fff !important;
+}*/
+
+
 .btn{
     width: 250px; 
-    background-color: #006400;
-    color: #ffffff;
+    background-color: #006400 !important;
+    color: #ffffff !important;
     border-radius: 10px;
     padding: 10px 20px; 
     font-size: 16px; 
@@ -44,7 +70,7 @@ form{
     text-transform: uppercase; 
 }
 .btn:hover {
-    background-color: #008000; /* Schimba culoarea de fundal la hover */
+    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
     cursor: pointer;
   }
 

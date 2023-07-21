@@ -45,8 +45,8 @@ form{
 
 .btn{
     width: 250px; 
-    background-color: #006400;
-    color: #ffffff;
+    background-color: #006400 !important;
+    color: #ffffff !important;
     border-radius: 10px;
     padding: 10px 20px; 
     font-size: 16px; 
@@ -54,7 +54,7 @@ form{
     text-transform: uppercase; 
 }
 .btn:hover {
-    background-color: #008000; /* Schimba culoarea de fundal la hover */
+    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
     cursor: pointer;
   }
   #back

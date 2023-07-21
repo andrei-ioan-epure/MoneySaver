@@ -18,7 +18,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ResetPassComponent } from './signin/reset-pass/reset-pass.component';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -44,7 +45,9 @@ import { ResetPassComponent } from './signin/reset-pass/reset-pass.component';
       FormsModule,
       MatButtonModule,
       MatInputModule,
-      MatCheckboxModule
+      MatCheckboxModule,
+      MatFormFieldModule,
+      MatIconModule
 ],
   providers: [{provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}],
   bootstrap: [AppComponent]

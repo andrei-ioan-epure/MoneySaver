@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent {
+  hide = true;
   formGroup: FormGroup = new FormGroup({});
   email: FormControl = new FormControl('',[Validators.required,Validators.email]);
   password : FormControl = new FormControl('', [Validators.required,Validators.minLength(8)]);
