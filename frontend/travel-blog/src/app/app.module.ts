@@ -13,6 +13,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
+import { SignUpService } from './services/sign-up.service';
 
 @NgModule({
   declarations: [

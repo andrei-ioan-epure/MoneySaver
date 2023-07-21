@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, Form, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { SignUpService } from '../services/sign-up.service';
 
 function checkLength(c: AbstractControl): ValidationErrors|null{
   let stringControl:string = c.value;
