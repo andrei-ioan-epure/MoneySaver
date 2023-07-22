@@ -7,11 +7,32 @@ import { ResetPassComponent } from './signin/reset-pass/reset-pass.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactResponseComponent } from './contact/contact-response/contact-response.component';
 import { OfertsComponent } from './oferts/oferts.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent,
+    component: HomeComponent
+  },
+  {
+    path:'signin',
+    component:SigninComponent
+  },
+  {
+    path:'reset-pass',
+    component:ResetPassComponent
+  },
+  {
+    path:'contact',
+    component:ContactComponent
+  },
+  {
+    path:'contact-response',
+    component:ContactResponseComponent
+  },
+  {
+    path:'oferts',
+    component:OfertsComponent
   },
   {
     path: 'about',
@@ -22,8 +43,12 @@ const routes: Routes = [
     loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)
   },
   {
+    path:'sign-up',
+    component: SignUpComponent
+  },
+  {
     path: '**',
-    redirectTo: 'about'
+    redirectTo: 'home'
   }
 ];
 

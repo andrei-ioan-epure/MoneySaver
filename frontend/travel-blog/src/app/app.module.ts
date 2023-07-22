@@ -19,14 +19,16 @@ import { ResetPassComponent } from './signin/reset-pass/reset-pass.component';
 
 import { CardComponent } from './about/card/card.component';
 import { ContactComponent } from './contact/contact.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContactResponseComponent } from './contact/contact-response/contact-response.component';
 import { OfertsComponent } from './oferts/oferts.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import { SignUpService } from './services/sign-up.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { OfertsComponent } from './oferts/oferts.component';
     CardComponent,
     ContactComponent,
     ContactResponseComponent,
-    OfertsComponent
+    OfertsComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,15 @@ import { OfertsComponent } from './oferts/oferts.component';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
