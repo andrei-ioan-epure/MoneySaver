@@ -1,246 +1,59 @@
 #img_home {
-  display: block;
-  margin: 0 auto;
-  width: 450px;
-  height: 450px;
-  position: absolute;
-  top: 100px;
-  left: 330px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7), 0 2px 4px rgba(0, 0, 0, 0.7);
-
-
+  padding: 16px;
+  height: 680px;
+  position: fixed; /* Adaugă această proprietate pentru a folosi "position: absolute" în clasa "money saver" */
 }
-
-#text_home {
+.container-right{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; 
+}
+h1{
+  margin-bottom: 0px;
+  position: absolute;
   text-align: center;
-  margin-top: 20px;
-  font-weight: bold;
-  font-family: "Karla";
-  font-size: 16px;
-  position: absolute;
-  top: 550px;
-  left: 400px;
+  flex-shrink: 0;
   color: var(--heading, #212B27);
-
+  font-family: 'Karla';
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 70px; 
+  top:50px;
+  left:850px;
+  white-space: nowrap;
 }
-#text-magazine {
-  text-align: center;
-  margin-top: 20px;
-  font-weight: bold;
-  font-family: "Karla";
-  font-size: 18px;
+
+p{
+  margin-bottom: 0px;
   position: absolute;
-  top: 80px;
-  left: 970px;
-  text-transform: uppercase;
+  text-align: left;
+  flex-shrink: 0;
   color: var(--heading, #212B27);
+  font-family: 'Karla';
+  font-size: 31px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px;
+  top:150px;
+  left: 850px;
+  white-space:nowrap;//textul ramane pe randurile initiale
 }
-#text-categorii {
-  text-align: center;
-  margin-top: 20px;
+.btn{
+  width: 326px;
+  height: 40px;
+  background-color: #006400 !important;
+  color: #ffffff !important;
+  border-radius: 10px;
+  padding: 10px 20px; 
+  font-size: 24px; 
   font-weight: bold;
-  font-family: "Karla";
-  font-size: 18px;
-  position: absolute;
-  top: 330px;
-  left: 950px;
-  text-transform: uppercase;
-  color: var(--heading, #212B27);
+  font-family: 'Karla';
+  top:400px;
+  left:1195px;
 }
-#text-food {
-  text-align: center;
-  margin-top: 20px;
-  font-weight: bold;
-  font-family: "Karla";
-  font-size: 16px;
-  position: absolute;
-  top: 380px;
-  left: 870px;
-  color: var(--heading, #212B27);
-}
-#text-beauty {
-  text-align: center;
-  margin-top: 20px;
-  font-weight: bold;
-  font-family:"Karla";
-  font-size: 16px;
-  position: absolute;
-  top: 520px;
-  left: 865px;
-  color: var(--heading, #212B27);
-}
-
-#text-entertainment {
-  text-align: center;
-  margin-top: 20px;
-  font-weight: bold;
-  font-family: "Karla";
-  font-size: 16px;
-  position: absolute;
-  top: 520px;
-  left: 1050px;
-  color: var(--heading, #212B27);
-}
-#text-fashion {
-  text-align: center;
-  margin-top: 20px;
-  font-weight: bold;
-  font-family: "Karla";
-  font-size: 16px;
-  position: absolute;
-  top: 380px;
-  left: 1070px;
-  color: var(--heading, #212B27);
-}
-
-#img_magazine {
-  width: 400px;
-  height: 190px;
-  position: absolute;
-  top: 135px;
-  left: 800px;
-}
-#img_food {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 420px;
-  left: 840px;
-  
-}
-
-#img_fashion {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 420px;
-  left: 1050px;
-}
-#img_beauty {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 570px;
-  left: 840px;
-}
-#img_entertainment {
-  width: 100px;
-  height: 100px;
-  position: absolute;
-  top: 570px;
-  left: 1050px;
-}
-
-/*linii patrat mare*/
-.custom-line {
-  height: 3px;
-  background-color: #006400; 
-  margin: 20px auto;
-  width: 920px;
-  position: absolute;
-  top: 60px;
-  left: 300px;
-}
-.vertical-line {
-  width: 2.4px; /* Lățimea liniei verticale */
-  height: 600px; /* Înălțimea liniei verticale */
-  background-color: #006400; /* Culoarea liniei verticale */
-  position: absolute; /* Poziția absolută */
-  left: 300px; /* Poziționează la 50% distanță de la stânga */
-  top: 80px; /* Poziționează la 50px distanță de sus */
-}
-.custom-line2 {
-  height: 3px;
-  background-color: #006400; 
-  margin: 20px auto;
-  width: 920px;
-  position: absolute;
-  top: 660px;
-  left: 300px;
-}
-.vertical-line2 {
-  width: 2.4px; /* Lățimea liniei verticale */
-  height: 603px; /* Înălțimea liniei verticale */
-  background-color: #006400; /* Culoarea liniei verticale */
-  position: absolute; /* Poziția absolută */
-  left: 1220px; /* Poziționează la 50% distanță de la stânga */
-  top: 80px; /* Poziționează la 50px distanță de sus */
-  transform: translateX(-50%);
-}
-
-
-//celelalte linii
-
-
-.vertical-line3 {
-  width: 2.4px; /* Lățimea liniei verticale */
-  height: 600px; /* Înălțimea liniei verticale */
-  background-color: #006400; /* Culoarea liniei verticale */
-  position: absolute; /* Poziția absolută */
-  left: 795px; /* Poziționează la 50% distanță de la stânga */
-  top: 80px; /* Poziționează la 50px distanță de sus */
-  transform: translateX(-50%);
-}
-.custom-line3 {
-  height: 3px;
-  background-color: #006400; 
-  margin: 20px auto;
-  width: 424px;
-  position: absolute;
-  top: 110px;
-  left: 795px;
-}
-.custom-line4 {
-  height: 3px;
-  background-color: #006400; 
-  margin: 20px auto;
-  width: 424px;
-  position: absolute;
-  top: 320px;
-  left: 795px;
-}
-.custom-line5 {
-  height: 3px;
-  background-color: #006400; 
-  margin: 20px auto;
-  width: 424px;
-  position: absolute;
-  top: 360px;
-  left: 795px;
-}
-.custom-line6 {
-  height: 3px;
-  background-color: #006400; 
-  margin: 20px auto;
-  width: 424px;
-  position: absolute;
-  top: 410px;
-  left: 795px;
-}
-.custom-line7 {
-  height: 3px;
-  background-color: #006400; 
-  margin: 20px auto;
-  width: 424px;
-  position: absolute;
-  top: 505px;
-  left: 795px;
-}
-.custom-line8 {
-  height: 3px;
-  background-color: #006400; 
-  margin: 20px auto;
-  width: 424px;
-  position: absolute;
-  top: 550px;
-  left: 795px;
-}
-.vertical-line4 {
-  width: 2.4px; /* Lățimea liniei verticale */
-  height: 303px; /* Înălțimea liniei verticale */
-  background-color: #006400; /* Culoarea liniei verticale */
-  position: absolute; /* Poziția absolută */
-  left: 995px; /* Poziționează la 50% distanță de la stânga */
-  top: 380px; /* Poziționează la 50px distanță de sus */
-  transform: translateX(-50%);
+.btn:hover {
+  background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+  cursor: pointer;
 }
