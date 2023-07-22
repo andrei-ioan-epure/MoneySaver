@@ -1,23 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticlesService } from './articles.service';
+
+import { Articles } from '../model/article';
+import { ArticlesService } from 'src/app/services/articles.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss']
 })
-export class ArticlesComponent implements OnInit {
 
-  constructor(private articlesService: ArticlesService) {}
+export class ArticleComponent implements OnInit {
+  articles?: Articles;
+  url?:string;
+  isFavouritesPage?:boolean=false;
+
+  constructor(private readonly articlesService: ArticlesService, private readonly router:Router) {}
 
   ngOnInit() {
-     this.articlesService.getArticles().subscribe({
-      next: (data) => {
-        console.log(data);
-      },
-      error: (error) => {
-        console.error(error);
+      this.articles = this.articlesService.getArticles();
+      this.url=this.router.url;
+      if(this.url.includes('favourites')){
+        this.isFavouritesPage=true;
       }
-     })
+
   }
+  onArticleChange(value: string): void {
+    console.log('clicked on', value);
+  }
+  
 }

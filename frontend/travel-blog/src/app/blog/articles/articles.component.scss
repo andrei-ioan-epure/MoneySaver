@@ -1,0 +1,33 @@
+// .article-container {
+//   display: grid;
+//   grid-template-columns: repeat(5, 1fr);
+//   grid-gap: 16px;
+//   margin: 32px;
+//   margin-left: 56px;
+// }
+
+ .article-container {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-evenly;
+   margin-left: 288px;
+   margin-right: 88px;
+   padding-bottom: 48px;
+      padding-top: 32px;
+ }
+
+ .app-article-list-item {
+   flex-basis: calc(30% );
+
+ }
+
+ .blog {
+   display: flex;
+   flex-wrap: nowrap;
+   margin-top: 8px;
+   margin-bottom: 8px;
+ }
+ .left{
+  padding-right: 104px;
+ }
+ 

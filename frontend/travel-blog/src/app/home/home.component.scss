@@ -1,0 +1,59 @@
+#img_home {
+  padding: 16px;
+  height: 680px;
+  position: fixed; /* Adaugă această proprietate pentru a folosi "position: absolute" în clasa "money saver" */
+}
+.container-right{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; 
+}
+h1{
+  margin-bottom: 0px;
+  position: absolute;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--heading, #212B27);
+  font-family: 'Karla';
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 70px; 
+  top:50px;
+  left:810px;
+  white-space: nowrap;
+}
+
+p{
+  margin-bottom: 0px;
+  position: absolute;
+  text-align: left;
+  flex-shrink: 0;
+  color: var(--heading, #212B27);
+  font-family: 'Karla';
+  font-size: 31px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 27px;
+  top:150px;
+  left: 810px;
+  white-space:nowrap;//textul ramane pe randurile initiale
+}
+.btn{
+  width: 326px;
+  height: 40px;
+  background-color: #006400 !important;
+  color: #ffffff !important;
+  border-radius: 10px;
+  padding: 10px 20px; 
+  font-size: 24px; 
+  font-weight: bold;
+  font-family: 'Karla';
+  top:400px;
+  left:1155px;
+}
+.btn:hover {
+  background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+  cursor: pointer;
+}

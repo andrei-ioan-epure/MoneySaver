@@ -1,0 +1,63 @@
+<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
+
+<div class="top">
+  <h1>Log in to your account</h1>
+</div>
+
+<form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>E-mail</mat-label>
+    <input
+      type="email"
+      matInput
+      formControlName="email"
+      placeholder="Ex. name@gmail.com"
+    />
+
+    
+    <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+      Please enter a valid email address.
+    </mat-error>
+    <mat-error *ngIf="email.hasError('required')">
+      Email is <strong>required.</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Password</mat-label>
+    <!--<input type="password" matInput formControlName="password" />-->
+    <input type="password" matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+
+    <mat-error *ngIf="password.invalid && (password.dirty || password.touched)">
+      <ng-container *ngIf="password.hasError('required')">
+        Password is <strong>required.</strong>
+      </ng-container>
+      <ng-container *ngIf="password.hasError('minlength')">
+        Password must have at least 8 characters.
+      </ng-container>
+    </mat-error>
+  </mat-form-field>
+
+  <a
+    routerLink="/reset-pass"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    id="reset_password"
+    >Forget password?</a
+  >
+
+
+  <button mat-raised-button class="btn" type="submit">
+    Log in
+    
+  </button>
+  
+</form>
+
+<h5>
+  If you don't have an account?
+  <a routerLink="/sign-up"> Sign up! </a>
+</h5>

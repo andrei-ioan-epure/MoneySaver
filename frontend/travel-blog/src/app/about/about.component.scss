@@ -1,0 +1,26 @@
+h1{
+    font-family: 'Karla';
+    text-align: center;
+    //color: black;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 70px;
+    color: var(--heading, #212B27);
+}
+
+.cards1{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 5px;
+    margin-left: 200px;
+}
+
+.cards2{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 5px;
+    margin-left: 420px;
+    margin-top: 50px;
+    margin-right: 220px;
+}

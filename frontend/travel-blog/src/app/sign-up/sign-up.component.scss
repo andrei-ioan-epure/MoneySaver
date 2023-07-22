@@ -1,0 +1,78 @@
+div.top{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+}
+
+h1{
+    margin-bottom: 0px;
+    position: relative;
+    text-align: center;
+    flex-shrink: 0;
+    color: var(--heading, #212B27);
+    text-align: center;
+    font-family: 'Karla';
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 70px; /* 130% */
+}
+
+
+p{
+    margin-top: 0px;
+    text-align: center;
+    flex-shrink: 0;
+    color: var(--paragraph, #32403B);
+    text-align: center;
+    font-family: 'Karla';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px; /* 130% */
+
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.input{
+    margin-bottom: 16px;
+    width: 528px;
+}
+
+.icon{
+    color: #006400 !important;
+}
+
+.btn{
+    width: 326px;
+    background-color: #006400 !important;
+    color: #fff !important;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    background-color: #008000 !important;
+}
+
+h5{
+    margin-bottom: 0px;
+    position: relative;
+    text-align: center;
+    flex-shrink: 0;
+    color: var(--heading, #212B27);
+    text-align: center;
+    font-family: 'Karla';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 24px; /* 130% */
+}

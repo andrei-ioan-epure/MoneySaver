@@ -1,0 +1,77 @@
+<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
+
+<div class="top">
+  <h1>Create An Account</h1>
+  <p>Create an account to enjoy all the services!</p>
+</div>
+
+<form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+  <mat-form-field appearance="outline" class="input">
+    <mat-label >Username</mat-label>
+    <input
+      matInput
+      formControlName="username"
+      placeholder="Ex. MSeba"
+    />
+    <mat-icon class="icon" matSuffix>person</mat-icon>
+    <mat-error *ngIf="email.hasError('required')">
+      Username is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label >Email</mat-label>
+    <input
+      type="email"
+      matInput
+      formControlName="email"
+      placeholder="Ex. name@example.com"
+    />
+    <mat-icon class="icon" matSuffix>mail_outline</mat-icon>
+    <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="email.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Full Name</mat-label>
+    <input
+      matInput
+      formControlName="fullName"
+      placeholder="Ex. Sebastian Miron"
+    />
+    <mat-icon class="icon" matSuffix>person_outline</mat-icon>
+    <mat-error *ngIf="fullName.hasError('required')">
+      Your name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Password</mat-label>
+    <!-- <input type="password" matInput formControlName="password" /> -->
+
+    <input type="password" matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+    <button class="icon" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+
+    <mat-error
+      *ngIf="password.hasError('length') && !password.hasError('required')"
+    >
+      Password must have at least 8 characters.
+    </mat-error>
+    <mat-error *ngIf="password.hasError('required')">
+      Password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button class="btn" type="submit">Sign Up</button>
+</form>
+
+<h5>
+  Already have an account?
+  <a routerLink="/signin"> Log In! </a>
+</h5>
