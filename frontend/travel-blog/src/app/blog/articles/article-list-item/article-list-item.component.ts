@@ -8,6 +8,7 @@ export class ArticleListItemComponent {
   @Input() title?: string;
   @Input() content?: string;
   @Input() publishDate?: Date;
+  @Input() showDeleteBtn?: boolean=false;
 
   @Output() articleChange: EventEmitter<string> = new EventEmitter<string>();
 

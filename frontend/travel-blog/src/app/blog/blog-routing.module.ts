@@ -7,7 +7,10 @@ const routes: Routes = [
      path: 'article-list',
     component: ArticleComponent
   },
-  
+  {
+    path: 'favourites',
+   component: ArticleComponent
+ },
   {
     path: '**',
     redirectTo: 'article-list'

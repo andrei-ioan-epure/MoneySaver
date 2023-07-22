@@ -9,11 +9,11 @@
       <p>Author</p>
     </div>
   </div>
-  <div class="image-container">
-    <img src="../assets/images/netflix.png" alt="{{ title }}" srcset="" />
-    <button class="favoriteBtn" (click)="onClickFavorite()">
-      <mat-icon id="heart">favorite_border</mat-icon>
-    </button>
+  <div class="centered">
+    <div class="image-container">
+      <img src="../assets/images/netflix.png" alt="{{ title }}" srcset="" />
+      <button class="deleteBtn" *ngIf="showDeleteBtn">x</button>
+    </div>
   </div>
   <p>Valid until : {{ publishDate | date : "dd/MM/yyyy" }}</p>
   <button (click)="onClick()">See Offer</button>
