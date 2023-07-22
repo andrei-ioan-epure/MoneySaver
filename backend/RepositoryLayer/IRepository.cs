@@ -15,5 +15,7 @@ namespace RepositoryLayer
         void Delete(int entityId);
 
         void SaveChanges();
+
+        public T? GetWithLinkedEntities(int id, string navPath);
     }
 }

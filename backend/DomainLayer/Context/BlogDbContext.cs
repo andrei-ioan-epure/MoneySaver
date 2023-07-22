@@ -1,6 +1,9 @@
 ﻿using System.Runtime.InteropServices;
+using System.Xml.Linq;
+using DomainLayer.Mappings;
 using DomainLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
 namespace DomainLayer.Context
 {
@@ -16,7 +19,61 @@ namespace DomainLayer.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+
+            builder.Entity<User>()
+                .HasMany(x => x.FavoriteArticles)
+                .WithMany(x => x.FavoriteUsers);
+
+
+            builder.Entity<User>()
+                .HasMany(x => x.LikedComments)
+                .WithMany(x => x.LikedBy);
+
+
+            builder.Entity<Comment>()
+                .HasOne(x => x.Creator)
+                .WithMany(x => x.Comments)
+                .HasForeignKey(x => x.CreatorId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            builder.Entity<Article>()
+                .HasOne(x => x.Creator)
+                .WithMany(x => x.CreatedArticles)
+                .HasForeignKey(x => x.CreatorId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.ClientCascade);
+
+            builder.Entity<Comment>()
+                .HasOne(x => x.Article)
+                .WithMany(x => x.Comments)
+                .HasForeignKey(x => x.ArticleId)
+                .IsRequired(false)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //builder.Entity<User>()
+            //    .HasMany(u => u.CreatedArticles)
+            //    .WithOne(a => a.Creator)
+            //    .HasForeignKey(a => a.CreatorId)
+            //    .OnDelete(DeleteBehavior.ClientCascade);
+
+            //builder.Entity<User>()
+            //    .HasMany(u => u.Comments)
+            //    .WithOne(c => c.Creator)
+            //    .HasForeignKey(c => c.CreatorId)
+            //    .IsRequired()
+            //    .OnDelete(DeleteBehavior.ClientCascade);
+
+            //builder.Entity<Article>()
+            //    .HasMany(a => a.Comments)
+            //    .WithOne(c => c.Article)
+            //    .HasForeignKey(c => c.ArticleId)
+            //    .IsRequired()
+            //    .OnDelete(DeleteBehavior.ClientCascade);
+
+            UserMapping.Map(builder);
+            CommentMapping.Map(builder);
+            ArticleMapping.Map(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -26,5 +83,7 @@ namespace DomainLayer.Context
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Article> Articles { get;set;}
+        public DbSet<Comment> Comments { get; set; }
     }
 }

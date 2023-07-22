@@ -19,6 +19,14 @@ namespace RepositoryLayer
         {
             return entityDbSet.AsEnumerable();
         }
+
+        public T? GetWithLinkedEntities(int id, string navPath)
+        {
+            return entityDbSet.Include(navPath).SingleOrDefault(c => c.Id == id);
+        }
+
+       
+
         public T? Get(int id)
         {
             return entityDbSet.SingleOrDefault(c => c.Id == id);

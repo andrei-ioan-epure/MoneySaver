@@ -29,6 +29,11 @@ namespace PresentationLayer
             builder.Services.AddScoped<IUserService, UserService>();
             #endregion
 
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IArticleService, ArticleService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
+
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
