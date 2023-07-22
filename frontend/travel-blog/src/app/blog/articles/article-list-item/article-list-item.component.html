@@ -13,6 +13,13 @@
     <div class="image-container">
       <img src="../assets/images/netflix.png" alt="{{ title }}" srcset="" />
       <button class="deleteBtn" *ngIf="showDeleteBtn">x</button>
+      <button
+        class="favBtn"
+        *ngIf="hideFavoriteBtn"
+        (click)="onClickFavorite()"
+      >
+        <mat-icon id="heart">favorite_border</mat-icon>
+      </button>
     </div>
   </div>
   <p>Valid until : {{ publishDate | date : "dd/MM/yyyy" }}</p>

@@ -14,6 +14,7 @@ export class ArticleComponent implements OnInit {
   articles?: Articles;
   url?:string;
   isFavouritesPage?:boolean=false;
+  isNotFavouritesPage?:boolean=true;
 
   constructor(private readonly articlesService: ArticlesService, private readonly router:Router) {}
 
@@ -22,6 +23,7 @@ export class ArticleComponent implements OnInit {
       this.url=this.router.url;
       if(this.url.includes('favourites')){
         this.isFavouritesPage=true;
+        this.isNotFavouritesPage=!this.isFavouritesPage;
       }
 
   }

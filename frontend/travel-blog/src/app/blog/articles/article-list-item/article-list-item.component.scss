@@ -96,20 +96,30 @@
     display: inline-block;
 }
 
-.deleteBtn {
+.favBtn  , .deleteBtn{
     position: absolute;
     text-align:centered !important;
     top: 0;
     right: 0;
     padding: 8px;
-    background-color: #555;
-    color: white;
+    background-color: #FFF;
+    color: #000000;
     font-size: 16px;
     border: none;
     cursor: pointer;
     border-radius: 8px 0px 0px 8px ;
 }
-.deleteBtn:hover
+
+
+.favBtn:hover
 {
+    color: #FF0000;
+}
+
+.deleteBtn{
+    background-color: #887E7E;
+}
+.deleteBtn:hover {
     background-color: #FF0000;
+    color: #FFF;
 }

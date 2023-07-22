@@ -9,7 +9,8 @@ export class ArticleListItemComponent {
   @Input() content?: string;
   @Input() publishDate?: Date;
   @Input() showDeleteBtn?: boolean=false;
-
+  @Input() hideFavoriteBtn?: boolean=false;
+  
   @Output() articleChange: EventEmitter<string> = new EventEmitter<string>();
 
   onClick(): void {

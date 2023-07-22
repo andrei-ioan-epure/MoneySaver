@@ -9,6 +9,7 @@
           [content]="article.content"
           [publishDate]="article.publishDate"
           [showDeleteBtn]="isFavouritesPage"
+          [hideFavoriteBtn]="isNotFavouritesPage"
           (articleChange)="onArticleChange($event)"
         ></app-article-list-item>
       </div>
