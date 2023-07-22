@@ -1,0 +1,39 @@
+<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
+
+<div class="top">
+  <h1>Reset password</h1>
+  <p>To send instructions for resetting your password, please complete with your email.</p>
+</div>
+
+<form [formGroup]="formGroup" (ngSubmit)="submitForm_reset()">
+  <mat-form-field appearance="outline" class="input">
+      <mat-label>E-mail</mat-label>
+      <input
+        type="email"
+        matInput
+        formControlName="email"
+        placeholder="Ex. name@gmail.com"
+      />
+  
+      <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+        Please enter a valid email address.
+      </mat-error>
+      <mat-error *ngIf="email.hasError('required')">
+        Email is <strong>required.</strong>
+      </mat-error>
+    </mat-form-field>
+  
+   <!-- <button class="btn" type="submit">Send</button>-->
+   <button mat-raised-button class="btn" type="submit">
+    Send
+  </button>
+
+    <a
+    routerLink="/signin"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    id="back"
+    >Back to sign in page</a
+  >
+  </form>
+  
