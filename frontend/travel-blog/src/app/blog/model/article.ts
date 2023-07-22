@@ -1,11 +1,14 @@
 export type Article = {
   title: string;
+  posted: Date;
+  city:string;
+  expiration: Date;
+  category:string;
+  code:string
+  store:string
+  author:string;
   content: string;
-  publishDate: Date;
-  // expirationDate: Date;
-  // author:string;
-  // city:string;
-  // category:string;
+  creatorId:number ;
 };
 
 export interface ServerArticle extends Article {

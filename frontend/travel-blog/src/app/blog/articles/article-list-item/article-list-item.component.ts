@@ -7,7 +7,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ArticleListItemComponent {
   @Input() title?: string;
   @Input() content?: string;
-  @Input() publishDate?: Date;
+  @Input() posted?: Date;
+  @Input() city?: string;
+  @Input() category?: string;
+  @Input() expiration?: Date;
+  @Input() author?: string;
   @Input() showDeleteBtn?: boolean=false;
   @Input() hideFavoriteBtn?: boolean=false;
   

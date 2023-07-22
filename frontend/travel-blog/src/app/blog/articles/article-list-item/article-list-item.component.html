@@ -1,12 +1,12 @@
 <div class="article-list-item">
   <div class="header">
     <div class="left-corner">
-      <p>Category</p>
-      <p>City</p>
+      <p>{{ category }}</p>
+      <p>{{ city }}</p>
     </div>
     <div class="right-corner">
-      <p>Date posted</p>
-      <p>Author</p>
+      <p>{{ posted | date : "dd/MM/yyyy" }}</p>
+      <p>{{ author }}</p>
     </div>
   </div>
   <div class="centered">
@@ -22,6 +22,6 @@
       </button>
     </div>
   </div>
-  <p>Valid until : {{ publishDate | date : "dd/MM/yyyy" }}</p>
+  <p>Valid until : {{ expiration | date : "dd/MM/yyyy" }}</p>
   <button (click)="onClick()">See Offer</button>
 </div>

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Articles } from '../model/article';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { Router } from '@angular/router';
+import { HttpService } from 'src/app/services/http.service';
 
 @Component({
   selector: 'app-articles',
@@ -16,11 +17,14 @@ export class ArticleComponent implements OnInit {
   isFavouritesPage?:boolean=false;
   isNotFavouritesPage?:boolean=true;
 
-  constructor(private readonly articlesService: ArticlesService, private readonly router:Router) {}
+  constructor(private readonly articlesService: ArticlesService, private readonly router:Router,private readonly httpService:HttpService) {}
 
   ngOnInit() {
-      this.articles = this.articlesService.getArticles();
-      this.url=this.router.url;
+    //  this.articles = this.articlesService.getArticles();
+        this.httpService.getArticles().subscribe(data=>
+      //console.log(data));
+      this.articles=data); 
+     this.url=this.router.url;
       if(this.url.includes('favourites')){
         this.isFavouritesPage=true;
         this.isNotFavouritesPage=!this.isFavouritesPage;
