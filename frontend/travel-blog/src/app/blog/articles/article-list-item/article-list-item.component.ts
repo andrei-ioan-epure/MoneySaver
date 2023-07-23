@@ -25,15 +25,17 @@ export class ArticleListItemComponent {
    // this.offerService.offer=
    this.offerService.setParameter({
       title:this.title,
-      posted:this.posted,
+      content:this.content,
       city:this.city,
       expiration:this.expiration,
-      category:this.category,
       code:this.code,
+      category:this.category,
       author:this.author,
+      posted:this.posted,
     });
     
     this.articleChange.emit(this.title);
+    //this.articleChange.emit(this.content);
   }
   onClickFavorite():void{
     
