@@ -45,9 +45,9 @@ option {
 .rectangle {
     left: 0px;
     width: 300px;
-    height: calc(87.5%);
+    height: auto;
     background-color: #D9D9D9;
-    position: fixed;
+    position: absolute;
     //margin-right: 300px;
  }
  .rectangle > * {

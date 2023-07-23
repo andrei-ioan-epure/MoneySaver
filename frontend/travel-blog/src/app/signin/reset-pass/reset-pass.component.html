@@ -2,7 +2,7 @@
 
 <div class="top">
   <h1>Reset password</h1>
-  <p>To send instructions for resetting your password, please complete with your email.</p>
+  <p>To send instructions for resetting your password,<br> please complete with your email.</p>
 </div>
 
 <form [formGroup]="formGroup" (ngSubmit)="submitForm_reset()">
@@ -14,7 +14,7 @@
         formControlName="email"
         placeholder="Ex. name@gmail.com"
       />
-  
+      <mat-icon matSuffix>mail_outline</mat-icon>
       <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
         Please enter a valid email address.
       </mat-error>
@@ -23,7 +23,6 @@
       </mat-error>
     </mat-form-field>
   
-   <!-- <button class="btn" type="submit">Send</button>-->
    <button mat-raised-button class="btn" type="submit">
     Send
   </button>

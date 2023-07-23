@@ -1,6 +1,7 @@
 #img_home {
   padding: 16px;
-  height: 680px;
+  height: 670px;
+  width: 1000px;
   position: fixed; /* Adaugă această proprietate pentru a folosi "position: absolute" în clasa "money saver" */
 }
 .container-right{
@@ -16,12 +17,12 @@ h1{
   flex-shrink: 0;
   color: var(--heading, #212B27);
   font-family: 'Karla';
-  font-size: 36px;
+  font-size: 40px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   line-height: 70px; 
-  top:50px;
-  left:810px;
+  top:95px;
+  left:910px;
   white-space: nowrap;
 }
 
@@ -32,12 +33,12 @@ p{
   flex-shrink: 0;
   color: var(--heading, #212B27);
   font-family: 'Karla';
-  font-size: 31px;
+  font-size: 28px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 27px;
-  top:150px;
-  left: 810px;
+  top:190px;
+  left: 910px;
   white-space:nowrap;//textul ramane pe randurile initiale
 }
 .btn{
@@ -51,7 +52,7 @@ p{
   font-weight: bold;
   font-family: 'Karla';
   top:400px;
-  left:1155px;
+  left:1175px;
 }
 .btn:hover {
   background-color: #008000 !important; /* Schimba culoarea de fundal la hover */

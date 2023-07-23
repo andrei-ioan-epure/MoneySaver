@@ -1,7 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
 
 <div class="top">
-  <h1>Log in to your account</h1>
+  <h1>Log into your account</h1>
 </div>
 
 <form [formGroup]="formGroup" (ngSubmit)="submitForm()">
@@ -13,7 +13,7 @@
       formControlName="email"
       placeholder="Ex. name@gmail.com"
     />
-
+    <mat-icon matSuffix>mail_outline</mat-icon>
     
     <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
       Please enter a valid email address.

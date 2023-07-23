@@ -1,7 +1,9 @@
 <!--Toolbar din Header-->
 <div class="nav">
 
-    <img align="left" [src]="ImagePath" style="width:160px;height:40px;">
+    <a href="/home">
+        <img align="left" [src]="ImagePath" style="width:160px;height:40px;">
+    </a>
 
     
     <div class="search">
@@ -15,10 +17,18 @@
         <mat-icon class="custom-size">favorite_border</mat-icon>
     </button>
 
-    <button id="blog" mat-raised-button color="#006400" routerLink="/blog">Blog</button>
-    <button id="contact" mat-raised-button color="#006400" routerLink="/contact">Contact</button>
-    <button id="aboutus" mat-raised-button color="#006400" routerLink="/about">About Us</button>
-    <button id="signin" mat-raised-button color="#006400" routerLink="/signin">Sign In</button>
+    <button id="blog" mat-raised-button color="#006400" routerLink="/blog">Blog
+         <mat-icon class="blog_icon">wysiwyg</mat-icon>  </button> 
+    <button id="contact" mat-raised-button color="#006400" routerLink="/contact">Contact
+        <mat-icon class="mail_icon"> mail_outline</mat-icon>
+    </button>
+    <button id="aboutus" mat-raised-button color="#006400" routerLink="/about">About Us
+         <mat-icon class="info_icon">error_outline</mat-icon>
+        
+    </button>
+    <button id="signin" mat-raised-button color="#006400" routerLink="/signin">Sign In
+        <mat-icon class="signin_icon">person_outline</mat-icon>
+    </button>
     </div>
     
     
