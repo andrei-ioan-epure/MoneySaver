@@ -16,6 +16,16 @@ export class OfferService {
       posted:new Date('08.07.2023')
     }
 
+     private data?:Offer;
+
+    setParameter(value: any) {
+      this.data = value;
+  }
+
+    getParameter(): any {
+      return this.data;
+  }
+
   
   constructor() { }
 }
