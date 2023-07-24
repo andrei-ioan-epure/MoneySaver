@@ -3,83 +3,86 @@
   <!-- <button id="filterButton" (click)="onClickFilter()">Filters</button> -->
 
   <h2 class="title">Filters</h2>
+  <button (click)="resetComboboxes()">Clear filters</button>
 
-  <button>Clear filters</button>
-
-  <div class="authorFilter">
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <h2 class="author-title">Author</h2>
-    <label class="author-checkbox">
-      <input type="checkbox" name="author1" value="Bianca" />
-      <span>Brânzei Bianca-Gabriela</span>
-    </label>
-    <label class="author-checkbox">
-      <input type="checkbox" name="author2" value="Iustina" />
-      <span>Bulai Iustina-Bianca</span>
-    </label>
-    <label class="author-checkbox">
-      <input type="checkbox" name="author3" value="Axana" />
-      <span>Diaconu Axana-Marinela</span>
-    </label>
-    <label class="author-checkbox">
-      <input type="checkbox" name="author4" value="Andrei" />
-      <span>Epure Andrei-Ioan</span>
-    </label>
-    <label class="author-checkbox">
-      <input type="checkbox" name="author5" value="Sebastian" />
-      <span>Miron Sebastian</span>
-    </label>
-  </div>
+    <div class="authorFilter" *ngFor="let author of authors; let i = index">
+      <label class="author-checkbox">
+        <input
+          #checkboxInput
+          type="checkbox"
+          formArrayName="selectedAuthors"
+          [value]="i + 1"
+          (change)="onCheckboxChange($event)"
+        />
+        <span>{{ author.fullName }}</span>
+      </label>
+    </div>
 
-  <div class="form-field">
-    <label for="datePosted">Date Posted:</label>
-    <select id="datePosted" name="datePosted">
-      <option value="all">All</option>
-      <option value="last-24h">Last 24 hours</option>
-      <option value="last-3-days">Last 3 days</option>
-      <option value="last-7-days">Last 7 days</option>
-      <option value="last-14-days">Last 14 days</option>
-    </select>
+    <div class="form-field">
+      <label for="datePosted">Date Posted:</label>
+      <select
+        id="datePosted"
+        name="datePosted"
+        (change)="selectChangeHandler($event)"
+      >
+        <option value="all">All</option>
+        <option value="last-24h">Last 24 hours</option>
+        <option value="last-3-days">Last 3 days</option>
+        <option value="last-7-days">Last 7 days</option>
+        <option value="last-14-days">Last 14 days</option>
+      </select>
 
-    <label for="expirationDate">Expiration Date:</label>
-    <select id="expirationDate" name="expirationDate">
-      <option value="all">All</option>
-      <option value="end-of-week">End of this week</option>
-      <option value="in-1-month">In 1 month</option>
-      <option value="in-3-months">In 3 months</option>
-    </select>
+      <label for="expirationDate">Expiration Date:</label>
+      <select
+        id="expirationDate"
+        name="expirationDate"
+        (change)="selectChangeHandler($event)"
+      >
+        <option value="all">All</option>
+        <option value="end-of-week">End of this week</option>
+        <option value="in-1-month">In 1 month</option>
+        <option value="in-3-months">In 3 months</option>
+      </select>
 
-    <label for="category">Category:</label>
-    <select id="category" name="category">
-      <option value="all">All</option>
-      <option value="beauty">Beauty</option>
-      <option value="entertainment">Entertainment</option>
-      <option value="fashion">Fashion</option>
-      <option value="food">Food</option>
-    </select>
+      <label for="category">Category:</label>
+      <select
+        id="category"
+        name="category"
+        (change)="selectChangeHandler($event)"
+      >
+        <option value="all">All</option>
+        <option value="beauty">Beauty</option>
+        <option value="entertainment">Entertainment</option>
+        <option value="fashion">Fashion</option>
+        <option value="food">Food</option>
+      </select>
 
-    <label for="city">City:</label>
-    <select id="city" name="city">
-      <option value="all">All</option>
-      <option value="bacau">Bacău</option>
-      <option value="bucuresti">București</option>
-      <option value="galati">Galați</option>
-      <option value="iasi">Iași</option>
-      <option value="suceava">Suceava</option>
-    </select>
+      <label for="city">City:</label>
+      <select id="city" name="city" (change)="selectChangeHandler($event)">
+        <option value="all">All</option>
+        <option value="bacau">Bacău</option>
+        <option value="bucuresti">București</option>
+        <option value="galati">Galați</option>
+        <option value="iasi">Iași</option>
+        <option value="suceava">Suceava</option>
+      </select>
 
-    <label for="store">Store:</label>
-    <select id="store" name="store">
-      <option value="all">All</option>
-      <option value="answear">Answear</option>
-      <option value="cupio">Cupio</option>
-      <option value="douglas">Douglas</option>
-      <option value="fashion-days">Fashion Days</option>
-      <option value="glovo">Glovo</option>
-      <option value="netflix">Netflix</option>
-      <option value="spotify">Spotify</option>
-      <option value="stradivarius">Stradivarius</option>
-      <option value="tazz">Tazz</option>
-    </select>
-  </div>
+      <label for="store">Store:</label>
+      <select id="store" name="store" (change)="selectChangeHandler($event)">
+        <option value="all" selected>All</option>
+        <option value="answear">Answear</option>
+        <option value="cupio">Cupio</option>
+        <option value="douglas">Douglas</option>
+        <option value="fashion-days">Fashion Days</option>
+        <option value="glovo">Glovo</option>
+        <option value="netflix">Netflix</option>
+        <option value="spotify">Spotify</option>
+        <option value="stradivarius">Stradivarius</option>
+        <option value="tazz">Tazz</option>
+      </select>
+    </div>
+    <button class="applyBtn">Apply filters</button>
+  </form>
 </div>
-<!-- </div> -->

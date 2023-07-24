@@ -5,40 +5,6 @@
     justify-content: center;
     
 }
-
-// #filterButton {
-//     width: 120px;
-//     height: 32px;
-    
-//     margin-left: 300px;
-//     border-radius: 0px 16px 16px 0px;
-//     border: 1px solid #006400;
-//     color: #FFFFFF;
-//     background-color: #006400;
-//     font-weight: bold;
-// }
-
-// #filterButton:hover {
-//     background-color: #FFFFFF;
-//     color: #006400;
-// }
-
-
-// #filterButtonX {
-//     width: 40px;
-//     height: 32px;
-//     margin-left: 300px;
-//     border-radius: 0px 16px 16px 0px;
-//     border: none;
-//     color: #006400;
-//     background-color: #D9D9D9;
-//     font-weight: bold;
-// }
-
-// #filterButtonX:hover {
-//     background-color: #887E7E;
-//     color: #006400;
-// }
 option {
     font-size: 16px;
 }
@@ -63,6 +29,7 @@ option {
  }
 
  button {
+     font-weight: bold;
      width: 126px;
      height: 24px;
      margin-bottom: 16px;
@@ -111,3 +78,10 @@ select {
  label span {
      font-weight: 500;
  }
+
+.applyBtn {
+    margin-left: 56px;
+    margin-right: 32px;
+    margin-bottom: 0px;
+
+}

@@ -16,14 +16,13 @@ export class ArticleComponent implements OnInit {
   url?:string;
   isFavouritesPage?:boolean=false;
   isNotFavouritesPage?:boolean=true;
-
-  constructor(private readonly articlesService: ArticlesService, private readonly router:Router,private readonly httpService:HttpService) {}
+  inFilter?:boolean=true;
+  constructor( private readonly router:Router,private readonly httpService:HttpService) {}
 
   ngOnInit() {
-    //  this.articles = this.articlesService.getArticles();
-        this.httpService.getArticles().subscribe(data=>
-      //console.log(data));
-      this.articles=data); 
+     this.httpService.getArticles().subscribe(data=>
+     this.articles=data); 
+
      this.url=this.router.url;
       if(this.url.includes('favourites')){
         this.isFavouritesPage=true;
@@ -34,5 +33,11 @@ export class ArticleComponent implements OnInit {
   onArticleChange(value: string): void {
     console.log('clicked on', value);
   }
+  articleInFilter():void{
+
+  }
   
 }
+
+
+

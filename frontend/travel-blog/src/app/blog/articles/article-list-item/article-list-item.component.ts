@@ -16,7 +16,7 @@ export class ArticleListItemComponent {
   @Input() author?: string;
   @Input() showDeleteBtn?: boolean=false;
   @Input() hideFavoriteBtn?: boolean=false;
-  
+  @Input() index?: number;
   @Output() articleChange: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private offerService :OfferService){}
@@ -32,13 +32,13 @@ export class ArticleListItemComponent {
       code:this.code,
       author:this.author,
     });
-    
+
     this.articleChange.emit(this.title);
   }
-  onClickFavorite():void{
+  onClickFavorite(index: any):void{
     
-    var favBtn=document.getElementById("heart");
-    console.log(favBtn?.innerHTML);
+    var favBtn=document.getElementById("heart"+index);
+    console.log(favBtn);
     if(favBtn!=null){
       if( favBtn.innerHTML==="favorite_border" )
       {
