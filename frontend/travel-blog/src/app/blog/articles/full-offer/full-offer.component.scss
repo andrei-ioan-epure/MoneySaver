@@ -1,5 +1,5 @@
 .full-offer{
-    margin-top: 20px;
+    margin-top: 10px;
     display: flex;
     justify-content: left;
     flex-direction: row; 
@@ -20,12 +20,12 @@
     align-items: left;
     justify-content: center;
     margin-left: 100px;
-    padding-top: 40px;
     font-family: 'Karla';
     font-weight: bold;
     padding-top:20px;
     padding-left: 20px;
     padding-right: 20px;
+    overflow:hidden;
 }
 
 .det2{
@@ -128,12 +128,64 @@
     cursor: pointer;
   }
 
+.up-buttons{
+    display: flex;
+    justify-content: left;
+    flex-direction: row; 
+    margin-top: 10px;
+    
+}
 .backBtn{
+    font-family: 'Karla';
+    font-size: 16px;
+    font-weight: bold;
+    height: 30px;
+    width: 80px;
+    display: flex;
     background-color: #FFF;
-    text-align: center;
+    text-align: right;
     border: 1px solid #006400;
-    border-radius: 8px;
-    margin-top: 20px;
-    margin-left: 20px;
+    border-radius: 8px;   
+    margin-left: 16px;
+    align-items: center;
+    color: #006400;
 }
 
+.backBtn:hover, .editOfferBtn:hover{
+    background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+    color: white;
+}
+
+.iconBack, .iconDelete{
+    align-items: center;
+    padding-bottom: 1px;    
+}
+
+.editOfferBtn{
+    font-family: 'Karla';
+    color: #006400;
+    background-color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #006400;
+    border-radius: 8px;
+    width: 80px;
+    height: 30px;
+    margin-left: 1250px;
+}
+
+.deleteOfferBtn{
+    font-family: 'Karla';
+    color:#FF0000;
+    background-color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #006400;
+    border-radius: 8px;
+    width: 80px;
+    height: 30px;
+    margin-left: 16px;
+    display: flex;
+    text-align: right;
+}

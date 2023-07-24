@@ -22,7 +22,7 @@ export class CardService {
       img:'/assets/images/Axana.jpg',
       lname:'Diaconu',
       fname:'Axana-Marinela',
-      description:'I am a sociable and energetic person. I like to travel.'
+      description:'I am a sociable and energetic person. I like to read, travel and I am excited to meet new people.'
     },
     {
       img:'/assets/images/Bianca.jpg',
