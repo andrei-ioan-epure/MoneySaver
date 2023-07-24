@@ -8,6 +8,7 @@ import { ContactComponent } from './contact/contact.component';
 import { ContactResponseComponent } from './contact/contact-response/contact-response.component';
 import { OfertsComponent } from './oferts/oferts.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpResponseComponent } from './sign-up/sign-up-response/sign-up-response.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path:'sign-up',
     component: SignUpComponent
+  },
+  {
+    path:'sign-up-response',
+    component:SignUpResponseComponent
   },
   {
     path: '**',
