@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-signin',
@@ -13,11 +15,10 @@ export class SigninComponent {
   formGroup: FormGroup = new FormGroup({});
   email: FormControl = new FormControl('', [Validators.required, Validators.email]);
   password: FormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
-  apiUrl = 'https://api.example.com'; // Înlocuiește cu URL-ul API-ului tău de login.
   loginSuccessMessage = '';
   loginErrorMessage = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient,private authService: AuthenticationService) {}
 
   ngOnInit() {
     this.formGroup = new FormGroup({
@@ -37,6 +38,7 @@ export class SigninComponent {
         response => {
           // Dacă login-ul este cu succes, vei primi un mesaj în răspuns.
           console.log('Login success');
+          this.authService.setIsLogged(true); // Setează starea de autentificare în serviciul de autentificare
           this.loginSuccessMessage = 'Logging is successful. You will be redirected to the main page in a few seconds.';
           this.loginErrorMessage = '';
           setTimeout(() => {
@@ -46,6 +48,7 @@ export class SigninComponent {
         error => {
           
           console.error('Login failed:', error);
+          this.authService.setIsLogged(false); // Setează starea de autentificare în serviciul de autentificare
           this.loginSuccessMessage = '';
           this.loginErrorMessage = 'Logging error. Please verify your authentication credentials.';
         }

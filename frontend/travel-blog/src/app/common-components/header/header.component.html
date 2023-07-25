@@ -1,9 +1,9 @@
 <!--Toolbar din Header-->
 <div class="nav">
 
-    <a href="/home">
+    <a routerLink="/home" (click)="isLogoutMenuOpen = false">
         <img align="left" [src]="ImagePath" style="width:160px;height:40px;">
-    </a>
+      </a>
 
     
     <div class="search">
@@ -26,9 +26,15 @@
          <mat-icon class="info_icon">error_outline</mat-icon>
         
     </button>
-    <button id="signin" mat-raised-button color="#006400" routerLink="/signin">Sign In
+    <!-- Dacă utilizatorul este logat, afișează butonul de Log Out -->
+    <button *ngIf="isLogged" id="signout" mat-raised-button color="#006400" (click)="logout()">Log Out
+        <mat-icon class="signout_icon">exit_to_app</mat-icon>
+      </button>
+  
+      <!-- Dacă utilizatorul nu este logat, afișează butonul de Sign In -->
+      <button *ngIf="!isLogged" id="signin" mat-raised-button color="#006400" routerLink="/signin">Sign In
         <mat-icon class="signin_icon">person_outline</mat-icon>
-    </button>
+      </button>
     </div>
     
     
