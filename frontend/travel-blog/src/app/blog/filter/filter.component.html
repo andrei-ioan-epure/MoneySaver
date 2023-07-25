@@ -3,7 +3,7 @@
   <!-- <button id="filterButton" (click)="onClickFilter()">Filters</button> -->
 
   <h2 class="title">Filters</h2>
-  <button (click)="resetComboboxes()">Clear filters</button>
+  <button (click)="resetFields()">Clear filters</button>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
     <h2 class="author-title">Author</h2>
@@ -13,7 +13,7 @@
           #checkboxInput
           type="checkbox"
           formArrayName="selectedAuthors"
-          [value]="i + 1"
+          [value]="author.fullName"
           (change)="onCheckboxChange($event)"
         />
         <span>{{ author.fullName }}</span>

@@ -1,24 +1,27 @@
 <div class="blog">
-  <div class="left"><app-filter></app-filter></div>
+  <div class="left">
+    <app-filter
+      [filteredArticles]="articles"
+      (dataEmitter)="onDataReceived($event)"
+    ></app-filter>
+  </div>
 
   <div class="right">
     <div class="article-container">
       <div *ngFor="let article of articles | slice : 0 : 8; let i = index">
-        <div *ngIf="inFilter">
-          <app-article-list-item
-            [title]="article.title"
-            [content]="article.content"
-            [posted]="article.posted"
-            [city]="article.city"
-            [expiration]="article.expiration"
-            [category]="article.category"
-            [author]="article.author"
-            [showDeleteBtn]="isFavouritesPage"
-            [hideFavoriteBtn]="isNotFavouritesPage"
-            [index]="i"
-            (articleChange)="onArticleChange($event)"
-          ></app-article-list-item>
-        </div>
+        <app-article-list-item
+          [title]="article.title"
+          [content]="article.content"
+          [posted]="article.posted"
+          [city]="article.city"
+          [expiration]="article.expiration"
+          [category]="article.category"
+          [author]="article.author"
+          [showDeleteBtn]="isFavouritesPage"
+          [hideFavoriteBtn]="isNotFavouritesPage"
+          [index]="i"
+          (articleChange)="onArticleChange($event)"
+        ></app-article-list-item>
       </div>
     </div>
   </div>

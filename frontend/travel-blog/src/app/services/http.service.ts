@@ -15,6 +15,19 @@ export class HttpService {
     const finalEndpoint=`${this.endpoint}/Article/get`;
     return this.http.get<ServerArticle[]>(finalEndpoint).pipe(map(serverArticles=>this.mapFromMultipleArticles(serverArticles)));
   }
+    getFilteredArticles(authors: string="All", category: string="All", city: string="All", store: string="All",
+     posted: string="All", expiration: string="All"):Observable<Article[]> {
+      const finalEndpoint=`${this.endpoint}/Article/getFiltered`;
+      const queryParams = {
+      authors:authors==""?"All":authors,
+      category:category,
+      city:city,
+      store:store,
+      posted:posted,
+      expiration:expiration
+    };
+    return this.http.get<ServerArticle[]>(finalEndpoint,{ params: queryParams }).pipe(map(serverArticles=>this.mapFromMultipleArticles(serverArticles)));
+  }
 
   private mapFromMultipleArticles(serverArticles:ServerArticle[]):Article[]
   {

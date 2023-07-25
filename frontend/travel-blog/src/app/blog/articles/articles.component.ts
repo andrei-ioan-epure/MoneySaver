@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Articles } from '../model/article';
 import { ArticlesService } from 'src/app/services/articles.service';
@@ -16,7 +16,6 @@ export class ArticleComponent implements OnInit {
   url?:string;
   isFavouritesPage?:boolean=false;
   isNotFavouritesPage?:boolean=true;
-  inFilter?:boolean=true;
   constructor( private readonly router:Router,private readonly httpService:HttpService) {}
 
   ngOnInit() {
@@ -33,8 +32,9 @@ export class ArticleComponent implements OnInit {
   onArticleChange(value: string): void {
     console.log('clicked on', value);
   }
-  articleInFilter():void{
-
+   onDataReceived(articlesReceived: Articles) {
+    console.log('Articles received from Child:', articlesReceived);
+    this.articles = articlesReceived; // Store the received articles in the parent component
   }
   
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChildren, ElementRef, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef, QueryList, Input, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
 import { Users } from '../model/user';
+import { Articles } from '../model/article';
 
 @Component({
   selector: 'app-filter',
@@ -9,11 +10,17 @@ import { Users } from '../model/user';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent  {
+  @Input() filteredArticles?: Articles; // Allow the parent component to provide input data
+  
+  @Output() dataEmitter: EventEmitter<Articles> = new EventEmitter<Articles>();
+ 
   @ViewChildren('checkboxInput') checkboxInputs!: QueryList<ElementRef<HTMLInputElement>>;
     form: FormGroup;
     authors?:Users
     comboboxIds = ['datePosted', 'expirationDate', 'category', 'city', 'store']; 
     selectedValues: { [key: string]: any } = {}; 
+
+
 
   constructor(fb: FormBuilder,private readonly httpService:HttpService) {
     this.form = fb.group({
@@ -27,6 +34,10 @@ export class FilterComponent  {
        this.httpService.getUsers().subscribe(data=>
        this.authors = data.filter((user) => user.isCreator === true)); 
     }
+
+
+ 
+
     onCheckboxChange(event: any) {
     
     const selectedAuthors = (this.form.controls['selectedAuthors'] as FormArray);
@@ -43,7 +54,7 @@ export class FilterComponent  {
     this.selectedValues[event.target.id] = event.target.value;
   }
 
-  resetComboboxes() {
+  resetFields() {
    this.comboboxIds.forEach((id) => {
     const element = document.getElementById(id) as HTMLSelectElement | null;
     if (element) {
@@ -56,14 +67,32 @@ export class FilterComponent  {
     });
      const selectedAuthors = this.form.get('selectedAuthors') as FormArray;
      selectedAuthors.clear();
+
+
+     this.httpService.getFilteredArticles().subscribe(data=>
+      {console.log(data)
+    this.dataEmitter.emit(data)
+      });
    
   }
 
   submit() {
-    console.log("Authors:\n");
-    console.log(this.form.value);
-    console.log("Optiuni:\n");
-    console.log(this.selectedValues);
+  
+    this.selectedValues["authors"]= this.form.get('selectedAuthors')?.value ;
+    // console.log("Info:");
+    // console.log(this.selectedValues);
+
+  
+
+    this.httpService.getFilteredArticles(this.selectedValues['authors'].join(",") ,this.selectedValues['category'],this.selectedValues['city'],
+    this.selectedValues['store'],this.selectedValues['datePosted'],this.selectedValues['expirationDate']).subscribe(data=>
+      {//console.log(data)
+    this.dataEmitter.emit(data)
+      }
+     ); 
+
     
-  }
+    }
+
+
 }
