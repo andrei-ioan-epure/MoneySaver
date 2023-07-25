@@ -49,12 +49,19 @@
     >Forget password?</a
   >
 
+  <!-- Mesajul de succes -->
+  <div *ngIf="loginSuccessMessage" class="success-message">
+    {{ loginSuccessMessage }}
+  </div>
+
+  <!-- Mesajul de eroare -->
+  <div *ngIf="loginErrorMessage" class="error-message">
+    {{ loginErrorMessage }}
+  </div>
 
   <button mat-raised-button class="btn" type="submit">
     Log in
-    
   </button>
-  
 </form>
 
 <h5>

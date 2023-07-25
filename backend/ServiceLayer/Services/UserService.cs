@@ -2,6 +2,7 @@
 using RepositoryLayer;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
+using System.Globalization;
 
 namespace ServiceLayer.Services
 {
@@ -58,5 +59,45 @@ namespace ServiceLayer.Services
             };
             _userRepository.Update(user);
         }
+        public UserLoginDto? GetUserByEmail(string email)
+        {
+            var userList = _userRepository.GetAll();
+            foreach (var user in userList)
+            {
+                if (user.Email == email)
+                {
+                    return new UserLoginDto(user.Email, user.Password);
+                }
+            }
+            return null;
+        }
+        public int? GetUserIdByEmail(string email)
+        {
+            var userList = _userRepository.GetAll();
+            foreach (var user in userList)
+            {
+                if (user.Email == email)
+                {
+                    return user.Id; // Assuming the user object has an "Id" property that represents the user's unique identifier.
+                }
+            }
+            return null;
+        }
+
+        
+
+
+        public int? Login(UserLoginDto user)
+        {
+            var existingUser = GetUserByEmail(user.Email);
+            var id = GetUserIdByEmail(user.Email);
+            if(existingUser!=null)
+            {
+                //if (VerifyPass(user.Password, existingUser.Password)) ;
+                return id;
+            }
+            return null;
+        }
+        
     }
 }

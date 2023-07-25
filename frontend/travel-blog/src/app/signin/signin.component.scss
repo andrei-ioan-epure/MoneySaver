@@ -85,3 +85,25 @@ h5 a {
     font-weight: 800;
     line-height: 24px; 
 }
+.error-message
+{
+    
+    text-align: center;
+    color: var(--heading, red);
+    font-family: 'Karla';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 70px; 
+}
+
+.success-message
+{
+    text-align: center;
+    color: var(--heading, #008000);
+    font-family: 'Karla';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 70px;
+}
