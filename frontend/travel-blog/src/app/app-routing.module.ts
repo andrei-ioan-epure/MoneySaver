@@ -7,6 +7,7 @@ import { ResetPassComponent } from './signin/reset-pass/reset-pass.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactResponseComponent } from './contact/contact-response/contact-response.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AddOfferComponent } from './add-offer/add-offer.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path:'sign-up',
     component: SignUpComponent
+  },
+  {
+    path:'add-offer',
+    component: AddOfferComponent
   },
   {
     path: '**',

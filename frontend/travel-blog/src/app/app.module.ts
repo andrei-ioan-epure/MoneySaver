@@ -20,6 +20,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
+import { AddOfferComponent } from './add-offer/add-offer.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import {MatIconModule} from '@angular/material/icon';
     ContactComponent,
     ContactResponseComponent,
     SignUpComponent,
+    AddOfferComponent,
   ],
   imports: [
     BrowserModule,

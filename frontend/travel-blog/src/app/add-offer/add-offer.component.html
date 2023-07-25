@@ -1,0 +1,81 @@
+<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
+<br><br>
+<div class="top">
+  <h1>Add a new offer to the MoneySaver World</h1>
+</div>
+<br><br>
+
+<form [formGroup]="formGroup" (ngSubmit)="submitForm()">
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Name of the offer</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="offerName"
+      placeholder="Ex. Voucher for "
+    />
+  </mat-form-field>
+    <mat-form-field appearance="outline" class="input">
+      <mat-label >About</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="about"
+        placeholder="Ex. 50% Off for Makeup"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="input">
+        <mat-label >Category</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="category"
+          placeholder="Ex. Beauty"
+        />
+      </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>City</mat-label>
+      <input
+        matInput
+        formControlName="city"
+        placeholder="Ex. Iasi"
+      />
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" class="input">
+      <mat-label>Expire Date</mat-label>
+      <input 
+      type="date" 
+      matInput 
+      formControlName="expiredate" 
+      placeholder="Ex. 2023-07-25"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="input">
+        <mat-label>Code</mat-label>
+        <input 
+        type="text" 
+        matInput 
+        formControlName="code" 
+        placeholder="Ex. 50XSUMMER"
+        />
+      </mat-form-field>
+
+      <!-- <mat-form-field appearance="outline" class="input">
+        <mat-label>Select an image</mat-label>
+        <input 
+        type="file" 
+        matInput 
+        formControlName="image" 
+        />
+      </mat-form-field> -->
+  
+    <button mat-raised-button class="btn" type="submit">Add offer</button>
+      <br>
+      <br><br><br>
+</form>
+  
+  
