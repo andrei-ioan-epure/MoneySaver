@@ -3,6 +3,8 @@
     display: flex;
     justify-content: left;
     flex-direction: row; 
+    position: absolute;
+    top:110px;
 }
 
 .image{
@@ -64,6 +66,7 @@
     font-size: 24px;
     font-weight: bold;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .comment{
@@ -77,6 +80,8 @@
     display: flex;
     justify-content: left;
     flex-direction: row; 
+    position: absolute;
+    top:560px;
 }
 
 .ic{ 
@@ -139,16 +144,18 @@
     font-family: 'Karla';
     font-size: 16px;
     font-weight: bold;
-    height: 30px;
-    width: 80px;
+    
+    height: 35px;
+    width: 90px;
     display: flex;
     background-color: #FFF;
     text-align: right;
     border: 1px solid #006400;
-    border-radius: 8px;   
-    margin-left: 16px;
+    border-radius: 8px;  
+    margin-left: 20px;
     align-items: center;
     color: #006400;
+    position: absolute;
 }
 
 .backBtn:hover, .editOfferBtn:hover{
@@ -158,8 +165,10 @@
 }
 
 .iconBack, .iconDelete{
+   
     align-items: center;
-    padding-bottom: 1px;    
+    padding-bottom: 1px; 
+   padding-right: 5px;
 }
 
 .editOfferBtn{
@@ -170,9 +179,10 @@
     font-weight: bold;
     border: 1px solid #006400;
     border-radius: 8px;
-    width: 80px;
-    height: 30px;
-    margin-left: 1250px;
+    width: 90px;
+    height: 35px;
+   left: 1310px;
+    position: absolute;
 }
 
 .deleteOfferBtn{
@@ -183,9 +193,37 @@
     font-weight: bold;
     border: 1px solid #006400;
     border-radius: 8px;
-    width: 80px;
-    height: 30px;
-    margin-left: 16px;
+    width: 90px;
+    height: 35px;
     display: flex;
     text-align: right;
+    align-items: center;
+    position: absolute;
+    left: 1420px;
+
 }
+.deleteOfferBtn:hover{
+    background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+    color: #FF0000;
+}
+.copyBtn
+{
+    color:white;
+    background-color: #006400 !important;
+    width:70px;
+    height:30px;
+    text-align: center;
+    font-family: 'Karla';
+    font-size: 16px;
+    border-radius: 8px;
+    border:none;  
+    margin-top: 10px; 
+    position: absolute;
+    top:200px;
+    left:700px;
+}
+.copyBtn:hover {
+    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+  }
