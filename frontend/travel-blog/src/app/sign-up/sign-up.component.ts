@@ -29,13 +29,12 @@ export class SignUpComponent{
   fullName : FormControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
   password : FormControl = new FormControl('', [Validators.required, checkLength]);
 
-  userCreateSubscription!:Subscription
-
   constructor(
     private readonly signUpService: SignUpService,
     private router: Router
     ){}
 
+  
   ngOnInit(){
     this.formGroup = new FormGroup({
       username:this.username,
@@ -54,7 +53,7 @@ export class SignUpComponent{
         password  : this.formGroup.controls['password'].value,
         isCreator : false
       };
-      this.userCreateSubscription = this.signUpService.postUser(user).subscribe();
+      this.signUpService.postUser(user).subscribe();
 
       this.router.navigate(['/sign-up-response']);
     }
