@@ -47,7 +47,6 @@ export class SignUpComponent{
 
   submitForm(): void{
     if (this.formGroup.valid){
-      console.log(this.formGroup.value);
       const user: User = {
         userName  : this.formGroup.controls['username'].value,
         fullName  : this.formGroup.controls['fullName'].value,
@@ -55,8 +54,7 @@ export class SignUpComponent{
         password  : this.formGroup.controls['password'].value,
         isCreator : false
       };
-      
-      this.userCreateSubscription = this.signUpService.postUser(this.formGroup.value).subscribe();
+      this.userCreateSubscription = this.signUpService.postUser(user).subscribe();
 
       this.router.navigate(['/sign-up-response']);
     }
