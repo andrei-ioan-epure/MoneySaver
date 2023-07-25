@@ -10,7 +10,7 @@ import { Articles } from '../model/article';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent  {
-  @Input() filteredArticles?: Articles; // Allow the parent component to provide input data
+  @Input() filteredArticles?: Articles; 
   
   @Output() dataEmitter: EventEmitter<Articles> = new EventEmitter<Articles>();
  
@@ -34,10 +34,6 @@ export class FilterComponent  {
        this.httpService.getUsers().subscribe(data=>
        this.authors = data.filter((user) => user.isCreator === true)); 
     }
-
-
- 
-
     onCheckboxChange(event: any) {
     
     const selectedAuthors = (this.form.controls['selectedAuthors'] as FormArray);
@@ -81,8 +77,6 @@ export class FilterComponent  {
     this.selectedValues["authors"]= this.form.get('selectedAuthors')?.value ;
     // console.log("Info:");
     // console.log(this.selectedValues);
-
-  
 
     this.httpService.getFilteredArticles(this.selectedValues['authors'].join(",") ,this.selectedValues['category'],this.selectedValues['city'],
     this.selectedValues['store'],this.selectedValues['datePosted'],this.selectedValues['expirationDate']).subscribe(data=>
