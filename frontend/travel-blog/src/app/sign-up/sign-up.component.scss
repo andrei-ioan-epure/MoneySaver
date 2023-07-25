@@ -1,4 +1,4 @@
-div.top{
+div.h-section{
     align-items: center;
     display: flex;
     justify-content: center;
@@ -61,6 +61,9 @@ form{
 
 .btn:hover{
     background-color: #008000 !important;
+}
+.btn:disabled{
+    background-color: lightgray !important;
 }
 
 h5{

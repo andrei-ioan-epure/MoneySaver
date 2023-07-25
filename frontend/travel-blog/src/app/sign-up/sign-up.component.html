@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
 
-<div class="top">
+<div class="h-section">
   <h1>Create An Account</h1>
   <p>Create an account to enjoy all the services!</p>
 </div>
@@ -54,8 +54,9 @@
     <!-- <input type="password" matInput formControlName="password" /> -->
 
     <input type="password" matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-    <button class="icon" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+    <button type="button" class="icon" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
     </button>
 
     <mat-error
@@ -68,7 +69,7 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button class="btn" type="submit">Sign Up</button>
+  <button mat-raised-button class="btn" type="submit" [disabled]="formGroup.invalid">Sign Up</button>
 </form>
 
 <h5>

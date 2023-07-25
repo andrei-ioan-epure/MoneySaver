@@ -2,7 +2,7 @@
 {
     public class UserDto
     {
-        public UserDto(int? id, string userName, string fullName, string email, string password, bool isCreator)
+        public UserDto(int? id, string userName, string fullName, string email, string password, bool isCreator=false)
         {
             Id = id;
             UserName = userName;
