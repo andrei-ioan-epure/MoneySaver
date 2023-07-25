@@ -88,7 +88,7 @@ namespace ServiceLayer.Services
                 return true;
             }
 
-            return article.Posted.Date <= postedDateTime.Value;
+            return article.Posted.Date >= postedDateTime.Value;
         }
 
         public bool IsExpirationMatch(Article article, string expiration)
