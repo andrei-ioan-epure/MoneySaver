@@ -2,7 +2,6 @@
 using RepositoryLayer;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
-using System.Globalization;
 
 namespace ServiceLayer.Services
 {
@@ -10,7 +9,7 @@ namespace ServiceLayer.Services
     {
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Article> _articleRepository;
- 
+
 
         public UserService(IRepository<User> userRepository, IRepository<Article> articleRepository)
         {
@@ -20,11 +19,11 @@ namespace ServiceLayer.Services
 
         public IEnumerable<UserDto> GetAll()
         {
-            return _userRepository.GetAll().Select(u => new UserDto(u.Id, u.UserName, u.FullName,u.Email,u.Password,u.IsCreator));
+            return _userRepository.GetAll().Select(u => new UserDto(u.Id, u.UserName, u.FullName, u.Email, u.Password, u.IsCreator));
         }
 
         public UserDto? Get(int id)
-        { 
+        {
             var user = _userRepository.GetWithLinkedEntities(id, "FavoriteArticles");
 
 
@@ -38,7 +37,7 @@ namespace ServiceLayer.Services
 
         public void Insert(UserDto entity)
         {
-            var user = new User(entity.UserName, entity.FullName,entity.Email,entity.Password,entity.IsCreator);
+            var user = new User(entity.UserName, entity.FullName, entity.Email, entity.Password, entity.IsCreator);
             _userRepository.Insert(user);
         }
 
@@ -59,45 +58,5 @@ namespace ServiceLayer.Services
             };
             _userRepository.Update(user);
         }
-        public UserLoginDto? GetUserByEmail(string email)
-        {
-            var userList = _userRepository.GetAll();
-            foreach (var user in userList)
-            {
-                if (user.Email == email)
-                {
-                    return new UserLoginDto(user.Email, user.Password);
-                }
-            }
-            return null;
-        }
-        public int? GetUserIdByEmail(string email)
-        {
-            var userList = _userRepository.GetAll();
-            foreach (var user in userList)
-            {
-                if (user.Email == email)
-                {
-                    return user.Id; // Assuming the user object has an "Id" property that represents the user's unique identifier.
-                }
-            }
-            return null;
-        }
-
-        
-
-
-        public int? Login(UserLoginDto user)
-        {
-            var existingUser = GetUserByEmail(user.Email);
-            var id = GetUserIdByEmail(user.Email);
-            if(existingUser!=null)
-            {
-                //if (VerifyPass(user.Password, existingUser.Password)) ;
-                return id;
-            }
-            return null;
-        }
-        
     }
 }

@@ -63,21 +63,5 @@ namespace PresentationLayer.Controllers
             return Ok();
         }
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody]UserLoginDto user)
-        {
-            int? id=_userService.Login(user);
-            if(id==null)
-            {
-                return Unauthorized();
-            }
-            else
-            {
-               
-                return Ok(new { Message = "Login success"});
-
-            }
-
-        }
     }
 }
