@@ -13,9 +13,16 @@ export class HttpService {
    getArticles():Observable<Article[]>
   {
     const finalEndpoint=`${this.endpoint}/Article/get`;
-    return this.http.get<ServerArticle[]>(finalEndpoint).pipe(map(serverArticles=>this.mapFromMultipleArticles(serverArticles)));
+    return this.http.get<Article[]>(finalEndpoint);//.pipe(map(serverArticles=>this.mapFromMultipleArticles(serverArticles)));
   }
-  private mapFromMultipleArticles(serverArticles:ServerArticle[]):Article[]
+
+  getArticle(id: number): Observable<Article> {
+    const url = `${this.endpoint}/Article/get/${id}`;
+    return this.http
+      .get<Article>(url)
+      
+  }
+  /*private mapFromMultipleArticles(serverArticles:ServerArticle[]):Article[]
   {
     return serverArticles.map(serverArticle=>this.mapFromSingleArticle(serverArticle));
   }
@@ -32,5 +39,5 @@ export class HttpService {
       content:serverArticle.content,
       creatorId:serverArticle.creatorId,
     } as Article;
-  }
+  }*/
 }

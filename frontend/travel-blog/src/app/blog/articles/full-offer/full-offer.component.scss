@@ -1,17 +1,82 @@
-.full-offer{
-    margin-top: 10px;
+.up-buttons{
     display: flex;
-    justify-content: left;
-    flex-direction: row; 
+    flex-wrap: wrap;
+    justify-content: center;
+    //flex-direction: row; 
+    //margin-top: 10px;
+    gap:180vh;
+    margin-top: 10px;
+}
+
+
+.backBtn{
+    height: 35px;
+    width: 90px;
+    display: flex;
+    font-family: 'Karla';
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #FFF !important;
+    text-align: right;
+    align-items: center;
     position: absolute;
-    top:110px;
+    color: #006400;
+    border: 1px solid #006400;
+    border-radius: 8px; 
+    justify-content: center;
+}
+
+.leftBtn{
+    //margin-top: 10px;
+    display: flex;
+    flex-direction: row; 
+    gap:10px;
+}
+
+.editOfferBtn{
+    font-family: 'Karla';
+    color: #006400;
+    background-color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #006400;
+    border-radius: 8px;
+    width: 90px;
+    height: 35px;
+    //left: 1310px;
+    //position: absolute;
+}
+
+.deleteOfferBtn{
+    font-family: 'Karla';
+    color:#FF0000;
+    background-color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #006400;
+    border-radius: 8px;
+    width: 90px;
+    height: 35px;
+    display: flex;
+    text-align: right;
+    align-items: center;
+    //position: absolute;
+    //left: 1420px;
+
+}
+
+.full-offer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20vh;
+    margin-top:40px;
 }
 
 .image{
     border: 2px solid black;
     width: 200px;
     height: 200px;
-    margin-left: 100px;
     margin-top:30px;
 }
 
@@ -21,7 +86,6 @@
     height: 400px;
     align-items: left;
     justify-content: center;
-    margin-left: 100px;
     font-family: 'Karla';
     font-weight: bold;
     padding-top:20px;
@@ -33,10 +97,8 @@
 .det2{
     font-size: 20px;
     font-family: 'Karla';
-    align-items: left;
     display: flex;
     flex-direction: column; 
-    margin-left: 100px;
     margin-top: 30px;
     font-weight: bold;
 }
@@ -56,6 +118,26 @@
     font-size: 24px;
 }
 
+.codewbtn{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.copyBtn
+{
+    color:white;
+    background-color: #006400 !important;
+    width:70px;
+    height:30px;
+    text-align: center;
+    font-family: 'Karla';
+    font-size: 16px;
+    border-radius: 8px;
+    border:none;  
+    margin-top: 5px; 
+    margin-left: 30px;
+}
+
 .webBtn{
     width: 200px;
     height: 40px;
@@ -69,12 +151,12 @@
     cursor: pointer;
 }
 
-.comment{
+/*.comment{
     border:1px solid black;
     border-radius: 8px;
     width:900px;
     height:100px;
-    margin-left: 50px;
+    //margin-left: 50px;
     padding-left: 10px;
     padding-top:10px;
     display: flex;
@@ -82,8 +164,8 @@
     flex-direction: row; 
     position: absolute;
     top:560px;
-}
-
+}*/
+/*
 .ic{ 
     height: 70px;
     width:500px;
@@ -94,7 +176,7 @@
 }
 
 .buttons{
-    margin-left: 300px;
+    //margin-left: 300px;
     display: flex;
     justify-content: left;
     flex-direction: column;   
@@ -126,44 +208,22 @@
     margin-top: 8px;   
 }
 
+*/
 
-
-.editBtn:hover, .deleteBtn:hover {
+/*.editBtn:hover, .deleteBtn:hover {
     background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
-    cursor: pointer;
+ /*   cursor: pointer;
   }
 
-.up-buttons{
-    display: flex;
-    justify-content: left;
-    flex-direction: row; 
-    margin-top: 10px;
-    
-}
-.backBtn{
-    font-family: 'Karla';
-    font-size: 16px;
-    font-weight: bold;
-    
-    height: 35px;
-    width: 90px;
-    display: flex;
-    background-color: #FFF;
-    text-align: right;
-    border: 1px solid #006400;
-    border-radius: 8px;  
-    margin-left: 20px;
-    align-items: center;
-    color: #006400;
-    position: absolute;
-}
 
-.backBtn:hover, .editOfferBtn:hover{
+*/
+
+.backBtn:hover, .editOfferBtn:hover, .webBtn:hover{
     background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
     cursor: pointer;
     color: white;
 }
-
+/*
 .iconBack, .iconDelete{
    
     align-items: center;
@@ -171,19 +231,7 @@
    padding-right: 5px;
 }
 
-.editOfferBtn{
-    font-family: 'Karla';
-    color: #006400;
-    background-color: #FFF;
-    font-size: 16px;
-    font-weight: bold;
-    border: 1px solid #006400;
-    border-radius: 8px;
-    width: 90px;
-    height: 35px;
-   left: 1310px;
-    position: absolute;
-}
+
 
 .deleteOfferBtn{
     font-family: 'Karla';
@@ -199,31 +247,16 @@
     text-align: right;
     align-items: center;
     position: absolute;
-    left: 1420px;
+    //left: 1420px;
 
 }
 .deleteOfferBtn:hover{
     background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
-    cursor: pointer;
+    /*cursor: pointer;
     color: #FF0000;
 }
-.copyBtn
-{
-    color:white;
-    background-color: #006400 !important;
-    width:70px;
-    height:30px;
-    text-align: center;
-    font-family: 'Karla';
-    font-size: 16px;
-    border-radius: 8px;
-    border:none;  
-    margin-top: 10px; 
-    position: absolute;
-    top:200px;
-    left:700px;
-}
+
 .copyBtn:hover {
     background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
-    cursor: pointer;
-  }
+    /*cursor: pointer;
+  }*/

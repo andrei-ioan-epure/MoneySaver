@@ -13,7 +13,7 @@ const routes: Routes = [
    component: ArticleComponent
  },
  {
-  path:'article-list/full-offer',
+  path:'article-list/full-offer/:id',
   component:FullOfferComponent
  },
   {

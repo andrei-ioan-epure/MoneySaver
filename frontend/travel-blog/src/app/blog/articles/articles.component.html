@@ -5,10 +5,12 @@
     <div class="article-container">
       <div *ngFor="let article of articles | slice : 0 : 8">
         <app-article-list-item
+          [id]="article.id"
           [title]="article.title"
           [content]="article.content"
           [posted]="article.posted"
           [city]="article.city"
+          [code]="article.code"
           [expiration]="article.expiration"
           [category]="article.category"
           [author]="article.author"

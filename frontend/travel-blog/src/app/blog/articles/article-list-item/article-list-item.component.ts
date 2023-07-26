@@ -6,6 +6,7 @@ import { OfferService } from 'src/app/services/offer.service';
   styleUrls: ['./article-list-item.component.scss']
 })
 export class ArticleListItemComponent {
+  @Input() id?:number;
   @Input() title?: string;
   @Input() content?: string;
   @Input() posted?: Date;
@@ -22,6 +23,7 @@ export class ArticleListItemComponent {
   constructor(private offerService :OfferService){}
   
   onClick(): void {
+    //console.log(this.code);
    // this.offerService.offer=
    this.offerService.setParameter({
       title:this.title,
