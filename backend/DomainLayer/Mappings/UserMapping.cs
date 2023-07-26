@@ -14,7 +14,7 @@ namespace DomainLayer.Mappings
 				.HasMaxLength(100)
 				.IsRequired();
 
-			modelBuilder.Entity<User>()
+            modelBuilder.Entity<User>()
 				.Property(x => x.Password)
 				.HasColumnType("nvarchar")
 				.HasMaxLength(100)

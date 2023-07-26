@@ -1,5 +1,9 @@
-﻿namespace DomainLayer.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.Net.Mail;
+
+namespace DomainLayer.Models
 {
+    [Index(nameof(Email), IsUnique = true)]
     public class User : BaseEntity
     {
         public User(string userName, string fullName,string email,string password,bool isCreator)

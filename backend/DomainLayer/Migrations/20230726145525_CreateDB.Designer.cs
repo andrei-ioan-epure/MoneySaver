@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DomainLayer.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20230721165354_CreateDB")]
+    [Migration("20230726145525_CreateDB")]
     partial class CreateDB
     {
         /// <inheritdoc />
@@ -176,6 +176,9 @@ namespace DomainLayer.Migrations
                         .HasColumnType("nvarchar");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

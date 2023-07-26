@@ -155,6 +155,12 @@ namespace DomainLayer.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Articles_CreatorId",
                 table: "Articles",
                 column: "CreatorId");
@@ -194,6 +200,10 @@ namespace DomainLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Articles");
+
+            migrationBuilder.DropIndex(
+                name: "IX_Users_Email",
+                table: "Users");
 
             migrationBuilder.DropColumn(
                 name: "Email",
