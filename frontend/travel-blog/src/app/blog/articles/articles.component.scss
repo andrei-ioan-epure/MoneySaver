@@ -36,10 +36,10 @@
   display: flex;
   justify-content: right;
   align-items: center;
-  position: relative;
+  position: absolute;
   margin-right: 20px;
-  bottom: 40px;
- 
+  margin-top:10px;
+  margin-left: calc(79%);
 }
 
 /* Stil pentru butoanele de paginare */
