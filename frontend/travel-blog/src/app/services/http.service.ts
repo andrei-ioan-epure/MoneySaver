@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Article, ServerArticle } from '../blog/model/article';
-
+import { User, ServerUser } from '../blog/model/user';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +15,20 @@ export class HttpService {
     const finalEndpoint=`${this.endpoint}/Article/get`;
     return this.http.get<ServerArticle[]>(finalEndpoint).pipe(map(serverArticles=>this.mapFromMultipleArticles(serverArticles)));
   }
+    getFilteredArticles(authors: string="All", category: string="All", city: string="All", store: string="All",
+     posted: string="All", expiration: string="All"):Observable<Article[]> {
+      const finalEndpoint=`${this.endpoint}/Article/getFiltered`;
+      const queryParams = {
+      authors:authors==""?"All":authors,
+      category:category,
+      city:city,
+      store:store,
+      posted:posted,
+      expiration:expiration
+    };
+    return this.http.get<ServerArticle[]>(finalEndpoint,{ params: queryParams }).pipe(map(serverArticles=>this.mapFromMultipleArticles(serverArticles)));
+  }
+
   private mapFromMultipleArticles(serverArticles:ServerArticle[]):Article[]
   {
     return serverArticles.map(serverArticle=>this.mapFromSingleArticle(serverArticle));
@@ -32,5 +46,26 @@ export class HttpService {
       content:serverArticle.content,
       creatorId:serverArticle.creatorId,
     } as Article;
+  }
+
+   getUsers():Observable<User[]>
+  {
+    const finalEndpoint=`${this.endpoint}/User/get`;
+    return this.http.get<ServerUser[]>(finalEndpoint).pipe(map(serverUsers=>this.mapFromMultipleUsers(serverUsers)));
+  } 
+
+
+    private mapFromMultipleUsers(serverUsers:ServerUser[]):User[]
+  {
+    return serverUsers.map(serverUsers=>this.mapFromSingleUser(serverUsers));
+  }
+  private mapFromSingleUser(serverUser:ServerUser):User{
+    return{
+          userName: serverUser.userName,
+          fullName: serverUser.fullName,
+          email: serverUser.email,
+          password: serverUser.password,
+          isCreator:serverUser.isCreator,
+    } as User;
   }
 }

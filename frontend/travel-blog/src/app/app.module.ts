@@ -13,7 +13,6 @@ import { ResetPassComponent } from './signin/reset-pass/reset-pass.component';
 import { CardComponent } from './about/card/card.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactResponseComponent } from './contact/contact-response/contact-response.component';
-import { OfertsComponent } from './oferts/oferts.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -35,7 +34,6 @@ import {MatIconModule} from '@angular/material/icon';
     CardComponent,
     ContactComponent,
     ContactResponseComponent,
-    OfertsComponent,
     SignUpComponent
   ],
   imports: [

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArticleComponent } from './articles/articles.component';
+import { FullOfferComponent } from './articles/full-offer/full-offer.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,10 @@ const routes: Routes = [
   {
     path: 'favourites',
    component: ArticleComponent
+ },
+ {
+  path:'article-list/full-offer',
+  component:FullOfferComponent
  },
   {
     path: '**',

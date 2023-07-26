@@ -42,6 +42,7 @@ export class ContactComponent {
     //this.formGroup.markAllAsTouched;
     if(this.formGroup.valid){
       this.router.navigateByUrl('/contact-response');
+      console.log(this.formGroup.value);
     }
     
   }

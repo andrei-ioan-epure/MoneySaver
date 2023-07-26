@@ -21,5 +21,7 @@ namespace ServiceLayer.Contracts
         void Update(int id, ArticleDto entity);
 
         void DeleteByCreatorId(int entityId);
+
+        IEnumerable<ArticleDto> GetFiltered(string authors, string category, string city, string store, string posted, string expiration);
     }
 }

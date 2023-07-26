@@ -6,7 +6,6 @@ import { HomeComponent } from './home/home.component';
 import { ResetPassComponent } from './signin/reset-pass/reset-pass.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactResponseComponent } from './contact/contact-response/contact-response.component';
-import { OfertsComponent } from './oferts/oferts.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
@@ -29,10 +28,6 @@ const routes: Routes = [
   {
     path:'contact-response',
     component:ContactResponseComponent
-  },
-  {
-    path:'oferts',
-    component:OfertsComponent
   },
   {
     path: 'about',
