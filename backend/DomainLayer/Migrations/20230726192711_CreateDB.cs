@@ -52,6 +52,13 @@ namespace DomainLayer.Migrations
                 nullable: false,
                 defaultValue: "");
 
+            migrationBuilder.AddColumn<byte[]>(
+                name: "Salt",
+                table: "Users",
+                type: "varbinary(max)",
+                nullable: false,
+                defaultValue: new byte[0]);
+
             migrationBuilder.CreateTable(
                 name: "Articles",
                 columns: table => new
@@ -215,6 +222,10 @@ namespace DomainLayer.Migrations
 
             migrationBuilder.DropColumn(
                 name: "Password",
+                table: "Users");
+
+            migrationBuilder.DropColumn(
+                name: "Salt",
                 table: "Users");
 
             migrationBuilder.AlterColumn<string>(

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
@@ -61,6 +62,13 @@ namespace PresentationLayer.Controllers
         {
             _userService.InsertFavoriteArticle(favoriteArticle);
             return Ok();
+        }
+
+        [HttpPut("login")]
+        public IActionResult LogIn(UserDto user)
+        {
+            var token = _userService.Login(user);
+            return token != null? Ok(token) : NotFound("Wrong Credentials.");
         }
     }
 }

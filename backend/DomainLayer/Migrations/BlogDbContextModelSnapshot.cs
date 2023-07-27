@@ -167,6 +167,10 @@ namespace DomainLayer.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar");
 
+                    b.Property<byte[]>("Salt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(100)

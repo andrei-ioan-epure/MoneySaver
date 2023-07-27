@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DomainLayer.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
@@ -16,10 +18,19 @@ namespace PresentationLayer.Controllers
         {
             _articleService = articleService;
         }
+
         [HttpGet("get")]
+        [Authorize("admin")]
         public IActionResult GetAll()
         {
-            return Ok(_articleService.GetAll());
+            //var currentUser = HttpContext.User;
+            //var currentUser1 = HttpContext.Items["User"];
+            //if (currentUser.HasClaim(c => c.Type == "role"))
+            //{
+            //    if (currentUser.Claims.FirstOrDefault(c => c.Type == "role").Value == "Admin")
+                    return Ok(_articleService.GetAll());
+            //}
+            //return NotFound();
         }
 
         [HttpGet("get/{id}")]
@@ -30,10 +41,18 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPost("add")]
+        //[Authorize]
         public IActionResult Add(ArticleDto article)
         {
-            _articleService.Insert(article);
-            return Ok();
+            //var currentUser = HttpContext.User;
+            //if(currentUser.HasClaim(c => c.Type == "role"))
+            //{
+                //if(currentUser.Claims.FirstOrDefault(c=> c.Type == "role").Value == "Admin")
+                    _articleService.Insert(article);
+                    return Ok();
+            //}
+            //return NotFound();
+            
         }
 
         [HttpPut("update/{id}")]

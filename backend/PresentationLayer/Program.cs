@@ -34,6 +34,7 @@ namespace PresentationLayer
             builder.Services.AddScoped<IArticleService, ArticleService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<IFilterService, FilterService>();
+            builder.Services.AddScoped<IJwtUtils, JwtUtils>();
 
             var app = builder.Build();
 
@@ -45,6 +46,7 @@ namespace PresentationLayer
 
             app.UseHttpsRedirection();
             app.UseCors("corsapp");
+            app.UseJwtMiddleware();
             app.UseAuthorization();
             app.MapControllers();
             app.Run();
