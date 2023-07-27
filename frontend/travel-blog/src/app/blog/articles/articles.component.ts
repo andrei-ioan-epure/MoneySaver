@@ -15,19 +15,26 @@ export class ArticleComponent implements OnInit {
   url?: string;
   isFavouritesPage?: boolean = false;
   isNotFavouritesPage?: boolean = true;
-  
+
   constructor(
     private readonly router: Router,
     private readonly httpService: HttpService
   ) {}
 
   ngOnInit() {
-    this.httpService.getArticles().subscribe((data) => (this.articles = data));
-
     this.url = this.router.url;
     if (this.url.includes('favourites')) {
       this.isFavouritesPage = true;
       this.isNotFavouritesPage = !this.isFavouritesPage;
+      this.httpService.getFavoriteArticles(5).subscribe((data) => {
+        console.log('Favorite');
+        console.log(data);
+        this.articles = data;
+      });
+    } else {
+      this.httpService
+        .getArticles()
+        .subscribe((data) => (this.articles = data));
     }
   }
 

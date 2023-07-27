@@ -12,11 +12,17 @@
   <div class="centered">
     <div class="image-container">
       <img src="../assets/images/netflix.png" alt="{{ title }}" srcset="" />
-      <button class="deleteBtn" *ngIf="showDeleteBtn">x</button>
+      <button
+        class="deleteBtn"
+        *ngIf="showDeleteBtn"
+        (click)="onRemoveFromFavorite(creatorId, articleId)"
+      >
+        x
+      </button>
       <button
         class="favBtn"
         *ngIf="hideFavoriteBtn"
-        (click)="onClickFavorite(index)"
+        (click)="onClickFavorite(index, creatorId, articleId)"
       >
         <mat-icon id="heart{{ index }}">favorite_border</mat-icon>
       </button>

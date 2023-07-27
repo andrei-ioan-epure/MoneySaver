@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Text.Json.Serialization;
+
 namespace ServiceLayer.DtoModels
 {
 	public class FavoriteArticleDto
 	{
+		[JsonConstructor]
+		public FavoriteArticleDto() { }
+
 		public FavoriteArticleDto(int uId, int aId)
 		{
 			userId = uId;

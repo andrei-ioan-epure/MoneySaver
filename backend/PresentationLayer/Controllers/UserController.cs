@@ -62,5 +62,16 @@ namespace PresentationLayer.Controllers
             _userService.InsertFavoriteArticle(favoriteArticle);
             return Ok();
         }
+        [HttpGet("getFavorite")]
+        public IActionResult GetFavorites([FromQuery]  int id)
+        {
+            return Ok(_userService.GetFavoriteList(id));
+        }
+        [HttpDelete("deleteFavorite")]
+        public IActionResult DeleteFavoriteItem([FromQuery] int userId, [FromQuery] int articleId)
+        {
+            _userService.DeleteFavoriteListItem(userId, articleId);
+            return Ok();
+        }
     }
 }

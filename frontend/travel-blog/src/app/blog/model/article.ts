@@ -1,4 +1,5 @@
 export type Article = {
+  id?:number
   title: string;
   posted: Date;
   city:string;

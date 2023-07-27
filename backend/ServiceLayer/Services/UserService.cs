@@ -30,6 +30,37 @@ namespace ServiceLayer.Services
             return user != null ? new UserDto(user.Id, user.UserName, user.FullName, user.Email, user.Password, user.IsCreator) : null;
         }
 
+        public List<ArticleDto>? GetFavoriteList(int id)
+        {
+            var user = _userRepository.GetWithLinkedEntities(id, "FavoriteArticles");
+
+            if (user != null)
+            {
+                List<ArticleDto> favorites = new List<ArticleDto>();
+                foreach (var favorite in user.FavoriteArticles)
+                {
+                    favorites.Add(new ArticleDto(favorite.Id, favorite.Title, favorite.Posted, favorite.Expiration, favorite.City, favorite.Category,
+                        favorite.Code, favorite.Store, favorite.Author, favorite.Content, favorite.CreatorId));
+                }
+                return favorites;
+            }
+            return null;
+        }
+
+        public void DeleteFavoriteListItem(int userId,int articleId)
+        {
+            var user = _userRepository.GetWithLinkedEntities(userId, "FavoriteArticles");
+            var article = _articleRepository.Get(articleId);
+            if (user != null && article !=null)
+            {
+               user.FavoriteArticles.Remove(article);
+               _userRepository.Update(user);
+
+
+            }
+
+        }
+
         public void Delete(int entityId)
         {
             _userRepository.Delete(entityId);
