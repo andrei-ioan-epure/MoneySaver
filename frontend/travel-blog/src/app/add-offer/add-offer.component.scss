@@ -21,13 +21,26 @@ h1{
 }
 
 
+.btn{
+    width: 326px;
+    background-color: #006400 !important;
+    color: #fff !important;
+    border-radius: 8px;
+    transition: 0.3s;
+    justify-content: space-between !important;
+    margin-left: 16px !important;
+    z-index: 0;
+    padding-left: 130px;
+}
+
 
 form{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     align-items: center;
-    
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    z-index: 10;
+
 }
 
 .input{
@@ -35,15 +48,49 @@ form{
     width: 528px;
 }
 
-.btn{
-    width: 326px;
-    background-color: #006400 !important;
-    color: #fff !important;
-    border-radius: 8px;
-    transition: 0.3s;
-}
 
 .btn:hover{
     background-color: #008000 !important;
 }
 
+.example-form-field {
+    margin-right: 20px;
+  }
+
+.up-buttons{
+    display: flex;
+    justify-content: left;
+    flex-direction: row; 
+    margin-top: 10px;
+    
+}
+
+.backBtn{
+    font-family: 'Karla';
+    font-size: 16px;
+    font-weight: bold;
+    
+    height: 35px;
+    width: 90px;
+    display: flex;
+    background-color: #FFF;
+    text-align: right;
+    border: 1px solid #006400;
+    border-radius: 8px;  
+    margin-left: 20px;
+    align-items: center;
+    color: #006400;
+    position: absolute;
+}
+
+.backBtn:hover{
+    background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+    color: white;
+}
+
+#image{
+    //border-color: #006400 !important;
+    background-color: rgba(128, 128, 128, 0.575) !important;
+    z-index: 0;
+}

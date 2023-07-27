@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {  AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 function checkLength(c: AbstractControl): ValidationErrors|null{
   let stringControl:string = c.value;
   if(stringControl.length>=8){
@@ -46,6 +47,9 @@ export class AddOfferComponent {
     if (this.formGroup.valid) {
       console.log(this.formGroup.value);
       this.router.navigate(['blog']); // Redirecționare către pagina de home
+    }
+    else{
+      this.router.navigate(['blog']);
     }
 
   }
