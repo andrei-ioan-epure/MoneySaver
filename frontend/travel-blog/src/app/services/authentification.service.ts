@@ -19,22 +19,6 @@ export class AuthenticationService {
     this.isLogged = value;
   }
 
-  login(email: string, password: string): Observable<boolean> {
-    const userLoginDto = { email, password };
-
-    return this.http.post<any>(`https://localhost:7207/api/User/login`, userLoginDto).pipe(
-      map(response => {
-        this.setIsLogged(true);
-        return true;
-      }),
-      catchError(error => {
-        console.error('Login failed:', error);
-        this.setIsLogged(false);
-        return of(false);
-      })
-    );
-  }
-
   logout(): void {
     this.setIsLogged(false);
   }
