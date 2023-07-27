@@ -27,16 +27,16 @@ namespace PresentationLayer
             if (user == null)
             {
                 context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                return;
             }
-            else
+
+            string role = context.HttpContext.Items["Role"].ToString();
+            if (role != "admin")
             {
-                string role = context.HttpContext.Items["Role"].ToString();
-                if (role != "admin")
+                if (Role != role)
                 {
-                    if (Role != role)
-                    {
-                        context.Result = new JsonResult(new { message = "Unauthorized role" }) { StatusCode = StatusCodes.Status401Unauthorized };
-                    }
+                    context.Result = new JsonResult(new { message = "Unauthorized role" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                    return;
                 }
             }
         }
