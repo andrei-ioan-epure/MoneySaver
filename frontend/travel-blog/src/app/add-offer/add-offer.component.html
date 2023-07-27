@@ -48,6 +48,16 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="input">
+    <mat-label>Name of the store</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="store"
+      placeholder="Ex. AboutYou"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
     <mat-label>City</mat-label>
     <select matNativeControl name="city" formControlName="city" required>
       <option value="iasi">Iaşi</option>

@@ -37,6 +37,10 @@ export class AddOfferComponent {
     Validators.required,
     Validators.minLength(4),
   ]);
+  store: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(5),
+  ]);
   city: FormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(1),
@@ -46,7 +50,6 @@ export class AddOfferComponent {
     Validators.required,
     Validators.minLength(4),
   ]);
-  // image: FormControl=new FormControl('',[Validators.required]);
   constructor(
     private router: Router,
     private readonly httpService: HttpService
@@ -60,7 +63,7 @@ export class AddOfferComponent {
       city: this.city,
       expiredate: this.expiredate,
       code: this.code,
-      // image:this.image,
+      store:this.store
     });
   }
 
