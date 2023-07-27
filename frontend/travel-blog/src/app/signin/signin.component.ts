@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {  FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-signin',
@@ -12,7 +14,7 @@ export class SigninComponent {
   formGroup: FormGroup = new FormGroup({});
   email: FormControl = new FormControl('',[Validators.required,Validators.email]);
   password : FormControl = new FormControl('', [Validators.required,Validators.minLength(8)]);
-  constructor(private router: Router) {}
+  constructor(private router: Router,private authService: AuthenticationService) {}
 
   ngOnInit(){
     this.formGroup = new FormGroup({
@@ -23,8 +25,16 @@ export class SigninComponent {
 
   submitForm(){
     if (this.formGroup.valid) {
+      this.authService.setIsLogged(true); 
       console.log(this.formGroup.value);
-      this.router.navigate(['home']); // Redirecționare către pagina de home
+      setTimeout(() => {
+        this.router.navigate(['home']); // Redirecționare către pagina de home 
+      }, 3000); // Redirecționare către pagina de home
+    }
+    else
+    {
+      console.error('Login failed');
+          this.authService.setIsLogged(false); 
     }
 
   }

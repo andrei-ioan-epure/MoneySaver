@@ -68,7 +68,7 @@
     </mat-error>
   </mat-form-field>
 
-  <button mat-raised-button class="btn" type="submit">Sign Up</button>
+  <button mat-raised-button class="btn" type="submit" [disabled]="formGroup.invalid">Sign Up</button>
 </form>
 
 <h5>

@@ -47,10 +47,6 @@ form{
     width: 528px;
 }
 
-.icon{
-    color: #006400 !important;
-}
-
 .btn{
     width: 326px;
     background-color: #006400 !important;
@@ -62,7 +58,9 @@ form{
 .btn:hover{
     background-color: #008000 !important;
 }
-
+.btn:disabled{
+    background-color: lightgray !important;
+}
 h5{
     margin-bottom: 0px;
     position: relative;
@@ -75,4 +73,8 @@ h5{
     font-style: normal;
     font-weight: 800;
     line-height: 24px; /* 130% */
+}
+h5 a
+{
+    color:#006400 !important;
 }

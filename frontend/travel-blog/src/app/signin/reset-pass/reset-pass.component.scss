@@ -61,6 +61,10 @@ form{
     background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
     cursor: pointer;
   }
+  
+.btn:disabled{
+    background-color: lightgray !important;
+}
   #back
   {
       top:50px;

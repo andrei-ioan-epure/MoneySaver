@@ -54,7 +54,9 @@ form{
     background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
     cursor: pointer;
   }
-
+.btn:disabled{
+    background-color: lightgray !important;
+}
 h5{
     margin-bottom: 0px;
     position: relative;
