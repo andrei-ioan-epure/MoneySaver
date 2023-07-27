@@ -5,10 +5,9 @@
         <img align="left" [src]="ImagePath" style="width:160px;height:40px;">
       </a>
 
-    
-    <div class="search">
-        <input type="text" placeholder="Search...">
-    </div>
+      <div class="search">
+        <input type="text" placeholder="Search..." (keyup)="performSearch($event)" />
+      </div>
     
 
     <div class="right">

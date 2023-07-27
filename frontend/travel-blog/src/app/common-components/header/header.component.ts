@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../../services/authentification.service';
+import { ArticlesService } from 'src/app/services/articles.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   ImagePath: string;
-  isLogoutMenuOpen = false; // Variabila pentru a urmări dacă meniul de logout este deschis sau nu
+  isLogoutMenuOpen = false;
 
-  constructor(private authService: AuthenticationService) {
+  constructor(
+    private authService: AuthenticationService,
+    private articleService: ArticlesService
+  ) {
     this.ImagePath = '/assets/images/Logo.png';
   }
 
@@ -19,11 +23,16 @@ export class HeaderComponent {
   }
 
   toggleLogoutMenu() {
-    this.isLogoutMenuOpen = !this.isLogoutMenuOpen; // Inversăm starea meniului de logout la fiecare clic pe butonul de log out
+    this.isLogoutMenuOpen = !this.isLogoutMenuOpen;
   }
 
   logout() {
-    this.authService.setIsLogged(false); // Realizează deconectarea în serviciul de autentificare
-    this.isLogoutMenuOpen = false; // Închidem meniul de logout după ce utilizatorul s-a deconectat
+    this.authService.setIsLogged(false);
+    this.isLogoutMenuOpen = false;
+  }
+
+  performSearch(event: Event) {
+    const searchTerm = (event.target as HTMLInputElement).value;
+    this.articleService.setSearchTerm(searchTerm);
   }
 }

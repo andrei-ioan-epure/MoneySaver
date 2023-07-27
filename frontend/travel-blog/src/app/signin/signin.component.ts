@@ -29,7 +29,7 @@ export class SigninComponent {
       console.log(this.formGroup.value);
       setTimeout(() => {
         this.router.navigate(['home']); // Redirecționare către pagina de home 
-      }, 3000); // Redirecționare către pagina de home
+      }, 100); // Redirecționare către pagina de home
     }
     else
     {
