@@ -74,10 +74,10 @@ export class FullOfferComponent implements OnInit {
   editOffer() {}
   deleteOffer() {
     console.log('Delete article');
-
     console.log(this.id);
     this.httpService.deleteArticle(this.id);
-    //window.location.reload();
-    //this.router.navigate(['blog/']);
+    setTimeout(() => {
+      this.router.navigate(['blog']);
+    }, 10);
   }
 }
