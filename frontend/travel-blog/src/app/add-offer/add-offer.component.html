@@ -6,11 +6,11 @@
     Back
   </button>
 </div>
-<br>
+<br />
 <div class="top">
   <h1>Add a new offer to the MoneySaver World</h1>
 </div>
-<br><br>
+<br /><br />
 
 <form [formGroup]="formGroup">
   <mat-form-field appearance="outline" class="input">
@@ -18,75 +18,101 @@
     <input
       type="text"
       matInput
-      formControlName="offerName"
+      formControlName="offername"
       placeholder="Ex. Voucher for "
     />
   </mat-form-field>
-    <mat-form-field appearance="outline" class="input">
-      <mat-label >About</mat-label>
-      <input
-        type="text"
-        matInput
-        formControlName="about"
-        placeholder="Ex. 50% Off for Makeup"
-      />
-    </mat-form-field>
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>About</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="about"
+      placeholder="Ex. 50% Off for Makeup"
+    />
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="input">
-        <mat-label >Category</mat-label>
-        <select matNativeControl required>
-          <option value="food">Food</option>
-          <option value="beauty">Beauty</option>
-          <option value="fashion">Fashion</option>
-          <option value="Entertainment">Entertainment</option>
-        </select>
-      </mat-form-field>
-  
-    <mat-form-field appearance="outline" class="input">
-      <mat-label>City</mat-label>
-      <select matNativeControl required>
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Category</mat-label>
+    <select
+      matNativeControl
+      name="category"
+      formControlName="category"
+      required
+    >
+      <option value="food">Food</option>
+      <option value="beauty">Beauty</option>
+      <option value="fashion">Fashion</option>
+      <option value="Entertainment">Entertainment</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>City</mat-label>
+    <select matNativeControl name="city" formControlName="city" required>
       <option value="iasi">Iaşi</option>
       <option value="suceava">Suceava</option>
       <option value="galati">Galaţi</option>
       <option value="bacau">Bacău</option>
       <option value="bucuresti">Bucureşti</option>
     </select>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline" class="input">
-      <mat-label>Choose an expire date</mat-label>
-      <input matInput [matDatepicker]="datepicker" placeholder="MM/DD/YYYY">
-      <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-      <mat-datepicker #datepicker>
-        <mat-datepicker-actions>
-          <button mat-button matDatepickerCancel>Cancel</button>
-          <button mat-raised-button color="#006400" matDatepickerApply>Apply</button>
-        </mat-datepicker-actions>
-      </mat-datepicker>
-    </mat-form-field>
-     
+  </mat-form-field>
 
-    <mat-form-field appearance="outline" class="input">
-        <mat-label>Code</mat-label>
-        <input 
-        type="text" 
-        matInput 
-        formControlName="code" 
-        placeholder="Ex. 50XSUMMER"
-        />
-      </mat-form-field>
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Choose an expire date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="datepicker"
+      name="expiredate"
+      formControlName="expiredate"
+      placeholder="MM/DD/YYYY"
+    />
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="datepicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancel</button>
+        <button mat-raised-button color="#006400" matDatepickerApply>
+          Apply
+        </button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+  </mat-form-field>
 
-      <input #fileInput hidden="true" type="file"/>
-      <button mat-flat-button id="image" style="border-radius: 2px solid #006400 !important; width: 530px; height:55px;" (click)="fileInput.click()">Choose image</button>
-  
-     <br>
-    
-    <button mat-raised-button class="btn" (click)="submitForm()">Add offer</button>
-   <br>
-    <button mat-raised-button class="btn" (click)="submitForm()">Cancel</button>
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Code</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="code"
+      placeholder="Ex. 50XSUMMER"
+    />
+  </mat-form-field>
 
-      <br>
-      <br><br><br>
+  <input #fileInput hidden="true" type="file" />
+  <button
+    mat-flat-button
+    id="image"
+    style="
+      border-radius: 2px solid #006400 !important;
+      width: 530px;
+      height: 55px;
+    "
+    (click)="fileInput.click()"
+  >
+    Choose image
+  </button>
+
+  <br />
+
+  <button mat-raised-button class="btn" (click)="submitForm()">
+    Add offer
+  </button>
+  <br />
+  <button mat-raised-button class="btn" routerLink="/blog">Cancel</button>
+
+  <br />
+  <br /><br /><br />
 </form>
-  
-  
