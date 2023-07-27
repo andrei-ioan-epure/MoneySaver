@@ -1,49 +1,68 @@
 <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
 
-<div class="up-buttons">
-  <div class="rightBtn">
-    <button mat-raised-button class="backBtn" routerLink="/blog">
-      <mat-icon class="iconBack">arrow_back</mat-icon>
-      Back
-    </button>
-  </div>
-  <div class="leftBtn">
-    <button mat-raised-button class="editOfferBtn"> Edit </button>
-    <button mat-raised-button class="deleteOfferBtn">
-      <mat-icon class="iconDelete">delete_outline</mat-icon> 
-      Delete 
-    </button>
-  </div>
-</div>
-
-
-<div class="full-offer">
-  <div class="image">
-    <img src="/assets/images/netflix.png" alt="Nu s-a gasit imaginea" width="150px" height="150px" />
-  </div>
-  <div class="details">
-    <label id="title">{{ title }}</label>
-    <label id="content"> | {{content}}</label>
-    <br /><br /><br>
-    <label id="city">City: {{city}}</label><br><br><br>
-    <label id="expdate">Expire Date: {{expiration | date : "dd/MM/yyyy"}}</label><br /><br /><br>
-    <div class="codewbtn">
-      <label id="code">CODE: {{code}}</label><br /><br /><br>
-      <button mat-raised-button type="submit" class="copyBtn">Copy</button>
+<div class="offer">
+  <div class="up-buttons">
+    <div class="rightBtn">
+      <button mat-raised-button class="backBtn" routerLink="/blog">
+        <mat-icon class="iconBack">arrow_back</mat-icon>
+        Back
+      </button>
     </div>
-    <button mat-raised-button type="submit" class="webBtn">Go to website</button>
+    <div class="leftBtn">
+      <button mat-raised-button class="editOfferBtn"> Edit </button>
+      <button mat-raised-button class="deleteOfferBtn">
+        <mat-icon class="iconDelete">delete_outline</mat-icon> 
+        Delete 
+      </button>
+    </div>
   </div>
-  <div class="det2">
-    <label>Category: {{category}} </label>
-    <label>Author: {{author}} </label>
-    <label>Date: {{posted | date : "dd/MM/yyyy"}}</label>
+
+  <div class="full-offer">
+    <div class="image">
+      <img src="/assets/images/netflix.png" alt="Nu s-a gasit imaginea" width="150px" height="150px" />
+    </div>
+    <div class="details">
+      <label id="title">{{ title }}</label>
+      <label id="content"> | {{content}}</label>
+      <br /><br /><br>
+      <label id="city">City: {{city}}</label><br><br><br>
+      <label id="expdate">Expire Date: {{expiration | date : "dd/MM/yyyy"}}</label><br /><br /><br>
+      <div class="codewbtn">
+        <label id="code">CODE: {{code}}</label><br /><br /><br>
+        <button mat-raised-button type="submit" class="copyBtn">Copy</button>
+      </div>
+      <button mat-raised-button type="submit" class="webBtn">Go to website</button>
+    </div>
+    <div class="det2">
+      <label>Category: {{category}} </label>
+      <label>Author: {{author}} </label>
+      <label>Date: {{posted | date : "dd/MM/yyyy"}}</label>
+    </div>
   </div>
-</div>
-<br><br>
-<!--<div class="comment">
-  <input type="text" class="ic" value="Add a comment..">
-  <div class="buttons">
+  <br><br>
+  <div class="addComment">
+    <input type="text" class="comment" value="Add a comment..">
+    <button mat-raised-button type="submit" class="addBtn">Add</button>
+  </div>
+  <br><br><br>
+  <h2>Comments</h2>
+  <div class="comments">
+    <div class="comm1">
+      <label class="comm">Comentariu</label>
+      <div class="buttons">
+        <button mat-raised-button class="like">
+          <mat-icon>thumb_up_alt</mat-icon>
+        </button>
+        <button mat-raised-button class="dislike">
+          <mat-icon>thumb_down_alt</mat-icon>
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  <br><br><br>
+  <!--<div class="buttons">
     <button mat-raised-button type="submit" class="editBtn">Edit</button>
     <button mat-raised-button type="submit" class="deleteBtn">Delete</button>
-  </div>
-</div>-->
+  </div>-->
+</div>

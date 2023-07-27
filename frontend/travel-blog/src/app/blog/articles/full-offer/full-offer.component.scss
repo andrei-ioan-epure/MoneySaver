@@ -1,13 +1,15 @@
+.offer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .up-buttons{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    //flex-direction: row; 
-    //margin-top: 10px;
-    gap:180vh;
+    gap:170vh;
     margin-top: 10px;
 }
-
 
 .backBtn{
     height: 35px;
@@ -24,10 +26,10 @@
     border: 1px solid #006400;
     border-radius: 8px; 
     justify-content: center;
+   
 }
 
 .leftBtn{
-    //margin-top: 10px;
     display: flex;
     flex-direction: row; 
     gap:10px;
@@ -43,8 +45,6 @@
     border-radius: 8px;
     width: 90px;
     height: 35px;
-    //left: 1310px;
-    //position: absolute;
 }
 
 .deleteOfferBtn{
@@ -60,9 +60,12 @@
     display: flex;
     text-align: right;
     align-items: center;
-    //position: absolute;
-    //left: 1420px;
+}
 
+.deleteOfferBtn:hover{
+    background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+    color: #FF0000;
 }
 
 .full-offer{
@@ -81,7 +84,7 @@
 }
 
 .details{
-    border:2px solid black;
+    border:2px solid #838383;
     width: 500px;
     height: 400px;
     align-items: left;
@@ -138,6 +141,11 @@
     margin-left: 30px;
 }
 
+.copyBtn:hover, .addBtn:hover {
+    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+  }
+
 .webBtn{
     width: 200px;
     height: 40px;
@@ -151,30 +159,81 @@
     cursor: pointer;
 }
 
-/*.comment{
-    border:1px solid black;
-    border-radius: 8px;
-    width:900px;
-    height:100px;
-    //margin-left: 50px;
-    padding-left: 10px;
-    padding-top:10px;
+//div pentru input si buton de add
+.addComment{
     display: flex;
-    justify-content: left;
-    flex-direction: row; 
-    position: absolute;
-    top:560px;
-}*/
-/*
-.ic{ 
-    height: 70px;
-    width:500px;
-    font-family: 'Karla';
-    border:none;
-    font-size: 20px;
-    color:#32403B;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: -500px;
+    gap:20px;
 }
 
+//input pentru comentariu
+.comment{
+    border: 1px solid #838383;
+    //border: none;
+    color:#67727E;
+    width: 900px;
+    height: 40px;
+    border-radius: 8px;
+    margin-left: 40px;
+    padding-left: 10px;
+    font-size: 'Karla';
+    font-size: 15px;
+}
+//add comment
+.addBtn{
+    color:white;
+    background-color: #006400;
+    width:70px;
+    height:30px;
+    text-align: center;
+    font-family: 'Karla';
+    font-size: 16px;
+    border-radius: 8px;
+    border:none;  
+}
+
+
+.comments{
+    display: flex;
+    flex-direction: column;  
+}
+
+h2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: -1350px;
+    font-family: 'Karla';
+    font-weight: bold;
+    text-decoration: underline;
+}
+.comm1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    //margin-left: -500px;
+    gap:100vh;
+}
+.comm{
+    //border-bottom: 1px solid #006400;
+    color: black;
+    font-size: 18px;
+    font-family: 'Karla';
+}
+
+.like,.dislike{
+    background-color: white;
+    border: none;
+}
+
+.like:hover, .dislike:hover{
+    background-color: #006400;
+}
+/*
 .buttons{
     //margin-left: 300px;
     display: flex;
@@ -250,13 +309,6 @@
     //left: 1420px;
 
 }
-.deleteOfferBtn:hover{
-    background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
-    /*cursor: pointer;
-    color: #FF0000;
-}
 
-.copyBtn:hover {
-    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
-    /*cursor: pointer;
-  }*/
+
+*/
