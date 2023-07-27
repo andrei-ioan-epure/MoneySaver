@@ -1,12 +1,13 @@
 ﻿using System;
 using DomainLayer.Models;
+using ServiceLayer.DtoModels;
 
 namespace ServiceLayer.Contracts
 {
 	public interface IJwtUtils
 	{
         public string CreateToken(User user);
-        public int? ValidateToken(string token);
+        public JwtDto? ValidateToken(string token);
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ServiceLayer.Contracts;
+using ServiceLayer.DtoModels;
 
 namespace PresentationLayer
 {
@@ -15,13 +16,11 @@ namespace PresentationLayer
         public async Task Invoke(HttpContext context, IUserService userService, IJwtUtils jwtUtils)
         {
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
-            var userId = jwtUtils.ValidateToken(token);
-            if (userId != null)
+            JwtDto jwtDto = jwtUtils.ValidateToken(token);
+            if (jwtDto != null)
             {
-                context.Items["User"] = userService.Get(userId.Value);
-                bool isCreator = userService.IsCreator(userId.Value);
-                string role = isCreator ? "admin" : "user";
-                context.Items["Role"] = role;
+                context.Items["User"] = userService.Get(jwtDto.UserID);
+                context.Items["Role"] = jwtDto.Role;
             }
 
             await _next(context);

@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using ServiceLayer.Contracts;
+using ServiceLayer.DtoModels;
 
 namespace ServiceLayer.Services
 {
@@ -20,7 +21,7 @@ namespace ServiceLayer.Services
             {
                 new Claim("id", user.Id.ToString()),
                 new Claim("name", user.UserName),
-                new Claim("role", user.IsCreator? "Admin" : "User")
+                new Claim("role", user.IsCreator? "admin" : "user")
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("CeaMaiComplicataCheie"));
 
@@ -36,7 +37,7 @@ namespace ServiceLayer.Services
             return jwt;
         }
 
-        public int? ValidateToken(string token)
+        public JwtDto? ValidateToken(string token)
         {
             if (token == null)
                 return null;
@@ -57,8 +58,11 @@ namespace ServiceLayer.Services
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+                string isCreator = jwtToken.Claims.First(x => x.Type == "role").Value;
 
-                return userId;
+                JwtDto jwtDto = new JwtDto(userId, isCreator);
+
+                return jwtDto;
             }
             catch
             {
