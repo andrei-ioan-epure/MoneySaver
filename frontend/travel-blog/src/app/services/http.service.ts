@@ -24,9 +24,11 @@ export class HttpService {
   deleteArticle(id: number): void {
     const finalEndpoint = `${this.endpoint}/Article/delete/${id}`;
 
-    this.http.delete(finalEndpoint).subscribe((s) => {
-      console.log(s);
-    });
+    this.http.delete(finalEndpoint).subscribe();
+  }
+  putArticle(id: number, body: Article): void {
+    const finalEndpoint = `${this.endpoint}/Article/update/${id}`;
+    this.http.put<Article>(finalEndpoint, body).subscribe();
   }
   /*private mapFromMultipleArticles(serverArticles:ServerArticle[]):Article[]
   {

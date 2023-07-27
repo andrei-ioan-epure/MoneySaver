@@ -4,6 +4,7 @@ import { Offer } from './model/offer';
 import { of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
+import { Article } from '../../model/article';
 
 @Component({
   selector: 'app-full-offer',
@@ -57,21 +58,27 @@ export class FullOfferComponent implements OnInit {
     this.category = offer.category;
     this.author = offer.author;
     this.posted = offer.posted;
+    this.store = offer.store;
+    this.creatorId = offer.creatorId;
   }
-  // item = {
-  //   title: this.title,
-  //   posted: this.posted,
-  //   city: this.city,
-  //   expiration: this.expiration,
-  //   category: this.category,
-  //   code: this.code,
-  //   store: thiss.store,
-  //   author: this.author,
-  //   content: this.content,
-  //   creatorId: this.creatorId,
-  // };
 
-  editOffer() {}
+  editOffer() {
+    const item: Article = {
+      title: 'test212',
+      posted: this.posted!,
+      city: this.city!,
+      expiration: this.expiration!,
+      category: this.category!,
+      code: this.code!,
+      store: this.store!,
+      author: 'test',
+      content: this.content!,
+      creatorId: this.creatorId!,
+    };
+    console.log(item);
+    this.httpService.putArticle(this.id, item);
+    window.location.reload();
+  }
   deleteOffer() {
     console.log('Delete article');
     console.log(this.id);
