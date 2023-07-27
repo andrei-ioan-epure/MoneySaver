@@ -3,7 +3,7 @@
 
   <div class="right">
     <div class="article-container">
-      <div *ngFor="let article of articles | slice : 0 : 8">
+      <div *ngFor="let article of articles">
         <app-article-list-item
           [id]="article.id"
           [title]="article.title"
@@ -11,9 +11,11 @@
           [posted]="article.posted"
           [city]="article.city"
           [code]="article.code"
+          [store]="article.store"
           [expiration]="article.expiration"
           [category]="article.category"
           [author]="article.author"
+          [creatorId]="article.creatorId"
           [showDeleteBtn]="isFavouritesPage"
           [hideFavoriteBtn]="isNotFavouritesPage"
           (articleChange)="onArticleChange($event)"

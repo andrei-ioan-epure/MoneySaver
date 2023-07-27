@@ -2,25 +2,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Article, ServerArticle } from '../blog/model/article';
+import { query } from '@angular/animations';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpService {
-  private readonly endpoint="https://localhost:7207/api";
-    constructor(private readonly http:HttpClient) { }
+  private readonly endpoint = 'https://localhost:7207/api';
+  constructor(private readonly http: HttpClient) {}
 
-   getArticles():Observable<Article[]>
-  {
-    const finalEndpoint=`${this.endpoint}/Article/get`;
-    return this.http.get<Article[]>(finalEndpoint);//.pipe(map(serverArticles=>this.mapFromMultipleArticles(serverArticles)));
+  getArticles(): Observable<Article[]> {
+    const finalEndpoint = `${this.endpoint}/Article/get`;
+    return this.http.get<Article[]>(finalEndpoint); //.pipe(map(serverArticles=>this.mapFromMultipleArticles(serverArticles)));
   }
 
   getArticle(id: number): Observable<Article> {
     const url = `${this.endpoint}/Article/get/${id}`;
-    return this.http
-      .get<Article>(url)
-      
+    return this.http.get<Article>(url);
+  }
+
+  deleteArticle(id: number): void {
+    const finalEndpoint = `${this.endpoint}/Article/delete/${id}`;
+
+    this.http.delete(finalEndpoint).subscribe((s) => {
+      console.log(s);
+    });
   }
   /*private mapFromMultipleArticles(serverArticles:ServerArticle[]):Article[]
   {
