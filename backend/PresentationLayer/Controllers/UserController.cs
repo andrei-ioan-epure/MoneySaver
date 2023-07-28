@@ -65,7 +65,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPut("login")]
-        public IActionResult LogIn(UserDto user)
+        public IActionResult LogIn(UserLoginDto user)
         {
             var token = _userService.Login(user);
             return token != null? Ok(token) : NotFound(new { message = "Wrong Credentials." });

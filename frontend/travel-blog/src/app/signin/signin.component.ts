@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from '../blog/model/user';
+import { User, UserLogin } from '../blog/model/user';
 import { AuthService } from '../services/auth.service';
+import { EMPTY, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
@@ -23,6 +24,7 @@ export class SigninComponent {
   ) {}
 
   ngOnInit() {
+    this.authService.logOut();
     this.formGroup = new FormGroup({
       email: this.email,
       password: this.password,
@@ -31,31 +33,24 @@ export class SigninComponent {
 
   submitForm() {
     if (this.formGroup.valid) {
-      const user: User = {
-        userName: 'string',
-        fullName: 'string',
+      const user: UserLogin = {
         email: this.formGroup.controls['email'].value,
         password: this.formGroup.controls['password'].value,
-        isCreator: false,
       };
 
-      this.authService.LogIn(user).subscribe({
-        next: res =>{
-          const token = (<any>res).token;
-          localStorage.setItem("jwt", token);
-          console.log("User logged in");
+      this.authService
+        .LogIn(user)
+        .pipe(
+          catchError((err) => {
+            console.log('Auth failed', err);
+            debugger
+            return EMPTY;
+          })
+        )
+        .subscribe(() => {
+          console.log('User logged in');
           this.router.navigate(['home']);
-        },
-        error: err =>{
-          console.log("Incorrect username or password.")
-        }
-      });
+        });
     }
   }
 }
-
-
-// const token =(<any>res).token
-//           console.log('User is logged in');
-//           console.log(token);
-//           this.router.navigate(['home']);

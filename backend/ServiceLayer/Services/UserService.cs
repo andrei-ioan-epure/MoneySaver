@@ -77,16 +77,13 @@ namespace ServiceLayer.Services
             _userRepository.Update(user);
         }
 
-        public TokenDto? Login(UserDto entity)
+        public TokenDto? Login(UserLoginDto userDto)
         {
-            string generatedToken = null;
             TokenDto token = null;
-            var user = GetUserByEmail(entity);
-            if (user != null && VerifyPasswordHash(entity.Password,user.Password,user.Salt))
+            var user = GetUserByEmail(userDto.Email);
+            if (user != null && VerifyPasswordHash(userDto.Password,user.Password,user.Salt))
             {
-                generatedToken = jwtUtils.CreateToken(user);
-                token = new TokenDto(generatedToken);
-                return token;
+                token = new TokenDto(jwtUtils.CreateToken(user));
             }
             return token;
         }
@@ -97,64 +94,12 @@ namespace ServiceLayer.Services
             return user.IsCreator;
         }
 
-        //private string CreateToken(User user)
-        //{
-        //    List<Claim> claims = new List<Claim>
-        //    {
-        //        new Claim("id", user.Id.ToString()),
-        //        new Claim("name", user.UserName),
-        //        new Claim("role", user.IsCreator? "Admin" : "User")
-        //    };
-        //    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("CeaMaiComplicataCheie"));
-
-        //    var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
-
-        //    var token = new JwtSecurityToken(
-        //        claims: claims,
-        //        expires: DateTime.UtcNow.AddMinutes(5),
-        //        signingCredentials: cred
-        //        );
-
-        //    var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-        //    return jwt;
-        //}
-
-        //public int? ValidateToken(string token)
-        //{
-        //    if (token == null)
-        //        return null;
-
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    var key = Encoding.UTF8.GetBytes("CeaMaiComplicataCheie");
-
-        //    try
-        //    {
-        //        tokenHandler.ValidateToken(token, new TokenValidationParameters
-        //        {
-        //            ValidateIssuerSigningKey = true,
-        //            IssuerSigningKey = new SymmetricSecurityKey(key),
-        //            ValidateIssuer = false,
-        //            ValidateAudience = false,
-        //            ClockSkew = TimeSpan.Zero
-        //        }, out SecurityToken validatedToken);
-
-        //        var jwtToken = (JwtSecurityToken)validatedToken;
-        //        var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
-
-        //        return userId;
-        //    }
-        //    catch
-        //    {
-        //        return null;
-        //    }
-        //}
-
-        private User GetUserByEmail(UserDto entity)
+        private User GetUserByEmail(string email)
         {
             var users = _userRepository.GetAll();
             foreach (var user in users)
             {
-                if (user.Email == entity.Email)
+                if (user.Email == email)
                 {
                     return user;
                 }

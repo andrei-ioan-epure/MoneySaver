@@ -8,9 +8,11 @@
     border: 2px solid #006400;
     padding: 10px 24px 10px 24px;
 }
+
 .nav button{
     border: 1px solid #006400;
     margin-left:16px;
+    color: #006400;
 }
 
 .search > input{
@@ -46,4 +48,7 @@
     align-items: center;
 }
 
-
+.nav .active_route{
+    background-color: #006400;
+    color: #FFFFFF;
+}
