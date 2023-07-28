@@ -15,4 +15,9 @@ export class AuthService {
     const body = userLogin;
     return this.http.put(finalEndpoint, body);
   }
+
+  static getToken(){
+    let token = localStorage.getItem("jwt");
+    return token;
+  }
 }

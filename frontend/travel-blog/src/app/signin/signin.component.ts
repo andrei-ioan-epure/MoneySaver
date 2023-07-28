@@ -31,7 +31,6 @@ export class SigninComponent {
 
   submitForm() {
     if (this.formGroup.valid) {
-      //console.log(this.formGroup.value);
       const user: User = {
         userName: 'string',
         fullName: 'string',
@@ -39,12 +38,24 @@ export class SigninComponent {
         password: this.formGroup.controls['password'].value,
         isCreator: false,
       };
-      //console.log(userLogin);
 
-      this.authService.LogIn(user).subscribe(() => {
-        console.log('User is logged in');
+      this.authService.LogIn(user).subscribe({
+        next: res =>{
+          const token = (<any>res).token;
+          localStorage.setItem("jwt", token);
+          console.log("User logged in");
+          this.router.navigate(['home']);
+        },
+        error: err =>{
+          console.log("Incorrect username or password.")
+        }
       });
-      //this.router.navigate(['home']); // Redirecționare către pagina de home
     }
   }
 }
+
+
+// const token =(<any>res).token
+//           console.log('User is logged in');
+//           console.log(token);
+//           this.router.navigate(['home']);
