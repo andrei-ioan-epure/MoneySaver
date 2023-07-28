@@ -43,7 +43,6 @@ export class SigninComponent {
         .pipe(
           catchError((err) => {
             console.log('Auth failed', err);
-            debugger
             return EMPTY;
           })
         )

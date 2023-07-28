@@ -14,7 +14,9 @@ export interface ServerUser extends User {
 };
 
 export interface LoginResponse{
-  token:string
+  token: string;
+  id: number;
+  role: string;
 };
 
 export type ServerUsers = ServerUser[];

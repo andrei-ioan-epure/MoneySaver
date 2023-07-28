@@ -20,6 +20,11 @@ namespace PresentationLayer
             if (jwtDto != null)
             {
                 context.Items["User"] = userService.Get(jwtDto.UserID);
+                //var role = userService.IsCreator(jwtDto.UserID)? "admin": "user";
+                //if(role == jwtDto.Role)
+                //{
+                //    context.Items["Role"] = jwtDto.Role;
+                //}
                 context.Items["Role"] = jwtDto.Role;
             }
 

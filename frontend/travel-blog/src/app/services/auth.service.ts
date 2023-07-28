@@ -10,6 +10,8 @@ export class AuthService {
   private readonly endpoint = 'https://localhost:7207/api';
 
   private userToken: string | null = null;
+  private userId: number | null = null;
+  private userRole: string | null = null;
   private isLoggedSubject = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private readonly http: HttpClient) {}
@@ -19,7 +21,7 @@ export class AuthService {
     const body = userLogin;
     return this.http.put<LoginResponse>(finalEndpoint, body).pipe(
       tap((res: LoginResponse) => {
-        this.setToken(res.token);
+        this.setLoginResponse(res);
       })
     );
   }
@@ -29,14 +31,33 @@ export class AuthService {
     return this.userToken;
   }
 
-  setToken(token: string) {
-    localStorage.setItem('jwt', token);
-    this.userToken = token;
+  getRole(){
+    if (!this.userRole) this.userRole = localStorage.getItem('userRole');
+    return this.userRole;
+  }
+
+  getId(){
+    if (!this.userId) {
+      let userId = localStorage.getItem('userId');
+      this.userId = userId !== null? parseInt(userId) : null;
+    }
+    return this.userId;
+  }
+
+  setLoginResponse(response: LoginResponse) {
+    localStorage.setItem('jwt', response.token);
+    localStorage.setItem('userId', response.id.toString());
+    localStorage.setItem('userRole',response.role)
+    this.userToken = response.token;
+    this.userId = response.id;
+    this.userRole = response.role;
     this.isLoggedSubject.next(true);
   }
 
   logOut():void{
     localStorage.removeItem('jwt');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userRole');
     this.isLoggedSubject.next(false);
   }
 
@@ -44,7 +65,7 @@ export class AuthService {
     return this.isLoggedSubject.asObservable();
   }
 
-  private hasToken():boolean{
+  hasToken():boolean{
     return !!localStorage.getItem('jwt');
   }
 }
