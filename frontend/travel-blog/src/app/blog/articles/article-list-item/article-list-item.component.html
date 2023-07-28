@@ -17,7 +17,7 @@
   </div>
   <div class="centered">
     <div class="image-container">
-      <img src="../assets/images/netflix.png" alt="{{ title }}" srcset="" />
+      <img [src]="getImagePathByIndex()" alt="Article Image" />
       <button class="deleteBtn" *ngIf="showDeleteBtn">x</button>
       <button
         class="favBtn"

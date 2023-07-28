@@ -49,4 +49,8 @@ export class ArticleListItemComponent {
       }
   }
   }
+  getImagePathByIndex(): string {
+    return `../../../assets/images/${this.index}.jpg`;
+  }
+
 }

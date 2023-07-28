@@ -24,7 +24,7 @@
           [author]="article.author"
           [showDeleteBtn]="isFavouritesPage"
           [hideFavoriteBtn]="isNotFavouritesPage"
-          [index]="i"
+          [index]="startIndex + i"
           (articleChange)="onArticleChange($event)"
         ></app-article-list-item>
       </div>
