@@ -20,17 +20,11 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpGet("get")]
+        [AllowAnonymous]
         [Authorize("admin")]
         public IActionResult GetAll()
         {
-            //var currentUser = HttpContext.User;
-            //var currentUser1 = HttpContext.Items["User"];
-            //if (currentUser.HasClaim(c => c.Type == "role"))
-            //{
-            //    if (currentUser.Claims.FirstOrDefault(c => c.Type == "role").Value == "Admin")
-                    return Ok(_articleService.GetAll());
-            //}
-            //return NotFound();
+            return Ok(_articleService.GetAll());
         }
 
         [HttpGet("get/{id}")]
@@ -44,15 +38,8 @@ namespace PresentationLayer.Controllers
         //[Authorize]
         public IActionResult Add(ArticleDto article)
         {
-            //var currentUser = HttpContext.User;
-            //if(currentUser.HasClaim(c => c.Type == "role"))
-            //{
-                //if(currentUser.Claims.FirstOrDefault(c=> c.Type == "role").Value == "Admin")
-                    _articleService.Insert(article);
-                    return Ok();
-            //}
-            //return NotFound();
-            
+            _articleService.Insert(article);
+            return Ok();
         }
 
         [HttpPut("update/{id}")]
