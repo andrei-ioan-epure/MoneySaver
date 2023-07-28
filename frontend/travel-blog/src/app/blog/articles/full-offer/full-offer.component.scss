@@ -12,21 +12,15 @@
 }
 
 .backBtn{
-    height: 35px;
-    width: 90px;
     display: flex;
     font-family: 'Karla';
     font-size: 16px;
     font-weight: bold;
     background-color: #FFF !important;
-    text-align: right;
-    align-items: center;
     position: absolute;
     color: #006400;
     border: 1px solid #006400;
-    border-radius: 8px; 
-    justify-content: center;
-   
+    border-radius: 8px;    
 }
 
 .leftBtn{
@@ -43,8 +37,7 @@
     font-weight: bold;
     border: 1px solid #006400;
     border-radius: 8px;
-    width: 90px;
-    height: 35px;
+    width: 105px;
 }
 
 .deleteOfferBtn{
@@ -55,11 +48,6 @@
     font-weight: bold;
     border: 1px solid #006400;
     border-radius: 8px;
-    width: 90px;
-    height: 35px;
-    display: flex;
-    text-align: right;
-    align-items: center;
 }
 
 .deleteOfferBtn:hover{
@@ -130,7 +118,6 @@
 {
     color:white;
     background-color: #006400 !important;
-    width:70px;
     height:30px;
     text-align: center;
     font-family: 'Karla';
@@ -153,7 +140,7 @@
     border: 1px solid black;
     text-align: center;
     color: black;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
@@ -189,7 +176,6 @@
 .addBtn{
     color:white;
     background-color: #006400;
-    width:70px;
     height:30px;
     text-align: center;
     font-family: 'Karla';
@@ -247,8 +233,6 @@ h2{
   }
   
  
-
-
 .like:hover, .dislike:hover{
     background-color: #006400;
     cursor: pointer;
@@ -302,13 +286,9 @@ h2{
     cursor: pointer;
     color: white;
 }
+
 /*
-.iconBack, .iconDelete{
-   
-    align-items: center;
-    padding-bottom: 1px; 
-   padding-right: 5px;
-}
+
 
 
 

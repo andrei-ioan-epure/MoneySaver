@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { Subscription } from 'rxjs';
 import { AbstractControl, Form, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
@@ -10,6 +10,8 @@ import { AbstractControl, Form, FormControl, FormGroup, ValidationErrors, Valida
   styleUrls: ['./edit-offer.component.scss']
 })
 export class EditOfferComponent {
+  id!: number;
+
   articlesCreateSubscription!: Subscription;
   hide = true;
   formGroup: FormGroup = new FormGroup({});
@@ -36,6 +38,7 @@ export class EditOfferComponent {
     Validators.minLength(4),
   ]);
   constructor(
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private readonly httpService: HttpService
   ) {}
@@ -82,5 +85,11 @@ export class EditOfferComponent {
       console.log('Invalid');
       // this.router.navigate(['blog']);
     }
+  }
+
+  cancelEdit(){
+    const url = this.activatedRoute.snapshot.url;
+    this.id = Number(url[url.length - 2].path);
+    this.router.navigate(['blog/article-list/full-offer/'+this.id])
   }
 }

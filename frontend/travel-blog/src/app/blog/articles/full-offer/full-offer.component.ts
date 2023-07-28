@@ -75,7 +75,10 @@ export class FullOfferComponent implements OnInit {
     };
     console.log(item);
     this.httpService.putArticle(this.id, item);
-    this.router.navigate(['blog/article-list/full-offer/:id/edit-offer'])
+    //this.router.navigate(['blog/article-list/full-offer/:id/edit-offer'])
+    const url = this.activatedRoute.snapshot.url;
+    this.id = Number(url[url.length - 1].path);
+    this.router.navigate(['blog/article-list/full-offer/'+this.id+'/edit-offer']);
     /*setTimeout(() => {
       window.location.reload();
     }, 100);*/

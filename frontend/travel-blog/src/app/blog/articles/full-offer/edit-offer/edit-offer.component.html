@@ -1,7 +1,7 @@
 <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
 
 <div class="up-buttons">
-  <button mat-raised-button class="backBtn" routerLink="/blog">
+  <button mat-raised-button class="backBtn" (click)="cancelEdit()">
     <mat-icon class="iconBack">arrow_back</mat-icon>
     Back
   </button>
@@ -14,7 +14,7 @@
 
 <form [formGroup]="formGroup">
     <mat-form-field appearance="outline" class="input">
-        <mat-label>Name of the offer</mat-label>
+        <mat-label>Name</mat-label>
         <input
       type="text"
       matInput
@@ -113,16 +113,16 @@
         "
         (click)="fileInput.click()"
       >
-        Choose image
+        Choose another image
       </button>
     
       <br />
     
-      <button mat-raised-button class="btn" (click)="submitForm()">
-        Add offer
+      <button mat-raised-button class="btn">
+        Edit offer
       </button>
       <br />
-      <button mat-raised-button class="btn" routerLink="/blog">Cancel</button>
+      <button mat-raised-button class="btn" (click)="cancelEdit()">Cancel</button>
     
       <br />
       <br /><br /><br />
