@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef, QueryList, Input, Output, EventEmitter } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { HttpService } from 'src/app/services/http.service';
+import { Users } from '../model/user';
+import { Articles } from '../model/article';
 
 @Component({
   selector: 'app-filter',
@@ -6,34 +10,83 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent  {
+  @Input() filteredArticles?: Articles; 
   
-//   onClickFilter()
-//  {
+  @Output() dataEmitter: EventEmitter<Articles> = new EventEmitter<Articles>();
+ 
+  @ViewChildren('checkboxInput') checkboxInputs!: QueryList<ElementRef<HTMLInputElement>>;
+    form: FormGroup;
+    authors?:Users
+    comboboxIds = ['datePosted', 'expirationDate', 'category', 'city', 'store']; 
+    selectedValues: { [key: string]: any } = {}; 
+
+
+
+  constructor(fb: FormBuilder,private readonly httpService:HttpService) {
+    this.form = fb.group({
+     selectedAuthors:  new FormArray([])
+    });
+    this.comboboxIds.forEach((id) => {
+      this.selectedValues[id] = 'All';
+    })
+  }
+    ngOnInit() {
+       this.httpService.getUsers().subscribe(data=>
+       this.authors = data.filter((user) => user.isCreator === true)); 
+    }
+    onCheckboxChange(event: any) {
+    
+    const selectedAuthors = (this.form.controls['selectedAuthors'] as FormArray);
+    if (event.target.checked) {
+      selectedAuthors.push(new FormControl(event.target.value));
+    } else {
+      const index = selectedAuthors.controls
+      .findIndex(x => x.value === event.target.value);
+      selectedAuthors.removeAt(index);
+    }
+  }
+
+  selectChangeHandler (event: any) {
+    this.selectedValues[event.target.id] = event.target.value;
+  }
+
+  resetFields() {
+   this.comboboxIds.forEach((id) => {
+    const element = document.getElementById(id) as HTMLSelectElement | null;
+    if (element) {
+      element.value = "all";
+    }
+    
+  });
+    this.checkboxInputs.forEach(input => {
+      input.nativeElement.checked = false;
+    });
+     const selectedAuthors = this.form.get('selectedAuthors') as FormArray;
+     selectedAuthors.clear();
+
+
+     this.httpService.getFilteredArticles().subscribe(data=>
+      {console.log(data)
+    this.dataEmitter.emit(data)
+      });
+   
+  }
+
+  submit() {
   
-//     const filterButton = document.getElementById("filterButton");
-//     const filterBar = document.getElementById("filterBar");
+    this.selectedValues["authors"]= this.form.get('selectedAuthors')?.value ;
+    // console.log("Info:");
+    // console.log(this.selectedValues);
 
-//     if(filterBar!=null && filterButton!=null){
+    this.httpService.getFilteredArticles(this.selectedValues['authors'].join(",") ,this.selectedValues['category'],this.selectedValues['city'],
+    this.selectedValues['store'],this.selectedValues['datePosted'],this.selectedValues['expirationDate']).subscribe(data=>
+      {//console.log(data)
+    this.dataEmitter.emit(data)
+      }
+     ); 
 
-//       if (filterBar.style.width.startsWith('0') || filterBar.style.width==='') {
-//         console.log("1")
-//         filterBar.style.width = "200px"; 
-//         filterButton.style.marginLeft = "500px"; 
-//         filterBar.style.display = "block"; 
-//         filterBar.style.width="500px";
-//         filterBar.style.height="500px";
+    
+    }
 
-//       } else {
-//         console.log("0")
-//         filterBar.style.width = "0px";
-//         filterButton.style.marginLeft = "0";
-//         filterButton.style.marginBottom = "16px";
-//         filterButton.style.marginRight = "0";
-//         filterBar.style.display = "none"; 
-//         filterBar.style.height="0px";
-//       }
-//   }
-  
-// }
 
 }

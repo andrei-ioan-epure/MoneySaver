@@ -19,7 +19,7 @@ export class ArticleListItemComponent {
   @Input() creatorId?: number;
   @Input() showDeleteBtn?: boolean = false;
   @Input() hideFavoriteBtn?: boolean = false;
-
+@Input() index?: number;
   @Output() articleChange: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private offerService: OfferService) {}
@@ -36,19 +36,24 @@ export class ArticleListItemComponent {
       category: this.category,
       author: this.author,
       posted: this.posted,
+      store:this.store,
+      creatorId:this.creatorId
     });
 
     this.articleChange.emit(this.title);
     //this.articleChange.emit(this.content);
   }
-  onClickFavorite(): void {
-    var favBtn = document.getElementById('heart');
-    console.log(favBtn?.innerHTML);
-    if (favBtn != null) {
-      if (favBtn.innerHTML === 'favorite_border') {
-        favBtn.innerHTML = 'favorite';
-      } else {
-        favBtn.innerHTML = 'favorite_border';
+  onClickFavorite(index: any):void{
+    
+    var favBtn=document.getElementById("heart"+index);
+    console.log(favBtn);
+    if(favBtn!=null){
+      if( favBtn.innerHTML==="favorite_border" )
+      {
+        favBtn.innerHTML="favorite";
+      }
+      else{
+         favBtn.innerHTML="favorite_border";
       }
     }
   }

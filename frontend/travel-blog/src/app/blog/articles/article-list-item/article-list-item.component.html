@@ -16,9 +16,9 @@
       <button
         class="favBtn"
         *ngIf="hideFavoriteBtn"
-        (click)="onClickFavorite()"
+        (click)="onClickFavorite(index)"
       >
-        <mat-icon id="heart">favorite_border</mat-icon>
+        <mat-icon id="heart{{ index }}">favorite_border</mat-icon>
       </button>
     </div>
   </div>

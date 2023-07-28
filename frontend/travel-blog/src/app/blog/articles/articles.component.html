@@ -1,9 +1,14 @@
 <div class="blog">
-  <div class="left"><app-filter></app-filter></div>
+  <div class="left">
+    <app-filter
+      [filteredArticles]="articles"
+      (dataEmitter)="onDataReceived($event)"
+    ></app-filter>
+  </div>
 
   <div class="right">
     <div class="article-container">
-      <div *ngFor="let article of articles">
+      <div *ngFor="let article of articles; let i=index">
         <app-article-list-item
           [id]="article.id"
           [title]="article.title"
@@ -18,9 +23,13 @@
           [creatorId]="article.creatorId"
           [showDeleteBtn]="isFavouritesPage"
           [hideFavoriteBtn]="isNotFavouritesPage"
+          [index]="i"
           (articleChange)="onArticleChange($event)"
         ></app-article-list-item>
       </div>
+    </div>
+    <div class="semicerc-button" routerLink="/add-offer">
+      <span class="plus-icon">+</span>
     </div>
   </div>
 </div>

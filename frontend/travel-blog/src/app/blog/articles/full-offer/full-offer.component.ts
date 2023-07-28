@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { OfferService } from 'src/app/services/offer.service';
-import { Offer } from './model/offer';
-import { of } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { Article } from '../../model/article';
@@ -33,7 +31,7 @@ export class FullOfferComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const offer = this.offerService.getParameter() as Offer;
+    const offer = this.offerService.getParameter() as Article;
     if (offer) {
       this.setArticle(offer);
       const url = this.activatedRoute.snapshot.url;
@@ -49,7 +47,7 @@ export class FullOfferComponent implements OnInit {
     console.log(this.id);
   }
 
-  private setArticle(offer: Offer) {
+  private setArticle(offer: Article) {
     this.title = offer.title;
     this.content = offer.content;
     this.city = offer.city;
@@ -77,7 +75,10 @@ export class FullOfferComponent implements OnInit {
     };
     console.log(item);
     this.httpService.putArticle(this.id, item);
-    window.location.reload();
+    
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
   }
   deleteOffer() {
     console.log('Delete article');
@@ -85,6 +86,6 @@ export class FullOfferComponent implements OnInit {
     this.httpService.deleteArticle(this.id);
     setTimeout(() => {
       this.router.navigate(['blog']);
-    }, 10);
+    }, 100);
   }
 }
