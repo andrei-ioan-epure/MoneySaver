@@ -7,17 +7,30 @@ import { ArticleListItemComponent } from './articles/article-list-item/article-l
 import { FilterComponent } from './filter/filter.component';
 import {MatIconModule} from '@angular/material/icon';
 import { FullOfferComponent } from './articles/full-offer/full-offer.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule,FormGroup } from '@angular/forms';
+import { EditOfferComponent } from './articles/full-offer/edit-offer/edit-offer.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
+
 @NgModule({
   declarations: [
     ArticleComponent,
     ArticleListItemComponent,
     FilterComponent,
     FullOfferComponent,
+    EditOfferComponent,
   ],
   imports: [
     CommonModule,
-    BlogRoutingModule,MatIconModule,ReactiveFormsModule,FormsModule
+    BlogRoutingModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
     exports: [
     ArticleComponent,
