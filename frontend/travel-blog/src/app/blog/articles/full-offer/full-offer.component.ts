@@ -32,12 +32,12 @@ export class FullOfferComponent implements OnInit {
 
   ngOnInit(): void {
     const offer = this.offerService.getParameter() as Article;
+    const url = this.activatedRoute.snapshot.url;
     if (offer) {
       this.setArticle(offer);
-      const url = this.activatedRoute.snapshot.url;
+
       this.id = Number(url[url.length - 1].path);
     } else {
-      const url = this.activatedRoute.snapshot.url;
       this.id = Number(url[url.length - 1].path);
       this.httpService.getArticle(this.id).subscribe((article) => {
         this.setArticle(article);
@@ -60,28 +60,10 @@ export class FullOfferComponent implements OnInit {
     this.creatorId = offer.creatorId;
   }
 
-  editOffer() {
-    const item: Article = {
-      title: 'test212',
-      posted: this.posted!,
-      city: this.city!,
-      expiration: this.expiration!,
-      category: this.category!,
-      code: this.code!,
-      store: this.store!,
-      author: 'test',
-      content: this.content!,
-      creatorId: this.creatorId!,
-    };
-    console.log(item);
-    this.httpService.putArticle(this.id, item);
-    //this.router.navigate(['blog/article-list/full-offer/:id/edit-offer'])
-    const url = this.activatedRoute.snapshot.url;
-    this.id = Number(url[url.length - 1].path);
-    this.router.navigate(['blog/article-list/full-offer/'+this.id+'/edit-offer']);
-    /*setTimeout(() => {
-      window.location.reload();
-    }, 100);*/
+  toEditOffer() {
+    this.router.navigate([
+      'blog/article-list/full-offer/' + this.id + '/edit-offer',
+    ]);
   }
   deleteOffer() {
     console.log('Delete article');
