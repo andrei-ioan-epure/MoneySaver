@@ -68,7 +68,7 @@ namespace PresentationLayer.Controllers
         public IActionResult LogIn(UserDto user)
         {
             var token = _userService.Login(user);
-            return token != null? Ok(token) : NotFound("Wrong Credentials.");
+            return token != null? Ok(token) : NotFound(new { message = "Wrong Credentials." });
         }
     }
 }

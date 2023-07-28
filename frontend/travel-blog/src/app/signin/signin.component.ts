@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../blog/model/user';
-import { SignInService } from '../services/sign-in.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +18,7 @@ export class SigninComponent {
   ]);
   password: FormControl = new FormControl('', [Validators.required]);
   constructor(
-    private readonly signInService: SignInService,
+    private readonly authService: AuthService,
     private router: Router
   ) {}
 
@@ -41,7 +41,7 @@ export class SigninComponent {
       };
       //console.log(userLogin);
 
-      this.signInService.LogIn(user).subscribe(() => {
+      this.authService.LogIn(user).subscribe(() => {
         console.log('User is logged in');
       });
       //this.router.navigate(['home']); // Redirecționare către pagina de home

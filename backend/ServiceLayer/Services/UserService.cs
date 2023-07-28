@@ -80,17 +80,15 @@ namespace ServiceLayer.Services
         public TokenDto? Login(UserDto entity)
         {
             string generatedToken = null;
+            TokenDto token = null;
             var user = GetUserByEmail(entity);
             if (user != null && VerifyPasswordHash(entity.Password,user.Password,user.Salt))
             {
                 generatedToken = jwtUtils.CreateToken(user);
-                var token = new TokenDto(generatedToken);
+                token = new TokenDto(generatedToken);
                 return token;
             }
-            else
-            {
-                throw new Exception("Wrong Credentials");
-            }
+            return token;
         }
 
         public bool IsCreator(int id)
