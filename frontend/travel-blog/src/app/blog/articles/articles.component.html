@@ -17,6 +17,7 @@
         <app-article-list-item
           [title]="article.title"
           [content]="article.content"
+          [store]="article.store"
           [posted]="article.posted"
           [city]="article.city"
           [expiration]="article.expiration"
@@ -24,7 +25,7 @@
           [author]="article.author"
           [showDeleteBtn]="isFavouritesPage"
           [hideFavoriteBtn]="isNotFavouritesPage"
-          [index]="startIndex + i"
+          [index]="i"
           (articleChange)="onArticleChange($event)"
         ></app-article-list-item>
       </div>

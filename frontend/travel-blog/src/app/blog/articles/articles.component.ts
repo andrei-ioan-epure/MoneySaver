@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Articles, Article } from '../model/article';
+import { Articles } from '../model/article';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
@@ -19,15 +19,12 @@ export class ArticleComponent implements OnInit {
   itemsPerPage: number = 6;
   currentPage: number = 1;
   totalPages: number = 0;
-  startIndex: number = 0; // Variabilă pentru a menține indexul primului articol din pagină
-  globalIndex: number = 0; // Variabilă pentru a menține indexul global al articolelor
 
   constructor(
     private readonly articlesService: ArticlesService,
     private readonly router: Router,
     private readonly httpService: HttpService
   ) {}
-
 
   ngOnInit() {
     if (this.articles) {
@@ -44,8 +41,7 @@ export class ArticleComponent implements OnInit {
     this.articlesService.searchArticles(''); // Afisăm inițial toate articolele
     this.articlesService.getFilteredArticles().subscribe((filteredArticles) => {
       this.totalPages = Math.ceil((filteredArticles?.length || 0) / this.itemsPerPage);
-      this.articlesToShow = filteredArticles; // Store the filtered articles directly in articlesToShow
-      this.paginateArticles(); // Call paginateArticles initially to set the first page
+      this.paginateArticles();
     });
 
     this.url = this.router.url;
@@ -71,8 +67,6 @@ export class ArticleComponent implements OnInit {
     this.articlesService.getFilteredArticles().subscribe((filteredArticles) => {
       this.articlesToShow = filteredArticles?.slice(startIndex, endIndex);
     });
-
-    this.startIndex = startIndex + 1; // Update the startIndex property with the correct value
   }
 
   previousPage() {
@@ -81,7 +75,6 @@ export class ArticleComponent implements OnInit {
       this.paginateArticles();
     }
   }
-
 
   nextPage() {
     if (this.currentPage < this.totalPages) {
@@ -93,5 +86,4 @@ export class ArticleComponent implements OnInit {
   searchArticles(searchTerm: string) {
     this.articlesService.searchArticles(searchTerm);
   }
-  
 }
