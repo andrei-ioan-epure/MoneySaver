@@ -19,11 +19,13 @@ namespace ServiceLayer.Services
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Article> _articleRepository;
 
+
         private const int keySize = 32;
         private const int iterations = 7;
         private HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA256;
         private byte[] passwordSalt;
         private JwtUtils jwtUtils = new JwtUtils();
+
 
 
         public UserService(IRepository<User> userRepository, IRepository<Article> articleRepository)
@@ -34,11 +36,11 @@ namespace ServiceLayer.Services
 
         public IEnumerable<UserDto> GetAll()
         {
-            return _userRepository.GetAll().Select(u => new UserDto(u.Id, u.UserName, u.FullName,u.Email,u.Password,u.IsCreator));
+            return _userRepository.GetAll().Select(u => new UserDto(u.Id, u.UserName, u.FullName, u.Email, u.Password, u.IsCreator));
         }
 
         public UserDto? Get(int id)
-        { 
+        {
             var user = _userRepository.GetWithLinkedEntities(id, "FavoriteArticles");
 
 
@@ -52,9 +54,13 @@ namespace ServiceLayer.Services
 
         public void Insert(UserDto entity)
         {
+
             var hashedPassword = CreatePasswordHash(entity.Password, out passwordSalt);
 
             var user = new User(entity.UserName, entity.FullName,entity.Email,hashedPassword,entity.IsCreator, passwordSalt);
+
+            
+
             _userRepository.Insert(user);
         }
 

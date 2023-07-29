@@ -53,6 +53,9 @@ form{
     background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
     cursor: pointer;
   }
+.sendBtn:disabled{
+    background-color: lightgray !important;
+}
 
 
 .textareamsg{

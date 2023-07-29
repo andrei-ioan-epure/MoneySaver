@@ -16,7 +16,7 @@
 }
 
 .search > input{
-    color: #006400;
+    color: #000000;
     background-color: transparent;
     width: 400px;
     height: 32px;
@@ -36,6 +36,7 @@
     color:#006400;
     border: none;
     background-color: #FFFFFF;
+    cursor: pointer;
 }
 
 
@@ -46,6 +47,31 @@
 .right{
     display: flex;
     align-items: center;
+}
+.blog_icon
+{
+    align-items:center;
+    padding-bottom: 1px;
+    font-size: 19px !important;
+}
+.mail_icon
+{
+    align-items:center;
+    padding-bottom: 1px;
+    font-size: 19px !important;
+}
+.info_icon
+{
+    align-items:center;
+    padding-bottom: 1px;
+    font-size: 19px !important;
+    transform: rotate(180deg);
+}
+.signin_icon
+{
+    align-items:center;
+    padding-bottom: 1px;
+    font-size: 19px !important;
 }
 
 .nav .active_route{

@@ -47,10 +47,6 @@ form{
     width: 528px;
 }
 
-.icon{
-    color: #006400 !important;
-}
-
 .btn{
     width: 326px;
     background-color: #006400 !important;
@@ -78,4 +74,8 @@ h5{
     font-style: normal;
     font-weight: 800;
     line-height: 24px; /* 130% */
+}
+h5 a
+{
+    color:#006400 !important;
 }

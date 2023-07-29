@@ -8,6 +8,7 @@ import { OfferService } from 'src/app/services/offer.service';
 export class ArticleListItemComponent {
   @Input() title?: string;
   @Input() content?: string;
+  @Input() store?: string;
   @Input() posted?: Date;
   @Input() city?: string;
   @Input() code?: string;
@@ -18,7 +19,6 @@ export class ArticleListItemComponent {
   @Input() hideFavoriteBtn?: boolean=false;
   @Input() index?: number;
   @Output() articleChange: EventEmitter<string> = new EventEmitter<string>();
-
   constructor(private offerService :OfferService){}
   
   onClick(): void {
@@ -48,5 +48,13 @@ export class ArticleListItemComponent {
          favBtn.innerHTML="favorite_border";
       }
   }
+  }
+  getImagePathByStore(store?: string): string {
+    if (!store) {
+      // If the store is not provided, use the placeholder image path or any default image path
+      return '../../../../assets/images/placeholder.jpg';
+    }
+    const sanitizedStoreName = store.toLowerCase();
+    return `../../../assets/images/${sanitizedStoreName}.jpg`;
   }
 }

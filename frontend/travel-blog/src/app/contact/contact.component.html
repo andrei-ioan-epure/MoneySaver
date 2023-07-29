@@ -56,5 +56,5 @@
         </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button type="submit" class="sendBtn"  >Send Message</button>
+    <button mat-raised-button type="submit" class="sendBtn"  [disabled]="formGroup.invalid">Send Message</button>
 </form>

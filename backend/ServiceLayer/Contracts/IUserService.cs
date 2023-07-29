@@ -16,8 +16,12 @@ namespace ServiceLayer.Contracts
 
         void InsertFavoriteArticle(FavoriteArticleDto favoriteArticle);
 
+
         TokenDto? Login(UserLoginDto entity);
 
         bool IsCreator(int id);
+
+        
+
     }
 }

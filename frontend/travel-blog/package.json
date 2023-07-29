@@ -27,6 +27,7 @@
     "@taiga-ui/styles": "^3.36.2",
     "@tinkoff/ng-dompurify": "3.0.0",
     "dompurify": "2.2.9",
+    "ngx-pagination": "^6.0.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
