@@ -12,6 +12,7 @@ export class AuthService {
   private userToken: string | null = null;
   private userId: number | null = null;
   private userRole: string | null = null;
+  private userFullName : string | null = null;
   private isLoggedSubject = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private readonly http: HttpClient) {}
@@ -44,13 +45,20 @@ export class AuthService {
     return this.userId;
   }
 
+  getFullName(){
+    if (!this.userFullName) this.userFullName = localStorage.getItem('userFullName');
+    return this.userFullName;
+  }
+
   setLoginResponse(response: LoginResponse) {
     localStorage.setItem('jwt', response.token);
     localStorage.setItem('userId', response.id.toString());
-    localStorage.setItem('userRole',response.role)
+    localStorage.setItem('userRole',response.role);
+    localStorage.setItem('userFullName', response.fullName);
     this.userToken = response.token;
     this.userId = response.id;
     this.userRole = response.role;
+    this.userFullName = response.fullName;
     this.isLoggedSubject.next(true);
   }
 

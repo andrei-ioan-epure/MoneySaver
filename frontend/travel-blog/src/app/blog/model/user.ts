@@ -17,6 +17,7 @@ export interface LoginResponse{
   token: string;
   id: number;
   role: string;
+  fullName: string;
 };
 
 export type ServerUsers = ServerUser[];

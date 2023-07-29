@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Article } from '../model/article';
 import { HttpService } from '../../services/http.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 function checkLength(c: AbstractControl): ValidationErrors | null {
   let stringControl: string = c.value;
@@ -52,7 +53,8 @@ export class AddOfferComponent {
   ]);
   constructor(
     private router: Router,
-    private readonly httpService: HttpService
+    private readonly httpService: HttpService,
+    private readonly authService : AuthService
   ) {}
 
   ngOnInit() {
@@ -78,9 +80,9 @@ export class AddOfferComponent {
         category: formData.category,
         code: formData.code,
         store: formData.store, 
-        author: 'Epure Andrei-Ioan',
+        author: this.authService.getFullName() as string,
         content: formData.about,
-        creatorId: 1,
+        creatorId: this.authService.getId() as number,
       };
       console.log(newArticle);
       this.articlesCreateSubscription = this.httpService

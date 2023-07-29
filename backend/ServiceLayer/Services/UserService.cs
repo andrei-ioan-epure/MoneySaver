@@ -146,7 +146,7 @@ namespace ServiceLayer.Services
             var user = GetUserByEmail(userDto.Email);
             if (user != null && VerifyPasswordHash(userDto.Password, user.Password, user.Salt))
             {
-                token = new TokenDto(jwtUtils.CreateToken(user), user.Id, user.IsCreator ? "admin" : "user");
+                token = new TokenDto(jwtUtils.CreateToken(user), user.Id, user.IsCreator ? "admin" : "user", user.FullName);
             }
             return token;
         }
