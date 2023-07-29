@@ -1,30 +1,88 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { OfferService } from 'src/app/services/offer.service';
-import { Offer } from './model/offer';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpService } from 'src/app/services/http.service';
+import { Article } from '../../model/article';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-full-offer',
   templateUrl: './full-offer.component.html',
-  styleUrls: ['./full-offer.component.scss']
+  styleUrls: ['./full-offer.component.scss'],
 })
-export class FullOfferComponent implements OnInit{
-  @Input() image?:string;
-  @Input() title?: string;
-  @Input() city?:string;
-  @Input() expiration?:Date;
-  @Input() code?:string;
-  @Input() category?:string;
-  @Input() author?:string;
-  @Input() posted?:Date;
-  @Input() comment?:string;
-
+export class FullOfferComponent implements OnInit {
   
-  constructor(private offerService :OfferService){}
+  id!: number;
+  image?: string;
+  title?: string;
+  city?: string;
+  expiration?: Date;
+  code?: string;
+  category?: string;
+  author?: string;
+  posted?: Date;
+  content?: string;
+  store?: string;
+  creatorId?: number;
+
+  constructor(
+    private offerService: OfferService,
+    private activatedRoute: ActivatedRoute,
+    private httpService: HttpService,
+    private router: Router
+  ) {}
+
 
   ngOnInit(): void {
-    const offer=this.offerService.getParameter() as Offer;
-    this.title=offer.title;
+    const offer = this.offerService.getParameter() as Article;
+    const url = this.activatedRoute.snapshot.url;
+    if (offer) {
+      this.setArticle(offer);
+
+      this.id = Number(url[url.length - 1].path);
+    } else {
+      this.id = Number(url[url.length - 1].path);
+      this.httpService.getArticle(this.id).subscribe((article) => {
+        this.setArticle(article);
+      });
+    }
+
+    console.log(this.id);
+  }
+
+  private setArticle(offer: Article) {
+    this.title = offer.title;
+    this.content = offer.content;
+    this.city = offer.city;
+    this.expiration = offer.expiration;
+    this.code = offer.code;
+    this.category = offer.category;
+    this.author = offer.author;
+    this.posted = offer.posted;
+    this.store = offer.store;
+    this.creatorId = offer.creatorId;
+  }
+
+  toEditOffer() {
+    this.router.navigate([
+      'blog/article-list/full-offer/' + this.id + '/edit-offer',
+    ]);
+  }
+  deleteOffer() {
+    console.log('Delete article');
+    console.log(this.id);
+    this.httpService.deleteArticle(this.id);
+    setTimeout(() => {
+      this.router.navigate(['blog']);
+    }, 100);
+  }
+
+  getImagePathByStore(store?: string): string {
+    if (!store) {
+      // If the store is not provided, use the placeholder image path or any default image path
+      return '../../../../assets/images/placeholder.jpg';
+    }
+    const sanitizedStoreName = store.toLowerCase();
+    return `../../../assets/images/${sanitizedStoreName}.jpg`;
   }
 }
-
-

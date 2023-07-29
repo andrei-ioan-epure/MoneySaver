@@ -22,7 +22,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { SignUpResponseComponent } from './sign-up/sign-up-response/sign-up-response.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-
+import { AddOfferComponent } from './blog/add-offer/add-offer.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -38,6 +44,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ContactResponseComponent,
     SignUpComponent,
     SignUpResponseComponent,
+    AddOfferComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +57,13 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MatCheckboxModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatToolbarModule,
+    MatProgressBarModule,
+    MatCardModule,
+    MatListModule
   ],
   providers: [
     {

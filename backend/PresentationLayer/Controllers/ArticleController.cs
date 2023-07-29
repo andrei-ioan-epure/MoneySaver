@@ -35,7 +35,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPost("add")]
-        //[Authorize]
+        //[Authorize("admin")]
         public IActionResult Add(ArticleDto article)
         {
             _articleService.Insert(article);

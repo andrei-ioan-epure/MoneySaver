@@ -1,19 +1,271 @@
+.offer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin:0 auto;
+}
+
+.up-buttons{
+    display: flex;
+    justify-content: center;
+    gap:1150px;
+    margin-top: 10px;
+}
+
+.backBtn{
+    font-family: 'Karla';
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #FFF !important;
+    color: #006400;
+    border: 1px solid #006400;
+    border-radius: 8px;
+       
+}
+
+.rightBtn{
+    display: flex;
+    flex-direction: row; 
+    gap:10px;
+    margin-left: 15px;
+   
+}
+
+.editOfferBtn{
+    font-family: 'Karla';
+    color: #006400;
+    background-color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #006400;
+    border-radius: 8px;
+    width: 105px;
+}
+
+.deleteOfferBtn{
+    font-family: 'Karla';
+    color:#FF0000;
+    background-color: #FFF;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #006400;
+    border-radius: 8px;
+}
+
+.deleteOfferBtn:hover{
+    background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+    color: #FF0000;
+}
+
+.full{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap:17px;
+    margin-top: 40px;
+}
+
+.full-offercomm{
+    display: flex;
+    flex-direction: column;
+}
+
 .full-offer{
-    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+.imgdet2{
+    margin-right: 24px;
 }
 
 .image{
-    float: left;
-    margin-left: 50px;
-    margin-top: 0px;
+    border: 2px solid  #838383;;
+    width: 285px;
+    height: 166px;
+    text-align: center;
 }
-.detalii{
-    border:2px solid black;
+
+.image img{
+    width: 285px;
+    height: 166px;
+}
+
+.details{
+    border:2px solid #838383;
     width: 500px;
-    height: 300px;
-    align-items: left;
+    height: 350px;
+    font-family: 'Karla';
+    font-weight: bold;
+    padding-top:20px;
     padding-left: 20px;
-    padding-top: 10px;
-    float: right;
-    margin-right: 750px;
+    padding-right: 20px;
+    overflow:hidden;
+    margin-left: 20px;
+}
+
+.det2{
+    font-size: 20px;
+    font-family: 'Karla';
+    display: flex;
+    flex-direction: column; 
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+#title{
+    margin-top: 10px;
+    font-size: 32px;
+    color:red;
+}
+
+#content, #code{
+    margin-top: 10px;
+    font-size: 32px;
+}
+
+#city, #expdate{
+    font-size: 24px;
+}
+
+.codewbtn{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.copyBtn
+{
+    color:white;
+    background-color: #006400 !important;
+    height:30px;
+    text-align: center;
+    font-family: 'Karla';
+    font-size: 16px;
+    border-radius: 8px;
+    border:none;  
+    margin-top: 5px; 
+    margin-left: 30px;
+}
+
+.copyBtn:hover, .addBtn:hover {
+    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+  }
+
+.webBtn{
+    width: 200px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+//div pentru input si buton de add
+.addComment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap:15px;
+}
+
+//input pentru comentariu
+.comment{
+    border: 1px solid #838383;
+    color:#67727E;
+    width: 750px;
+    height: 40px;
+    border-radius: 8px;
+    margin-left: 10px;
+    padding-left: 10px;
+    font-size: 'Karla';
+    font-size: 15px;
+}
+//add comment
+.addBtn{
+    color:white;
+    background-color: #006400;
+    height:30px;
+    text-align: center;
+    font-family: 'Karla';
+    font-size: 16px;
+    border-radius: 8px;
+    border:none;  
+    margin-right: 10px;
+}
+h2{
+    text-align: center;
+    font-family: 'Karla';
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.comments {
+    border: 2px solid #838383;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    overflow-y: auto;
+    max-height: 600px;
+  }
+  
+  .comm {
+    color: black;
+    font-family: 'Karla';
+    font-size: 18px;
+    padding-left: 20px;
+    align-self: flex-start; /* Ajustăm această proprietate pentru a alinia textul la stânga */
+  }
+  
+
+.like,.dislike{
+    background-color: white;
+    border: none;
+    position: relative;
+    height: 25px;
+    margin-top: 10px;
+
+    
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+  
+ 
+.like:hover, .dislike:hover{
+    background-color: #006400;
+    cursor: pointer;
+}
+
+.backBtn:hover, .editOfferBtn:hover, .webBtn:hover{
+    background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
+    cursor: pointer;
+    color: white;
+}
+.iconDelete
+{
+    font-size: 20px !important;
+    margin-bottom: 2px;
+}
+.iconBack
+{
+    font-size: 20px !important;
+}
+.likeicon,.dislikeicon{
+    align-items: center;
+    margin-left: 7px;
+}
+.menuComm
+{
+    position: relative;
+   bottom: 3.5px;
 }

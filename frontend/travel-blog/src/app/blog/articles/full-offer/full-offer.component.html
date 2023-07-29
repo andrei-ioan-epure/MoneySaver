@@ -1,15 +1,96 @@
 <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
 
-<div class="full-offer">
-  <div class="image">
-    <img src="" alt="Nu s-a gasit imaginea" width="150px" height="150px" />
+<div class="offer">
+  <div class="up-buttons">
+    <div class="leftBtn">
+      <button mat-raised-button class="backBtn" routerLink="/blog">
+        <mat-icon class="iconBack">arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+    <div class="rightBtn">
+      <button mat-raised-button class="editOfferBtn" (click)="toEditOffer()">
+        Edit
+      </button>
+      <button mat-raised-button class="deleteOfferBtn" (click)="deleteOffer()">
+        <mat-icon class="iconDelete">delete_outline</mat-icon>
+        Delete
+      </button>
+    </div>
   </div>
-  <div class="detalii">
-    <label>{{ title }}</label
-    ><br /><br />
-    <label>City: </label><br /><br />
-    <label>Expire Date:</label><br /><br />
-    <label>CODE: </label><br /><br />
-    <button type="submit">Go to website</button>
+
+  <div class="full">
+    <div class="full-offercomm">
+      <div class="full-offer">
+        <div class="imgdet2">
+          <div class="image">
+            <img
+              [src]="getImagePathByStore(store)" alt="{{ title }}"
+            />
+          </div>
+          <div class="det2">
+            <label>Category: {{ category }} </label>
+            <label>Author: {{ author }} </label>
+            <label>Date: {{ posted | date : "dd/MM/yyyy" }}</label>
+          </div>
+        </div>
+        
+        <div class="details">
+          <label id="title">{{ title }}</label>
+          <label id="content"> | {{ content }}</label>
+          <br /><br /><br />
+          <label id="city">City: {{ city }}</label
+          ><br /><br /><br />
+          <label id="expdate"
+            >Expire Date: {{ expiration | date : "dd/MM/yyyy" }}</label
+          ><br /><br /><br />
+          <div class="codewbtn">
+            <label id="code">CODE: {{ code }}</label
+            ><br /><br /><br />
+            <button mat-raised-button type="submit" class="copyBtn">Copy</button>
+          </div>
+          <button mat-raised-button type="submit" class="webBtn">
+            Go to website
+          </button>
+        </div>
+      </div>
+      <div class="addComment">
+        <input type="text" class="comment" value="Add a comment.." />
+        <button mat-raised-button type="submit" class="addBtn">Add</button>
+      </div>
+    </div>
+    
+    <br /><br /><br />
+    
+    <div class="comments">
+      <h2>Comments</h2>
+      <div class="comm">
+        <label>Comentariu</label>
+        <!-- Like and Dislike Buttons -->
+        <div class="buttons">
+          <button mat-raised-button class="like">
+            <mat-icon class="likeicon">thumb_up</mat-icon>
+          </button>
+          <button mat-raised-button class="dislike">
+            <mat-icon class="dislikeicon">thumb_down</mat-icon>
+          </button>
+
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon class="menuComm">more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div> 
+    </div>
   </div>
+      
 </div>
+
+<br /><br /><br />

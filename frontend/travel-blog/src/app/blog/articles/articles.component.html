@@ -15,21 +15,26 @@
     <div class="article-container">
       <div *ngFor="let article of articlesToShow; let i = index">
         <app-article-list-item
+          [id]="article.id"
           [title]="article.title"
           [content]="article.content"
           [store]="article.store"
           [posted]="article.posted"
           [city]="article.city"
+          [code]="article.code"
+          [store]="article.store"
           [expiration]="article.expiration"
           [category]="article.category"
           [author]="article.author"
+          [creatorId]="article.creatorId"
           [showDeleteBtn]="isFavouritesPage"
           [hideFavoriteBtn]="isNotFavouritesPage"
           [index]="i"
         ></app-article-list-item>
       </div>
     </div>
-
-    
+    <div class="semicerc-button" routerLink="/add-offer">
+      <span class="plus-icon">+</span>
+    </div>
   </div>
 </div>

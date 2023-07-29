@@ -1,0 +1,134 @@
+<link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
+
+<div class="up-buttons">
+  <button mat-raised-button class="backBtn" (click)="cancelEdit()">
+    <mat-icon class="iconBack">arrow_back</mat-icon>
+    Back
+  </button>
+</div>
+<br />
+<div class="top">
+  <h1>Edit the offer</h1>
+</div>
+<br /><br />
+
+<form [formGroup]="formGroup">
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="offername"
+      placeholder="Ex. Voucher for "
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>About</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="about"
+      placeholder="Ex. 50% Off for Makeup"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Category</mat-label>
+    <select
+      matNativeControl
+      name="category"
+      formControlName="category"
+      required
+    >
+      <option value="Food">Food</option>
+      <option value="Beauty">Beauty</option>
+      <option value="Fashion">Fashion</option>
+      <option value="Entertainment">Entertainment</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Name of the store</mat-label>
+    <select matNativeControl name="store" formControlName="store" required>
+      <option value="Answear">Answear</option>
+      <option value="Cupio">Cupio</option>
+      <option value="Douglas">Douglas</option>
+      <option value="Fashion-days">Fashion Days</option>
+      <option value="Glovo">Glovo</option>
+      <option value="Netflix">Netflix</option>
+      <option value="Spotify">Spotify</option>
+      <option value="Stradivarius">Stradivarius</option>
+      <option value="Tazz">Tazz</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>City</mat-label>
+    <select matNativeControl name="city" formControlName="city" required>
+      <option value="Iasi">Iaşi</option>
+      <option value="Suceava">Suceava</option>
+      <option value="Galati">Galaţi</option>
+      <option value="Bacau">Bacău</option>
+      <option value="Bucuresti">Bucureşti</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Choose an expire date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="datepicker"
+      name="expiredate"
+      formControlName="expiredate"
+      placeholder="MM/DD/YYYY"
+    />
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="datepicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #datepicker>
+      <mat-datepicker-actions>
+        <button mat-button matDatepickerCancel>Cancel</button>
+        <button mat-raised-button color="#006400" matDatepickerApply>
+          Apply
+        </button>
+      </mat-datepicker-actions>
+    </mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="input">
+    <mat-label>Code</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="code"
+      placeholder="Ex. 50XSUMMER"
+    />
+  </mat-form-field>
+
+  <input #fileInput hidden="true" type="file" />
+  <button
+    mat-flat-button
+    id="image"
+    style="
+      border-radius: 2px solid #006400 !important;
+      width: 530px;
+      height: 55px;
+    "
+    (click)="fileInput.click()"
+  >
+    Choose another image
+  </button>
+
+  <br />
+
+  <button mat-raised-button class="btn" (click)="editOffer()">
+    Edit offer
+  </button>
+  <br />
+  <button mat-raised-button class="btn" (click)="cancelEdit()">Cancel</button>
+
+  <br />
+  <br /><br /><br />
+</form>
