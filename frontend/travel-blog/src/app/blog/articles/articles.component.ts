@@ -4,6 +4,7 @@ import { ArticlesService } from 'src/app/services/articles.service';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-articles',
@@ -20,48 +21,41 @@ export class ArticleComponent implements OnInit {
   articlesToShow?: Articles = [];
   itemsPerPage: number = 6;
   currentPage: number = 1;
-  totalPages: number = 0;
-
+  totalPages: number = 1;
+  public isLoggedIn: Observable<boolean>;
   constructor(
     private readonly articlesService: ArticlesService,
     private readonly router: Router,
     private readonly httpService: HttpService,
     private readonly authService: AuthService
-  ) {}
+  ) {
+    this.isLoggedIn = this.authService.isLoggedIn();
+  }
 
   ngOnInit() {
     this.url = this.router.url;
     if (this.url.includes('favourites')) {
-      this.isFavouritesPage = true;
-      this.isNotFavouritesPage = !this.isFavouritesPage;
       this.httpService
         .getFavoriteArticles(this.authService.getId() as number)
         .subscribe((data) => {
           console.log('Favorite');
           console.log(data);
           this.articlesToShow = data;
+          this.articlesService.setArticles(data);
         });
+      this.isFavouritesPage = true;
+      this.isNotFavouritesPage = !this.isFavouritesPage;
     } else {
-      this.httpService
-        .getArticles()
-        .subscribe((data) => (this.articlesToShow = data));
-    }
-
-    if (this.articles) {
-      // Dacă avem deja articole primite ca Input, setăm lista de articole în serviciul ArticlesService
-      this.articlesService.setArticles(this.articles);
-    } else {
-      // Dacă nu avem articole primite ca Input, facem o cerere HTTP pentru a obține articolele
-      // this.httpService.getArticles().subscribe((data) => {
-      //   this.articles = data;
-      //   this.articlesService.setArticles(data);
-      //   });
+      this.httpService.getArticles().subscribe((data) => {
+        this.articlesToShow = data;
+        this.articlesService.setArticles(data);
+      });
     }
 
     this.articlesService.searchArticles(''); // Afisăm inițial toate articolele
     this.articlesService.getFilteredArticles().subscribe((filteredArticles) => {
       this.totalPages = Math.ceil(
-        (filteredArticles?.length || 0) / this.itemsPerPage
+        (filteredArticles?.length || 1) / this.itemsPerPage
       );
       this.paginateArticles();
     });

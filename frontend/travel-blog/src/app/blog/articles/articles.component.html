@@ -46,7 +46,11 @@
         ></app-article-list-item>
       </div>
     </div>
-    <div class="semicerc-button" routerLink="/add-offer">
+    <div
+      *ngIf="isLoggedIn | async"
+      class="semicerc-button"
+      routerLink="/add-offer"
+    >
       <span class="plus-icon">+</span>
     </div>
   </div>
