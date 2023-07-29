@@ -2,13 +2,13 @@
 
 <div class="offer">
   <div class="up-buttons">
-    <div class="rightBtn">
+    <div class="leftBtn">
       <button mat-raised-button class="backBtn" routerLink="/blog">
         <mat-icon class="iconBack">arrow_back</mat-icon>
         Back
       </button>
     </div>
-    <div class="leftBtn">
+    <div class="rightBtn">
       <button mat-raised-button class="editOfferBtn" (click)="toEditOffer()">
         Edit
       </button>
@@ -72,14 +72,14 @@
         <!-- Like and Dislike Buttons -->
         <div class="buttons">
           <button mat-raised-button class="like">
-            <mat-icon class="mat-icon-size">thumb_up</mat-icon>
+            <mat-icon class="likeicon">thumb_up</mat-icon>
           </button>
           <button mat-raised-button class="dislike">
-            <mat-icon class="mat-icon-size">thumb_down</mat-icon>
+            <mat-icon class="dislikeicon">thumb_down</mat-icon>
           </button>
 
           <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
+            <mat-icon class="menuComm">more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
             <button mat-menu-item>

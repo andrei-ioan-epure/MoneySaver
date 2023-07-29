@@ -19,13 +19,16 @@
     background-color: #FFF !important;
     color: #006400;
     border: 1px solid #006400;
-    border-radius: 8px;    
+    border-radius: 8px;
+       
 }
 
-.leftBtn{
+.rightBtn{
     display: flex;
     flex-direction: row; 
     gap:10px;
+    margin-left: 15px;
+   
 }
 
 .editOfferBtn{
@@ -225,6 +228,10 @@ h2{
 .like,.dislike{
     background-color: white;
     border: none;
+    position: relative;
+    height: 25px;
+    margin-top: 10px;
+
     
 }
 
@@ -243,4 +250,22 @@ h2{
     background-color: #006400 !important; /* Schimba culoarea de fundal la hover */
     cursor: pointer;
     color: white;
+}
+.iconDelete
+{
+    font-size: 20px !important;
+    margin-bottom: 2px;
+}
+.iconBack
+{
+    font-size: 20px !important;
+}
+.likeicon,.dislikeicon{
+    align-items: center;
+    margin-left: 7px;
+}
+.menuComm
+{
+    position: relative;
+   bottom: 3.5px;
 }
