@@ -9,12 +9,13 @@ namespace ServiceLayer.Services
     {
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Article> _articleRepository;
- 
+        private readonly IRepository<Comment> _commentRepository;
 
-        public UserService(IRepository<User> userRepository, IRepository<Article> articleRepository)
+        public UserService(IRepository<User> userRepository, IRepository<Article> articleRepository, IRepository<Comment> commentRepository)
         {
             _userRepository = userRepository;
             _articleRepository = articleRepository;
+            _commentRepository = commentRepository;
         }
 
         public IEnumerable<UserDto> GetAll()
@@ -72,9 +73,9 @@ namespace ServiceLayer.Services
             _userRepository.Insert(user);
         }
 
-        public void InsertFavoriteArticle(FavoriteArticleDto favoriteArticle)
+        public void InsertFavoriteArticle(TargetDto favoriteArticle)
         {
-            var article = _articleRepository.Get(favoriteArticle.articleId);
+            var article = _articleRepository.Get(favoriteArticle.targetId);
             var user = _userRepository.GetWithLinkedEntities(favoriteArticle.userId, "FavoriteArticles");
 
             user.FavoriteArticles.Add(article);
@@ -89,5 +90,48 @@ namespace ServiceLayer.Services
             };
             _userRepository.Update(user);
         }
+
+
+
+        public void InsertLikedComment(TargetDto likedComment)
+        {
+            var comment = _commentRepository.Get(likedComment.targetId);
+            var user = _userRepository.GetWithLinkedEntities(likedComment.userId, "LikedComments");
+
+            user.LikedComments.Add(comment);
+            _userRepository.Update(user);
+        }
+
+
+        public void DeleteLikedCommentItem(int userId, int commentId)
+        {
+            var user = _userRepository.GetWithLinkedEntities(userId, "LikedComments");
+            var comment = _commentRepository.Get(commentId);
+            if (user != null && comment != null)
+            {
+                user.LikedComments.Remove(comment);
+                _userRepository.Update(user);
+
+
+            }
+
+        }
+
+        public List<CommentDto>? GetLikedComment(int id)
+        {
+            var user = _userRepository.GetWithLinkedEntities(id, "LikedComments");
+
+            if (user != null)
+            {
+                List<CommentDto> liked = new List<CommentDto>();
+                foreach (var comment in user.LikedComments)
+                {
+                    liked.Add(new CommentDto(comment.Id,comment.Message,comment.Posted,comment.CreatorId,comment.ArticleId));
+                }
+                return liked;
+            }
+            return null;
+        }
+
     }
 }

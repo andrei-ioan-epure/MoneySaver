@@ -3,19 +3,19 @@ using System.Text.Json.Serialization;
 
 namespace ServiceLayer.DtoModels
 {
-	public class FavoriteArticleDto
+	public class TargetDto
 	{
 		[JsonConstructor]
-		public FavoriteArticleDto() { }
+		public TargetDto() { }
 
-		public FavoriteArticleDto(int uId, int aId)
+		public TargetDto(int uId, int tId)
 		{
 			userId = uId;
-			articleId = aId;
+			targetId = tId;
 		}
 
 		public int userId { get; set; }
-		public int articleId { get; set; }
+		public int targetId { get; set; }
 	}
 }
 

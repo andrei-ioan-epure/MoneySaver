@@ -57,7 +57,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPut("addFavorite")]
-        public IActionResult AddFavorites(FavoriteArticleDto favoriteArticle)
+        public IActionResult AddFavorites(TargetDto favoriteArticle)
         {
             _userService.InsertFavoriteArticle(favoriteArticle);
             return Ok();
@@ -71,6 +71,26 @@ namespace PresentationLayer.Controllers
         public IActionResult DeleteFavoriteItem([FromQuery] int userId, [FromQuery] int articleId)
         {
             _userService.DeleteFavoriteListItem(userId, articleId);
+            return Ok();
+        }
+
+
+
+        [HttpPut("addLike")]
+        public IActionResult AddLikedComment(TargetDto likedComment)
+        {
+            _userService.InsertLikedComment(likedComment);
+            return Ok();
+        }
+        [HttpGet("getLike")]
+        public IActionResult GetLikedComments([FromQuery] int id)
+        {
+            return Ok(_userService.GetLikedComment(id));
+        }
+        [HttpDelete("deleteLike")]
+        public IActionResult DeleteLikedComment([FromQuery] int userId, [FromQuery] int commentId)
+        {
+            _userService.DeleteLikedCommentItem(userId, commentId);
             return Ok();
         }
     }
