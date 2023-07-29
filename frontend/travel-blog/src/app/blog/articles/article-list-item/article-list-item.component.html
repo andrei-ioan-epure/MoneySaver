@@ -3,14 +3,12 @@
     <div class="left-corner">
       <p>{{ category }}</p>
       <p>{{ city }}</p>
-      
     </div>
-    
+
     <div class="right-corner">
       <p>{{ posted | date : "dd/MM/yyyy" }}</p>
       <p>{{ author }}</p>
     </div>
-    
   </div>
   <div class="middle">
     <p>{{ title }}</p>
@@ -18,18 +16,29 @@
   <div class="centered">
     <div class="image-container">
       <img [src]="getImagePathByStore(store)" alt="{{ title }}" />
-      <button class="deleteBtn" *ngIf="showDeleteBtn">x</button>
+
+      <button
+        class="deleteBtn"
+        *ngIf="showDeleteBtn"
+        (click)="onRemoveFromFavorite(articleId)"
+      >
+        x
+      </button>
+
       <button
         class="favBtn"
-        *ngIf="hideFavoriteBtn"
-        (click)="onClickFavorite(index)"
+        *ngIf="(isLoggedIn | async) && hideFavoriteBtn"
+        (click)="onClickFavorite(index, articleId)"
       >
         <mat-icon id="heart{{ index }}">favorite_border</mat-icon>
       </button>
     </div>
   </div>
   <p>Valid until : {{ expiration | date : "dd/MM/yyyy" }}</p>
-  <button (click)="onClick()" [routerLink]="'/blog/article-list/full-offer/'+id">
+  <button
+    (click)="onClick()"
+    [routerLink]="'/blog/article-list/full-offer/' + id"
+  >
     See Offer
   </button>
 </div>

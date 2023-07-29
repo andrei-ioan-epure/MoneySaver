@@ -8,9 +8,21 @@
 
   <div class="right">
     <div class="pagination">
-      <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-primary">Previous</button>
+      <button
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+        class="btn btn-primary"
+      >
+        Previous
+      </button>
       <span>{{ currentPage }} / {{ totalPages }}</span>
-      <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-primary">Next</button>
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+        class="btn btn-primary"
+      >
+        Next
+      </button>
     </div>
     <div class="article-container">
       <div *ngFor="let article of articlesToShow; let i = index">
@@ -27,6 +39,7 @@
           [category]="article.category"
           [author]="article.author"
           [creatorId]="article.creatorId"
+          [articleId]="article.id"
           [showDeleteBtn]="isFavouritesPage"
           [hideFavoriteBtn]="isNotFavouritesPage"
           [index]="i"

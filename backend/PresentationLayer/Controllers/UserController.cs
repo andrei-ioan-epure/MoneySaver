@@ -57,12 +57,7 @@ namespace PresentationLayer.Controllers
             return Ok();
         }
 
-        [HttpPut("addFavorite")]
-        public IActionResult AddFavorites(FavoriteArticleDto favoriteArticle)
-        {
-            _userService.InsertFavoriteArticle(favoriteArticle);
-            return Ok();
-        }
+    
 
 
         [HttpPut("login")]
@@ -72,5 +67,44 @@ namespace PresentationLayer.Controllers
             return token != null? Ok(token) : NotFound(new { message = "Wrong Credentials." });
         }
 
+        [HttpGet("getFavorite")]
+        public IActionResult GetFavorites([FromQuery]  int id)
+        {
+            return Ok(_userService.GetFavoriteList(id));
+        }
+
+        [HttpPut("addFavorite")]
+        public IActionResult AddFavorites(TargetDto favoriteArticle)
+        {
+            _userService.InsertFavoriteArticle(favoriteArticle);
+            return Ok();
+        }
+
+        [HttpDelete("deleteFavorite")]
+        public IActionResult DeleteFavoriteItem([FromQuery] int userId, [FromQuery] int targetId)
+        {
+            _userService.DeleteFavoriteListItem(userId, targetId);
+            return Ok();
+        }
+
+
+
+        [HttpPut("addLike")]
+        public IActionResult AddLikedComment(TargetDto likedComment)
+        {
+            _userService.InsertLikedComment(likedComment);
+            return Ok();
+        }
+        [HttpGet("getLike")]
+        public IActionResult GetLikedComments([FromQuery] int id)
+        {
+            return Ok(_userService.GetLikedComment(id));
+        }
+        [HttpDelete("deleteLike")]
+        public IActionResult DeleteLikedComment([FromQuery] int userId, [FromQuery] int targetId)
+        {
+            _userService.DeleteLikedCommentItem(userId, targetId);
+            return Ok();
+        }
     }
 }

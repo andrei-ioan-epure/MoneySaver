@@ -1,4 +1,5 @@
-﻿using ServiceLayer.DtoModels;
+﻿using DomainLayer.Models;
+using ServiceLayer.DtoModels;
 
 namespace ServiceLayer.Contracts
 {
@@ -14,14 +15,20 @@ namespace ServiceLayer.Contracts
 
         void Update(int id, UserDto entity);
 
-        void InsertFavoriteArticle(FavoriteArticleDto favoriteArticle);
-
 
         TokenDto? Login(UserLoginDto entity);
 
         bool IsCreator(int id);
 
-        
+        void InsertFavoriteArticle(TargetDto favoriteArticle);
+
+        List<ArticleDto>? GetFavoriteList(int id);
+
+        void DeleteFavoriteListItem(int userId, int articleId);
+        void InsertLikedComment(TargetDto likedComment);
+        void DeleteLikedCommentItem(int userId, int commentId);
+        List<CommentDto>? GetLikedComment(int id);
+
 
     }
 }

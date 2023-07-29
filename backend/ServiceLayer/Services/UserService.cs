@@ -18,7 +18,7 @@ namespace ServiceLayer.Services
     {
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Article> _articleRepository;
-
+        private readonly IRepository<Comment> _commentRepository;
 
         private const int keySize = 32;
         private const int iterations = 7;
@@ -26,12 +26,11 @@ namespace ServiceLayer.Services
         private byte[] passwordSalt;
         private JwtUtils jwtUtils = new JwtUtils();
 
-
-
-        public UserService(IRepository<User> userRepository, IRepository<Article> articleRepository)
+        public UserService(IRepository<User> userRepository, IRepository<Article> articleRepository, IRepository<Comment> commentRepository)
         {
             _userRepository = userRepository;
             _articleRepository = articleRepository;
+            _commentRepository = commentRepository;
         }
 
         public IEnumerable<UserDto> GetAll()
@@ -47,70 +46,40 @@ namespace ServiceLayer.Services
             return user != null ? new UserDto(user.Id, user.UserName, user.FullName, user.Email, user.Password, user.IsCreator) : null;
         }
 
+        public List<ArticleDto>? GetFavoriteList(int id)
+        {
+            var user = _userRepository.GetWithLinkedEntities(id, "FavoriteArticles");
+
+            if (user != null)
+            {
+                List<ArticleDto> favorites = new List<ArticleDto>();
+                foreach (var favorite in user.FavoriteArticles)
+                {
+                    favorites.Add(new ArticleDto(favorite.Id, favorite.Title, favorite.Posted, favorite.Expiration, favorite.City, favorite.Category,
+                        favorite.Code, favorite.Store, favorite.Author, favorite.Content, favorite.CreatorId));
+                }
+                return favorites;
+            }
+            return null;
+        }
+
+        public void DeleteFavoriteListItem(int userId, int articleId)
+        {
+            var user = _userRepository.GetWithLinkedEntities(userId, "FavoriteArticles");
+            var article = _articleRepository.Get(articleId);
+            if (user != null && article != null)
+            {
+                user.FavoriteArticles.Remove(article);
+                _userRepository.Update(user);
+
+
+            }
+
+        }
+
         public void Delete(int entityId)
         {
             _userRepository.Delete(entityId);
-        }
-
-        public void Insert(UserDto entity)
-        {
-
-            var hashedPassword = CreatePasswordHash(entity.Password, out passwordSalt);
-
-            var user = new User(entity.UserName, entity.FullName,entity.Email,hashedPassword,entity.IsCreator, passwordSalt);
-
-            
-
-            _userRepository.Insert(user);
-        }
-
-        public void InsertFavoriteArticle(FavoriteArticleDto favoriteArticle)
-        {
-            var article = _articleRepository.Get(favoriteArticle.articleId);
-            var user = _userRepository.GetWithLinkedEntities(favoriteArticle.userId, "FavoriteArticles");
-
-            user.FavoriteArticles.Add(article);
-            _userRepository.Update(user);
-        }
-
-        public void Update(int id, UserDto entity)
-        {
-            var salt = _userRepository.Get(id).Salt;
-            var user = new User(entity.UserName, entity.FullName, entity.Email, entity.Password, entity.IsCreator, salt)
-            {
-                Id = id
-            };
-            _userRepository.Update(user);
-        }
-
-        public TokenDto? Login(UserLoginDto userDto)
-        {
-            TokenDto token = null;
-            var user = GetUserByEmail(userDto.Email);
-            if (user != null && VerifyPasswordHash(userDto.Password,user.Password,user.Salt))
-            {
-                token = new TokenDto(jwtUtils.CreateToken(user), user.Id, user.IsCreator? "admin" : "user");
-            }
-            return token;
-        }
-
-        public bool IsCreator(int id)
-        {
-            var user = _userRepository.Get(id);
-            return user.IsCreator;
-        }
-
-        private User GetUserByEmail(string email)
-        {
-            var users = _userRepository.GetAll();
-            foreach (var user in users)
-            {
-                if (user.Email == email)
-                {
-                    return user;
-                }
-            }
-            return null;
         }
 
         private string CreatePasswordHash(string password, out byte[] passwordSalt)
@@ -140,5 +109,106 @@ namespace ServiceLayer.Services
             return CryptographicOperations.FixedTimeEquals(hashToCompare, goodHash);
         }
 
+        public void Insert(UserDto entity)
+        {
+
+            var hashedPassword = CreatePasswordHash(entity.Password, out passwordSalt);
+
+            var user = new User(entity.UserName, entity.FullName, entity.Email, hashedPassword, entity.IsCreator, passwordSalt);
+
+
+
+            _userRepository.Insert(user);
+        }
+
+        public void InsertFavoriteArticle(TargetDto favoriteArticle)
+        {
+            var article = _articleRepository.Get(favoriteArticle.targetId);
+            var user = _userRepository.GetWithLinkedEntities(favoriteArticle.userId, "FavoriteArticles");
+
+            user.FavoriteArticles.Add(article);
+            _userRepository.Update(user);
+        }
+
+        public void Update(int id, UserDto entity)
+        {
+            var salt = _userRepository.Get(id).Salt;
+            var user = new User(entity.UserName, entity.FullName, entity.Email, entity.Password, entity.IsCreator, salt)
+            {
+                Id = id
+            };
+            _userRepository.Update(user);
+        }
+
+        public TokenDto? Login(UserLoginDto userDto)
+        {
+            TokenDto token = null;
+            var user = GetUserByEmail(userDto.Email);
+            if (user != null && VerifyPasswordHash(userDto.Password, user.Password, user.Salt))
+            {
+                token = new TokenDto(jwtUtils.CreateToken(user), user.Id, user.IsCreator ? "admin" : "user");
+            }
+            return token;
+        }
+
+        public bool IsCreator(int id)
+        {
+            var user = _userRepository.Get(id);
+            return user.IsCreator;
+        }
+
+        private User GetUserByEmail(string email)
+        {
+            var users = _userRepository.GetAll();
+            foreach (var user in users)
+            {
+                if (user.Email == email)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
+        public void InsertLikedComment(TargetDto likedComment)
+        {
+            var comment = _commentRepository.Get(likedComment.targetId);
+            var user = _userRepository.GetWithLinkedEntities(likedComment.userId, "LikedComments");
+
+            user.LikedComments.Add(comment);
+            _userRepository.Update(user);
+        }
+
+
+        public void DeleteLikedCommentItem(int userId, int commentId)
+        {
+            var user = _userRepository.GetWithLinkedEntities(userId, "LikedComments");
+            var comment = _commentRepository.Get(commentId);
+            if (user != null && comment != null)
+            {
+                user.LikedComments.Remove(comment);
+                _userRepository.Update(user);
+
+
+            }
+
+        }
+
+        public List<CommentDto>? GetLikedComment(int id)
+        {
+            var user = _userRepository.GetWithLinkedEntities(id, "LikedComments");
+
+            if (user != null)
+            {
+                List<CommentDto> liked = new List<CommentDto>();
+                foreach (var comment in user.LikedComments)
+                {
+                    liked.Add(new CommentDto(comment.Id, comment.Message, comment.Posted, comment.CreatorId, comment.ArticleId));
+                }
+                return liked;
+            }
+            return null;
+
+        }
     }
 }

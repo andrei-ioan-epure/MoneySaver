@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { Article, ServerArticle } from '../blog/model/article';
 import { query } from '@angular/animations';
@@ -54,6 +54,31 @@ export class HttpService {
       );
   }
 
+  getFavoriteArticles(id: number): Observable<Article[]> {
+    const finalEndpoint = `${this.endpoint}/User/getFavorite`;
+    const queryParams = {
+      id: id,
+    };
+    return this.http
+      .get<ServerArticle[]>(finalEndpoint, { params: queryParams })
+      .pipe(
+        map((serverArticles) => this.mapFromMultipleArticles(serverArticles))
+      );
+  }
+
+  addArticleToFavorites(body: any): Observable<User> {
+    const finalEndpoint = `${this.endpoint}/User/addFavorite`;
+    return this.http.put<any>(finalEndpoint, body);
+  }
+
+  deleteArticleFromFavorites(queryParams: any): void {
+    const finalEndpoint = `${this.endpoint}/User/deleteFavorite`;
+    console.log('Apelare');
+    this.http.delete(finalEndpoint, { params: queryParams }).subscribe((s) => {
+      console.log(s);
+    });
+  }
+
   private mapFromMultipleArticles(serverArticles: ServerArticle[]): Article[] {
     return serverArticles.map((serverArticle) =>
       this.mapFromSingleArticle(serverArticle)
@@ -61,6 +86,7 @@ export class HttpService {
   }
   private mapFromSingleArticle(serverArticle: ServerArticle): Article {
     return {
+      id: serverArticle.id,
       title: serverArticle.title,
       posted: serverArticle.posted,
       city: serverArticle.city,
@@ -101,6 +127,4 @@ export class HttpService {
     const body = article;
     return this.http.post<Article>(url, body);
   }
-
- 
 }
