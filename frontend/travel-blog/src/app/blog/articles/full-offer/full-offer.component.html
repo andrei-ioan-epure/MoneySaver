@@ -19,68 +19,81 @@
     </div>
   </div>
 
-  <div class="full-offer">
-    <div class="image">
-      <img
-        src="/assets/images/netflix.png"
-        alt="Nu s-a gasit imaginea"
-        width="150px"
-        height="150px"
-      />
-    </div>
-    <div class="details">
-      <label id="title">{{ title }}</label>
-      <label id="content"> | {{ content }}</label>
-      <br /><br /><br />
-      <label id="city">City: {{ city }}</label
-      ><br /><br /><br />
-      <label id="expdate"
-        >Expire Date: {{ expiration | date : "dd/MM/yyyy" }}</label
-      ><br /><br /><br />
-      <div class="codewbtn">
-        <label id="code">CODE: {{ code }}</label
-        ><br /><br /><br />
-        <button mat-raised-button type="submit" class="copyBtn">Copy</button>
+  <div class="full">
+    <div class="full-offercomm">
+      <div class="full-offer">
+        <div class="imgdet2">
+          <div class="image">
+            <img
+              src="/assets/images/netflix.png"
+              alt="Nu s-a gasit imaginea"
+              width="150px"
+              height="150px"
+            />
+          </div>
+          <div class="det2">
+            <label>Category: {{ category }} </label>
+            <label>Author: {{ author }} </label>
+            <label>Date: {{ posted | date : "dd/MM/yyyy" }}</label>
+          </div>
+        </div>
+        
+        <div class="details">
+          <label id="title">{{ title }}</label>
+          <label id="content"> | {{ content }}</label>
+          <br /><br /><br />
+          <label id="city">City: {{ city }}</label
+          ><br /><br /><br />
+          <label id="expdate"
+            >Expire Date: {{ expiration | date : "dd/MM/yyyy" }}</label
+          ><br /><br /><br />
+          <div class="codewbtn">
+            <label id="code">CODE: {{ code }}</label
+            ><br /><br /><br />
+            <button mat-raised-button type="submit" class="copyBtn">Copy</button>
+          </div>
+          <button mat-raised-button type="submit" class="webBtn">
+            Go to website
+          </button>
+        </div>
       </div>
-      <button mat-raised-button type="submit" class="webBtn">
-        Go to website
-      </button>
+      <div class="addComment">
+        <input type="text" class="comment" value="Add a comment.." />
+        <button mat-raised-button type="submit" class="addBtn">Add</button>
+      </div>
     </div>
-    <div class="det2">
-      <label>Category: {{ category }} </label>
-      <label>Author: {{ author }} </label>
-      <label>Date: {{ posted | date : "dd/MM/yyyy" }}</label>
-    </div>
-  </div>
-  <br /><br />
-  <div class="addComment">
-    <input type="text" class="comment" value="Add a comment.." />
-    <button mat-raised-button type="submit" class="addBtn">Add</button>
-  </div>
-  <br /><br /><br />
-  <h2>Comments</h2>
-  <div class="comments">
-    <div class="comm1">
+    
+    <br /><br /><br />
+    
+    <div class="comments">
+      <h2>Comments</h2>
       <div class="comm">
         <label>Comentariu</label>
-      </div>
-      <!-- Like and Dislike Buttons -->
-      <div class="buttons_like">
-        <button mat-raised-button class="like">
-          <mat-icon>thumb_up_alt</mat-icon>
-        </button>
-        <button mat-raised-button class="dislike">
-          <mat-icon>thumb_down_alt</mat-icon>
-        </button>
-      </div>
+        <!-- Like and Dislike Buttons -->
+        <div class="buttons">
+          <button mat-raised-button class="like">
+            <mat-icon class="mat-icon-size">thumb_up</mat-icon>
+          </button>
+          <button mat-raised-button class="dislike">
+            <mat-icon class="mat-icon-size">thumb_down</mat-icon>
+          </button>
+
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div> 
     </div>
   </div>
-
-  <br /><br /><br />
-
-  <!--<div class="buttons">
-    <button mat-raised-button type="submit" class="editBtn">Edit</button>
-    <button mat-raised-button type="submit" class="deleteBtn">Delete</button>
-  </div>-->
+      
 </div>
-<br /><br /><br /><br /><br /><br />
+
+<br /><br /><br />
