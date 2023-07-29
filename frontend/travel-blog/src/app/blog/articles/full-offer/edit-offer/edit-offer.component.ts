@@ -78,8 +78,6 @@ export class EditOfferComponent {
         store: article.store,
         creatorId: article.creatorId,
       };
-      this.article.city = 'Iasi';
-      this.article.category = 'Food';
 
       this.offername.setValue(this.article.title);
       this.about.setValue(this.article.content);

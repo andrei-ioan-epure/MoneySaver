@@ -50,12 +50,17 @@
 
   <mat-form-field appearance="outline" class="input">
     <mat-label>Name of the store</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="store"
-      placeholder="Ex. AboutYou"
-    />
+    <select matNativeControl name="store" formControlName="store" required>
+      <option value="Answear">Answear</option>
+      <option value="Cupio">Cupio</option>
+      <option value="Douglas">Douglas</option>
+      <option value="Fashion-days">Fashion Days</option>
+      <option value="Glovo">Glovo</option>
+      <option value="Netflix">Netflix</option>
+      <option value="Spotify">Spotify</option>
+      <option value="Stradivarius">Stradivarius</option>
+      <option value="Tazz">Tazz</option>
+    </select>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="input">

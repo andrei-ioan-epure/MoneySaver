@@ -40,31 +40,36 @@
       formControlName="category"
       required
     >
-      <option value="food">Food</option>
-      <option value="beauty">Beauty</option>
-      <option value="fashion">Fashion</option>
+      <option value="Food">Food</option>
+      <option value="Beauty">Beauty</option>
+      <option value="Fashion">Fashion</option>
       <option value="Entertainment">Entertainment</option>
     </select>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="input">
     <mat-label>Name of the store</mat-label>
-    <input
-      type="text"
-      matInput
-      formControlName="store"
-      placeholder="Ex. AboutYou"
-    />
+    <select matNativeControl name="store" formControlName="store" required>
+      <option value="Answear">Answear</option>
+      <option value="Cupio">Cupio</option>
+      <option value="Douglas">Douglas</option>
+      <option value="Fashion-days">Fashion Days</option>
+      <option value="Glovo">Glovo</option>
+      <option value="Netflix">Netflix</option>
+      <option value="Spotify">Spotify</option>
+      <option value="Stradivarius">Stradivarius</option>
+      <option value="Tazz">Tazz</option>
+    </select>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="input">
     <mat-label>City</mat-label>
     <select matNativeControl name="city" formControlName="city" required>
-      <option value="iasi">Iaşi</option>
-      <option value="suceava">Suceava</option>
-      <option value="galati">Galaţi</option>
-      <option value="bacau">Bacău</option>
-      <option value="bucuresti">Bucureşti</option>
+      <option value="Iasi">Iaşi</option>
+      <option value="Suceava">Suceava</option>
+      <option value="Galati">Galaţi</option>
+      <option value="Bacau">Bacău</option>
+      <option value="Bucuresti">Bucureşti</option>
     </select>
   </mat-form-field>
 
