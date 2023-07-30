@@ -11,6 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Article } from 'src/app/blog/model/article';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-offer',
@@ -20,6 +21,8 @@ import { Article } from 'src/app/blog/model/article';
 export class EditOfferComponent{
   id!: number;
   article?: Article;
+  userFullName: string | null=null;
+  userId: number | null =null;
 
   
   hide = true;
@@ -49,7 +52,8 @@ export class EditOfferComponent{
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private readonly httpService: HttpService
+    private readonly httpService: HttpService,
+    private readonly authService: AuthService
   ) {}
 
  
@@ -88,6 +92,9 @@ export class EditOfferComponent{
       this.expiredate.setValue(this.article.expiration);
       this.code.setValue(this.article.code);
       this.store.setValue(this.article.store);
+
+      this.userFullName = this.authService.getFullName();
+      this.userId = this.authService.getId();
     });
   }
 
@@ -102,9 +109,9 @@ export class EditOfferComponent{
         category: formData.category,
         code: formData.code,
         store: formData.store,
-        author: 'Epure Andrei-Ioan', //get from logged user
+        author: this.userFullName as string, //get from logged user
         content: formData.about,
-        creatorId: 1, //get from logged user
+        creatorId: this.userId as number, //get from logged user
       };
       console.log(item);
       this.httpService.putArticle(this.id, item);

@@ -34,18 +34,19 @@ export class FullOfferComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const offer = this.offerService.getParameter() as Article;
+    //const offer = this.offerService.getParameter() as Article;
     const url = this.activatedRoute.snapshot.url;
-    if (offer) {
-      this.setArticle(offer);
+    // if (offer) {
+    //   this.setArticle(offer);
 
-      this.id = Number(url[url.length - 1].path);
-    } else {
-      this.id = Number(url[url.length - 1].path);
+    //   this.id = Number(url[url.length - 1].path);
+    // } else {
+      //this.id = Number(url[url.length - 1].path);
+      this.id = +(this.activatedRoute.snapshot.paramMap.get("id") as string);
       this.httpService.getArticle(this.id).subscribe((article) => {
         this.setArticle(article);
       });
-    }
+    //}
 
     console.log(this.id);
   }
