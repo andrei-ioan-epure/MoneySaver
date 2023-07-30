@@ -36,15 +36,12 @@ export class AddOfferComponent {
   ]);
   category: FormControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(4),
   ]);
   store: FormControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(5),
   ]);
   city: FormControl = new FormControl('', [
     Validators.required,
-    Validators.minLength(1),
   ]);
   expiredate: FormControl = new FormControl('', [Validators.required]);
   code: FormControl = new FormControl('', [

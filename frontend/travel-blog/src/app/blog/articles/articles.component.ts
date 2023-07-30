@@ -4,7 +4,7 @@ import { ArticlesService } from 'src/app/services/articles.service';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, elementAt } from 'rxjs';
 
 @Component({
   selector: 'app-articles',
@@ -34,7 +34,14 @@ export class ArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.httpService
+    if(!this.authService.hasToken()){
+      this.httpService.getArticles().subscribe((data) => {
+        this.articlesToShow = data;
+        this.articlesService.setArticles(data);
+      });
+    }
+    else{
+      this.httpService
       .getFavoriteArticles(this.authService.getId() as number)
       .subscribe((data) => {
         this.favoriteArticles = data;
@@ -61,7 +68,8 @@ export class ArticleComponent implements OnInit {
           });
         }
       });
-
+    }
+    
     this.articlesService.searchArticles(''); // Afisăm inițial toate articolele
     this.articlesService.getFilteredArticles().subscribe((filteredArticles) => {
       this.totalPages = Math.ceil(

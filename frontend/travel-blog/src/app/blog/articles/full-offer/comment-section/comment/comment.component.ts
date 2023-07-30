@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-comment',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent {
+  @Input() author?: number;
+  @Input() posted?: Date;
+  @Input() message?: string;
+  @Input() creatorName?: string;
+
 
 }

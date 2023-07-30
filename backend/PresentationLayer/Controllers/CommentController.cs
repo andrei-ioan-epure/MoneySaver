@@ -49,5 +49,12 @@ namespace PresentationLayer.Controllers
             _commentService.Delete(id);
             return Ok();
         }
+
+        [HttpGet("getCommentsFromArticle/{id}")]
+        public IActionResult GetCommsArticle(int id)
+        {
+            var list = _commentService.GetCommentsFromArticle(id);
+            return Ok(list);
+        }
     }
 }

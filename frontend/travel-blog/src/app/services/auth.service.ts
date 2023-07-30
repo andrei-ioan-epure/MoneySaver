@@ -66,6 +66,7 @@ export class AuthService {
     localStorage.removeItem('jwt');
     localStorage.removeItem('userId');
     localStorage.removeItem('userRole');
+    localStorage.removeItem('userFullName');
     this.isLoggedSubject.next(false);
   }
 

@@ -20,8 +20,8 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpGet("get")]
-        [AllowAnonymous]
-        [Authorize("admin")]
+        //[AllowAnonymous]
+        //[Authorize("admin")]
         public IActionResult GetAll()
         {
             return Ok(_articleService.GetAll());

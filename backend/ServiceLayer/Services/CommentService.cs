@@ -22,24 +22,24 @@ namespace ServiceLayer.Services
         public CommentDto? Get(int id)
         {
            var comment = _commentRepository.Get(id);
-            return comment == null ? null : new CommentDto(comment.Id, comment.Message, comment.Posted,comment.CreatorId,comment.ArticleId);
+            return comment == null ? null : new CommentDto(comment.Id, comment.Message, comment.Posted, comment.CreatorName, comment.CreatorId,comment.ArticleId);
         }
 
         public IEnumerable<CommentDto> GetAll()
         {
-            return _commentRepository.GetAll().Select(u => new CommentDto(u.Id, u.Message, u.Posted, u.CreatorId, u.ArticleId));
+            return _commentRepository.GetAll().Select(u => new CommentDto(u.Id, u.Message, u.Posted, u.CreatorName, u.CreatorId, u.ArticleId));
 
         }
 
         public void Insert(CommentDto entity)
         {
-            var comment = new Comment(entity.Message, entity.Posted, entity.CreatorId, entity.ArticleId);
+            var comment = new Comment(entity.Message, entity.Posted, entity.CreatorName, entity.CreatorId, entity.ArticleId);
             _commentRepository.Insert(comment);
         }
 
         public void Update(int id, CommentDto entity)
         {
-            var comment = new Comment(entity.Message, entity.Posted, entity.CreatorId, entity.ArticleId)
+            var comment = new Comment(entity.Message, entity.Posted, entity.CreatorName, entity.CreatorId, entity.ArticleId)
             {
                 Id=id
             };
@@ -61,6 +61,20 @@ namespace ServiceLayer.Services
             {
                 _commentRepository.Delete(id);
             }
+        }
+
+        public IEnumerable<CommentDto> GetCommentsFromArticle(int articleID)
+        {
+            var comments = _commentRepository.GetAll();
+            List<CommentDto> list = new List<CommentDto>();
+            foreach(var comment in comments)
+            {
+                if(comment.ArticleId == articleID)
+                {
+                    list.Add(new CommentDto(comment.Id, comment.Message, comment.Posted, comment.CreatorName, comment.CreatorId, comment.ArticleId));
+                }
+            }
+            return list;
         }
 
     }

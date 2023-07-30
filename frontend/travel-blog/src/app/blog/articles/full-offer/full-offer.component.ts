@@ -3,7 +3,9 @@ import { OfferService } from 'src/app/services/offer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { Article } from '../../model/article';
-import { Subscription } from 'rxjs';
+import { CommentService } from 'src/app/services/comment.service';
+import { Comment } from 'src/app/blog/model/comment';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-full-offer',
@@ -29,7 +31,9 @@ export class FullOfferComponent implements OnInit {
     private offerService: OfferService,
     private activatedRoute: ActivatedRoute,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
+    private commentService: CommentService,
+    private authService: AuthService
   ) {}
 
 
@@ -85,5 +89,18 @@ export class FullOfferComponent implements OnInit {
     }
     const sanitizedStoreName = store.toLowerCase();
     return `../../../assets/images/${sanitizedStoreName}.jpg`;
+  }
+
+  addComment():void{
+    let input = document.getElementById('message') as HTMLInputElement;
+    let comment : Comment={
+      message : input.value,
+      posted : new Date(),
+      creatorName : this.authService.getFullName() as string,
+      creatorID: this.authService.getId() as number,
+      articleID: this.id
+    };
+    this.commentService.postCommentInArticle(comment).subscribe();
+    window.location.reload();
   }
 }

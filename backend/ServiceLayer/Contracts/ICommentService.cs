@@ -14,7 +14,9 @@ namespace ServiceLayer.Contracts
         void Insert(CommentDto entity);
 
         void Update(int id, CommentDto entity);
+
         void DeleteByCreatorId(int entityId);
 
+        IEnumerable<CommentDto> GetCommentsFromArticle(int articleID);
     }
 }

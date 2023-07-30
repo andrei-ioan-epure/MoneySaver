@@ -1,0 +1,39 @@
+.comment{
+    display: flex;
+    flex-direction: column;
+    padding: 3%;
+}
+
+.owner{
+    display: flex;
+    gap:8px;
+    font-weight: bold;
+}
+
+p{
+    margin: 0px;
+}
+
+.comment-content{
+    display: flex;
+    flex-direction: row;
+}
+
+.author-comment{
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-content > button{
+    display: flex;
+    justify-content:right;
+}
+
+.like{
+    width: 8vh;
+}
+
+.likeicon{
+    align-items: center;
+}
+

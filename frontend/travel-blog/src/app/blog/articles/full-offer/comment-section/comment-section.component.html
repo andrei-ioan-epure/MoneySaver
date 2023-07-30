@@ -1,1 +1,11 @@
-<p>comment-section works!</p>
+<div class="content">
+    <h1 class ="title">Comments</h1>
+    <div *ngFor="let comment of comments">
+        <app-comment
+            [creatorName]="comment.creatorName"
+            [posted]="comment.posted"
+            [message]="comment.message"
+        ></app-comment>
+    </div>
+    
+</div>

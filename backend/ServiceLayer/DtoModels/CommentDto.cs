@@ -9,11 +9,12 @@ namespace ServiceLayer.DtoModels
 {
     public class CommentDto
     {
-        public CommentDto(int? id, string message, DateTime posted, int creatorId, int articleId)
+        public CommentDto(int? id, string message, DateTime posted, string creatorName, int creatorId, int articleId)
         {
             Id = id;
             Message = message;
             Posted = posted;
+            CreatorName = creatorName;
             ArticleId = articleId;
             CreatorId = creatorId;
      
@@ -24,6 +25,7 @@ namespace ServiceLayer.DtoModels
         public DateTime Posted { get; set; }
         public int CreatorId { get; set; }
         public int ArticleId { get; set; }
+        public string CreatorName { get; set; }
 
 
     }

@@ -118,6 +118,7 @@ namespace DomainLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Message = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
                     Posted = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatorId = table.Column<int>(type: "int", nullable: false),
                     ArticleId = table.Column<int>(type: "int", nullable: false)
                 },

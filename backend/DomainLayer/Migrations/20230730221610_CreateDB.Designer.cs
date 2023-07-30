@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DomainLayer.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20230729195625_CreateDB")]
+    [Migration("20230730221610_CreateDB")]
     partial class CreateDB
     {
         /// <inheritdoc />
@@ -126,6 +126,10 @@ namespace DomainLayer.Migrations
 
                     b.Property<int>("CreatorId")
                         .HasColumnType("int");
+
+                    b.Property<string>("CreatorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Message")
                         .IsRequired()

@@ -203,7 +203,7 @@ namespace ServiceLayer.Services
                 List<CommentDto> liked = new List<CommentDto>();
                 foreach (var comment in user.LikedComments)
                 {
-                    liked.Add(new CommentDto(comment.Id, comment.Message, comment.Posted, comment.CreatorId, comment.ArticleId));
+                    liked.Add(new CommentDto(comment.Id, comment.Message, comment.Posted, comment.CreatorName, comment.CreatorId, comment.ArticleId));
                 }
                 return liked;
             }
