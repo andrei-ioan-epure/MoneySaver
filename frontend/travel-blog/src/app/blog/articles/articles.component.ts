@@ -17,7 +17,8 @@ export class ArticleComponent implements OnInit {
   url?: string;
   isFavouritesPage?: boolean = false;
   isNotFavouritesPage?: boolean = true;
-
+  isFavorite: Map<number, boolean> = new Map<number, boolean>();
+  favoriteArticles?: Articles = [];
   articlesToShow?: Articles = [];
   itemsPerPage: number = 6;
   currentPage: number = 1;
@@ -33,24 +34,33 @@ export class ArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.url = this.router.url;
-    if (this.url.includes('favourites')) {
-      this.httpService
-        .getFavoriteArticles(this.authService.getId() as number)
-        .subscribe((data) => {
-          console.log('Favorite');
-          console.log(data);
-          this.articlesToShow = data;
-          this.articlesService.setArticles(data);
-        });
-      this.isFavouritesPage = true;
-      this.isNotFavouritesPage = !this.isFavouritesPage;
-    } else {
-      this.httpService.getArticles().subscribe((data) => {
-        this.articlesToShow = data;
-        this.articlesService.setArticles(data);
+    this.httpService
+      .getFavoriteArticles(this.authService.getId() as number)
+      .subscribe((data) => {
+        this.favoriteArticles = data;
+
+        this.url = this.router.url;
+        if (this.url.includes('favourites')) {
+          this.articlesToShow = this.favoriteArticles;
+          this.articlesService.setArticles(this.favoriteArticles);
+
+          this.isFavouritesPage = true;
+          this.isNotFavouritesPage = !this.isFavouritesPage;
+        } else {
+          this.httpService.getArticles().subscribe((data) => {
+            this.articlesToShow = data;
+            this.articlesService.setArticles(data);
+
+            for (var item of this.articlesToShow) {
+              if (
+                this.favoriteArticles!.some((article) => article.id === item.id)
+              ) {
+                this.isFavorite.set(item.id!, true);
+              }
+            }
+          });
+        }
       });
-    }
 
     this.articlesService.searchArticles(''); // Afisăm inițial toate articolele
     this.articlesService.getFilteredArticles().subscribe((filteredArticles) => {

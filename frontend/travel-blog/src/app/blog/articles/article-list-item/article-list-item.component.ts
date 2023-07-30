@@ -24,6 +24,7 @@ export class ArticleListItemComponent {
   @Input() index?: number;
   @Input() articleId?: number;
   @Input() creatorId?: number;
+  @Input() isFavorite?: boolean;
 
   public isLoggedIn: Observable<boolean>;
 
@@ -59,17 +60,19 @@ export class ArticleListItemComponent {
     var favBtn = document.getElementById('heart' + index);
     console.log(favBtn);
     if (favBtn != null) {
+      const body = {
+        userId: this.authService.getId(),
+        targetId: targetId,
+      };
       if (favBtn.innerHTML === 'favorite_border') {
         favBtn.innerHTML = 'favorite';
-        const body = {
-          userId: this.authService.getId(),
-          targetId: targetId,
-        };
+
         console.log(body);
 
         this.httpService.addArticleToFavorites(body).subscribe();
       } else {
         favBtn.innerHTML = 'favorite_border';
+        this.httpService.deleteArticleFromFavorites(body);
       }
     }
   }
