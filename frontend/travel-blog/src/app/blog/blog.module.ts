@@ -15,6 +15,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
+import { CommentSectionComponent } from './articles/full-offer/comment-section/comment-section.component';
+import { CommentComponent } from './articles/full-offer/comment-section/comment/comment.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import {MatMenuModule} from '@angular/material/menu';
     FilterComponent,
     FullOfferComponent,
     EditOfferComponent,
+    CommentSectionComponent,
+    CommentComponent,
   ],
   imports: [
     CommonModule,
