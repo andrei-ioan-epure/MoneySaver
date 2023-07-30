@@ -148,6 +148,10 @@
     margin-left: 30px;
 }
 
+.copyBtn.copied {
+    background-color: #008000; /* culoarea butonului de "Copiat" */
+  }
+
 .copyBtn:hover, .addBtn:hover {
     background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
     cursor: pointer;
@@ -164,7 +168,7 @@
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
-    margin-top: 30px;
+    //margin-top: 30px;
 }
 
 //div pentru input si buton de add
