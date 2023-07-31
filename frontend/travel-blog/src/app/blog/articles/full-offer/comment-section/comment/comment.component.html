@@ -1,28 +1,38 @@
-<div class="comment">
-  <div class="comment-content">
-    <div class="author-comment">
-      <div class="owner">
-        <label>{{creatorName}}</label>
-        <label>{{ posted | date : "dd/MM/yyyy" }}</label>
+<div class="container">
+  <div class="comment-body">
+    <div>
+      <div class="publisher-details">
+        <p>{{ creatorName }}</p>
+        <p class="post-date">{{ posted | date : "dd/MM/yyyy" }}</p>
       </div>
 
       <p>
-        {{message}}
+        {{ message }}
       </p>
-
-      <button mat-raised-button class="like">
-        <mat-icon class="likeicon">thumb_up</mat-icon>
-        <p>100</p>
-      </button>
-
     </div>
 
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon class="menuComm">more_vert</mat-icon>
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Edit</button>
+        <button
+          id="commentToDelete{{ index }}"
+          (click)="onDelete(id)"
+          mat-menu-item
+        >
+          Delete
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div class="action-button">
+    <button mat-raised-button>
+      <mat-icon>thumb_up</mat-icon>
+      <p>100</p>
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item>Edit</button>
-      <button id="commentToDelete{{index}}" (click)="onDelete(id)" mat-menu-item>Delete</button>
-    </mat-menu>
   </div>
 </div>

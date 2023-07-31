@@ -32,15 +32,16 @@ namespace RepositoryLayer
             return entityDbSet.SingleOrDefault(c => c.Id == id);
         }
    
-        public void Insert(T entity)
+        public T Insert(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
 
-            entityDbSet.Add(entity);
+            var ent = entityDbSet.Add(entity);
             _blogDbContext.SaveChanges();
+            return ent.Entity;
         }
 
         public void Delete(int entityId)

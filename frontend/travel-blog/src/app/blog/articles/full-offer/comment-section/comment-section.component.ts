@@ -23,6 +23,7 @@ export class CommentSectionComponent implements OnInit {
     ) as string);
     this.commentService
       .getCommentsFromArticle(this.articleId)
-      .subscribe((res) => (this.comments = res.sort((a, b) => (a.posted < b.posted ? 1 : -1))));
+      .subscribe();
+    this.commentService.commentsObserver.subscribe(res => this.comments = res.sort((a, b) => (a.posted < b.posted ? 1 : -1)));
   }
 }

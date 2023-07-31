@@ -11,7 +11,7 @@ namespace ServiceLayer.Contracts
 
         void Delete(int entityId);
 
-        void Insert(CommentDto entity);
+        CommentDto Insert(CommentDto entity);
 
         void Update(int id, CommentDto entity);
 

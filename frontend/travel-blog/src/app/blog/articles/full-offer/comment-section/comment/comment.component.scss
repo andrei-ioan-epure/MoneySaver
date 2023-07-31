@@ -1,39 +1,37 @@
-.comment{
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+
+  .comment-body {
     display: flex;
-    flex-direction: column;
-    padding: 3%;
+    justify-content: space-between;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px #12121212, -1px -1px 5px #22222222;
+
+    .publisher-details {
+        display: block;
+        font-weight: bold;
+      }
+  }
 }
 
-.owner{
-    display: flex;
-    gap:8px;
-    font-weight: bold;
+p {
+  display: inline-block;
+  margin: 0px;
+
+  &.post-date {
+    margin-left: 8px;
+  }
 }
 
-p{
-    margin: 0px;
-}
+.action-button {
+  display: flex;
+  justify-content: flex-end;
 
-.comment-content{
-    display: flex;
-    flex-direction: row;
+  button {
+    margin-top: 8px;
+    width: 20%;
+  }
 }
-
-.author-comment{
-    display: flex;
-    flex-direction: column;
-}
-
-.comment-content > button{
-    display: flex;
-    justify-content:right;
-}
-
-.like{
-    width: 8vh;
-}
-
-.likeicon{
-    align-items: center;
-}
-

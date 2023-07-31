@@ -5,6 +5,7 @@ import { Article } from '../../model/article';
 import { CommentService } from 'src/app/services/comment.service';
 import { Comment } from 'src/app/blog/model/comment';
 import { AuthService } from 'src/app/services/auth.service';
+import { EMPTY, catchError, tap } from 'rxjs';
 
 @Component({
   selector: 'app-full-offer',
@@ -12,7 +13,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./full-offer.component.scss'],
 })
 export class FullOfferComponent implements OnInit {
-  
   id!: number;
   image?: string;
   title?: string;
@@ -26,6 +26,7 @@ export class FullOfferComponent implements OnInit {
   store?: string;
   creatorId?: number;
   copied = false;
+  public comment: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -35,12 +36,11 @@ export class FullOfferComponent implements OnInit {
     private authService: AuthService
   ) {}
 
-
   ngOnInit(): void {
-      this.id = +(this.activatedRoute.snapshot.paramMap.get("id") as string);
-      this.httpService.getArticle(this.id).subscribe((article) => {
-        this.setArticle(article);
-      });
+    this.id = +(this.activatedRoute.snapshot.paramMap.get('id') as string);
+    this.httpService.getArticle(this.id).subscribe((article) => {
+      this.setArticle(article);
+    });
 
     console.log(this.id);
   }
@@ -81,18 +81,17 @@ export class FullOfferComponent implements OnInit {
     return `../../../assets/images/${sanitizedStoreName}.jpg`;
   }
 
-
-  addComment():void{
-    let input = document.getElementById('message') as HTMLInputElement;
-    let comment : Comment={
-      message : input.value,
-      posted : new Date(),
-      creatorName : this.authService.getFullName() as string,
+  addComment(): void {
+    let comment: Comment = {
+      message: this.comment,
+      posted: new Date(),
+      creatorName: this.authService.getFullName() as string,
       creatorID: this.authService.getId() as number,
-      articleID: this.id
+      articleID: this.id,
     };
-    this.commentService.postCommentInArticle(comment).subscribe();
-    window.location.reload();
+    this.commentService
+      .postCommentInArticle(comment)
+      .subscribe();
   }
 
   goToWebsite() {
@@ -100,39 +99,39 @@ export class FullOfferComponent implements OnInit {
       // Mapare între numele magazinului și link-ul corespunzător
       switch (this.store.toLowerCase()) {
         case 'fashion-days':
-          window.open('https://www.fashiondays.ro/', '_blank');//deschide intr-o fereastra noua
+          window.open('https://www.fashiondays.ro/', '_blank'); //deschide intr-o fereastra noua
           break;
         case 'cupio':
           window.open('https://www.cupio.ro/', '_blank');
           break;
         case 'glovo':
-          window.open('https://glovoapp.com/','_blank');
+          window.open('https://glovoapp.com/', '_blank');
           break;
         case 'answear':
-          window.open('https://answear.ro/','_blank');
+          window.open('https://answear.ro/', '_blank');
           break;
         case 'douglas':
-          window.open('https://www.douglas.ro/','_blank');
+          window.open('https://www.douglas.ro/', '_blank');
           break;
         case 'netflix':
-          window.open('https://www.netflix.com/ro-en/','_blank');
+          window.open('https://www.netflix.com/ro-en/', '_blank');
           break;
         case 'spotify':
-          window.open('https://open.spotify.com/','_blank');
+          window.open('https://open.spotify.com/', '_blank');
           break;
         case 'stradivarius':
-          window.open('https://www.stradivarius.com/ro/','_blank');
+          window.open('https://www.stradivarius.com/ro/', '_blank');
           break;
         case 'tazz':
-          window.open('https://tazz.ro/','_blank');
+          window.open('https://tazz.ro/', '_blank');
           break;
         // Dacă nu se potrivește cu niciun magazin cunoscut, poți adăuga un comportament alternativ sau un mesaj de eroare.
         default:
-          console.error("No website link available for this store.");
+          console.error('No website link available for this store.');
           break;
       }
     } else {
-      console.error("No store name available for this offer.");
+      console.error('No store name available for this offer.');
     }
   }
   copyCode() {
@@ -141,7 +140,7 @@ export class FullOfferComponent implements OnInit {
         // Copiază textul în clipboard
         this.copyToClipboard(this.code);
         this.copied = true; // Marchează că textul a fost copiat cu succes
-  
+
         // Resetează starea "copied" după 3 secunde
         setTimeout(() => {
           this.copied = false;
@@ -151,7 +150,7 @@ export class FullOfferComponent implements OnInit {
       }
     }
   }
-  
+
   copyToClipboard(text: string) {
     const textArea = document.createElement('textarea');
     textArea.value = text;
@@ -159,15 +158,13 @@ export class FullOfferComponent implements OnInit {
     document.body.appendChild(textArea);
     textArea.focus();
     textArea.select();
-  
+
     try {
       document.execCommand('copy');
     } catch (err) {
       console.error('Copy failed: ', err);
     }
-  
+
     document.body.removeChild(textArea);
   }
-  
- 
 }

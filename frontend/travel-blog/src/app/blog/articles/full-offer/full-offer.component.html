@@ -59,7 +59,7 @@
         </div>
       </div>
       <div class="addComment">
-        <input id="message" type="text" class="comment" placeholder="Add a comment.." />
+        <input id="message" type="text" class="comment" placeholder="Add a comment.." [(ngModel)]="comment"/>
         <button mat-raised-button (click)="addComment()" class="addBtn">Add</button>
       </div>
     </div>

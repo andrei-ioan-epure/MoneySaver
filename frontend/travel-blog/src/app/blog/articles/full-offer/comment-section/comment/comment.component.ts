@@ -20,6 +20,5 @@ export class CommentComponent {
 
   onDelete(id?:number):void {
     this.commentService.deleteComment(id as number).subscribe();
-    window.location.reload();
   }
 }

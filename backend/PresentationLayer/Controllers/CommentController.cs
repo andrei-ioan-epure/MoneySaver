@@ -32,8 +32,8 @@ namespace PresentationLayer.Controllers
         [HttpPost("add")]
         public IActionResult Add(CommentDto comment)
         {
-            _commentService.Insert(comment);
-            return Ok();
+            var commentDto = _commentService.Insert(comment);
+            return Ok(commentDto);
         }
 
         [HttpPut("update/{id}")]

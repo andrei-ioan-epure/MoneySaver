@@ -31,10 +31,11 @@ namespace ServiceLayer.Services
 
         }
 
-        public void Insert(CommentDto entity)
+        public CommentDto Insert(CommentDto entity)
         {
             var comment = new Comment(entity.Message, entity.Posted, entity.CreatorName, entity.CreatorId, entity.ArticleId);
-            _commentRepository.Insert(comment);
+            var responseComment = _commentRepository.Insert(comment);
+            return new CommentDto(responseComment.Id, responseComment.Message, responseComment.Posted, responseComment.CreatorName, responseComment.CreatorId, responseComment.ArticleId);
         }
 
         public void Update(int id, CommentDto entity)
