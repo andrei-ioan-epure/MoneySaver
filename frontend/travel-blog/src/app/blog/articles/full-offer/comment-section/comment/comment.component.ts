@@ -23,14 +23,11 @@ export class CommentComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    console.log(this.creatorId + " " +this.authService.getId())
-    if(this.authService.getId() === this.creatorId)
-    {
-      console.log("am intrat");
+    if(this.authService.getId() === this.creatorId || this.authService.getRole() === "admin")
       this.myComment=true;
-    }
     else
       this.myComment=false;
+      
   }
 
   onDelete(id?:number):void {
