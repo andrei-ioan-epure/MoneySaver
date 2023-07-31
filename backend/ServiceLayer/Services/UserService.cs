@@ -170,45 +170,6 @@ namespace ServiceLayer.Services
             return null;
         }
 
-        public void InsertLikedComment(TargetDto likedComment)
-        {
-            var comment = _commentRepository.Get(likedComment.targetId);
-            var user = _userRepository.GetWithLinkedEntities(likedComment.userId, "LikedComments");
 
-            user.LikedComments.Add(comment);
-            _userRepository.Update(user);
-        }
-
-
-        public void DeleteLikedCommentItem(int userId, int commentId)
-        {
-            var user = _userRepository.GetWithLinkedEntities(userId, "LikedComments");
-            var comment = _commentRepository.Get(commentId);
-            if (user != null && comment != null)
-            {
-                user.LikedComments.Remove(comment);
-                _userRepository.Update(user);
-
-
-            }
-
-        }
-
-        public List<CommentDto>? GetLikedComment(int id)
-        {
-            var user = _userRepository.GetWithLinkedEntities(id, "LikedComments");
-
-            if (user != null)
-            {
-                List<CommentDto> liked = new List<CommentDto>();
-                foreach (var comment in user.LikedComments)
-                {
-                    liked.Add(new CommentDto(comment.Id, comment.Message, comment.Posted, comment.CreatorName, comment.CreatorId, comment.ArticleId));
-                }
-                return liked;
-            }
-            return null;
-
-        }
     }
 }

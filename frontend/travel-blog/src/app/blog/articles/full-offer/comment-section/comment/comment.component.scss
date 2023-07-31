@@ -33,5 +33,8 @@ p {
   button {
     margin-top: 8px;
     width: 20%;
+    &.liked {
+      color: red !important;
+    }
   }
 }

@@ -9,7 +9,7 @@ namespace ServiceLayer.DtoModels
 {
     public class CommentDto
     {
-        public CommentDto(int? id, string message, DateTime posted, string creatorName, int creatorId, int articleId)
+        public CommentDto(int? id, string message, DateTime posted, string creatorName, int creatorId, int articleId, int numberOfLikes = 0, IEnumerable<int> likedByUsers = null)
         {
             Id = id;
             Message = message;
@@ -17,7 +17,8 @@ namespace ServiceLayer.DtoModels
             CreatorName = creatorName;
             ArticleId = articleId;
             CreatorId = creatorId;
-     
+            NumberOfLikes = numberOfLikes;
+            LikedByUsers = likedByUsers;
         }
 
         public int? Id { get; set; }
@@ -27,6 +28,8 @@ namespace ServiceLayer.DtoModels
         public int ArticleId { get; set; }
         public string CreatorName { get; set; }
 
+        public int NumberOfLikes { get; set; }
 
+        public IEnumerable<int> LikedByUsers { get; set; }
     }
 }

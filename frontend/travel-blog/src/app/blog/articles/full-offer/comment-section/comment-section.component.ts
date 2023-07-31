@@ -21,9 +21,10 @@ export class CommentSectionComponent implements OnInit {
     this.articleId = +(this.activatedRoute.snapshot.paramMap.get(
       'id'
     ) as string);
-    this.commentService
-      .getCommentsFromArticle(this.articleId)
-      .subscribe();
-    this.commentService.commentsObserver.subscribe(res => this.comments = res.sort((a, b) => (a.posted < b.posted ? 1 : -1)));
+    this.commentService.getCommentsFromArticle(this.articleId).subscribe();
+    this.commentService.commentsObserver.subscribe(
+      (res) =>
+        (this.comments = res.sort((a, b) => (a.posted < b.posted ? 1 : -1)))
+    );
   }
 }

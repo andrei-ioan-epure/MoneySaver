@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
+using ServiceLayer.Services;
 
 namespace PresentationLayer.Controllers
 {
@@ -39,8 +40,8 @@ namespace PresentationLayer.Controllers
         [HttpPut("update/{id}")]
         public IActionResult Update(int id, CommentDto comment)
         {
-            _commentService.Update(id, comment);
-            return Ok();
+            var commentDto=_commentService.Update(id, comment);
+            return Ok(commentDto);
         }
 
         [HttpDelete("delete/{id}")]
@@ -55,6 +56,22 @@ namespace PresentationLayer.Controllers
         {
             var list = _commentService.GetCommentsFromArticle(id);
             return Ok(list);
+        }
+
+
+
+        [HttpPut("addLike")]
+        public IActionResult AddLikedComment(TargetDto likedComment)
+        {
+            var commentDto= _commentService.AddLikedComment(likedComment);
+            return Ok(commentDto);
+        }
+
+        [HttpDelete("removeLike")]
+        public IActionResult RemoveLikedComment([FromQuery] int userId, [FromQuery] int targetId)
+        {
+            _commentService.RemoveLikedComment(userId, targetId);
+            return Ok();
         }
     }
 }

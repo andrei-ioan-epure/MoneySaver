@@ -25,10 +25,7 @@ namespace ServiceLayer.Contracts
         List<ArticleDto>? GetFavoriteList(int id);
 
         void DeleteFavoriteListItem(int userId, int articleId);
-        void InsertLikedComment(TargetDto likedComment);
-        void DeleteLikedCommentItem(int userId, int commentId);
-        List<CommentDto>? GetLikedComment(int id);
-
+  
 
     }
 }

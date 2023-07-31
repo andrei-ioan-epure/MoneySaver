@@ -62,5 +62,8 @@ namespace PresentationLayer.Controllers
           
             return Ok(_articleService.GetFiltered(authors, category, city, store, posted, expiration));
         }
+
+    
+
     }
 }

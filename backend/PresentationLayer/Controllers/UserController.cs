@@ -89,22 +89,5 @@ namespace PresentationLayer.Controllers
 
 
 
-        [HttpPut("addLike")]
-        public IActionResult AddLikedComment(TargetDto likedComment)
-        {
-            _userService.InsertLikedComment(likedComment);
-            return Ok();
-        }
-        [HttpGet("getLike")]
-        public IActionResult GetLikedComments([FromQuery] int id)
-        {
-            return Ok(_userService.GetLikedComment(id));
-        }
-        [HttpDelete("deleteLike")]
-        public IActionResult DeleteLikedComment([FromQuery] int userId, [FromQuery] int targetId)
-        {
-            _userService.DeleteLikedCommentItem(userId, targetId);
-            return Ok();
-        }
     }
 }

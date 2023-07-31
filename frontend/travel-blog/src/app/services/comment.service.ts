@@ -23,6 +23,39 @@ export class CommentService {
     );
   }
 
+  putMessageComment(comment: Comment): Observable<Comment> {
+    let finalEndpoint = `${this.endpoint}/Comment/update/${comment.id}`;
+
+    return this.httpClient.put<Comment>(finalEndpoint, comment).pipe(
+      tap((res) => {
+        this.commentsObserver.next([
+          ...this.commentsObserver
+            .getValue()
+            .filter((item) => item.id !== comment.id),
+          res,
+        ]);
+      })
+    );
+  }
+
+  putLikeComment(userId: number, targetId: number): Observable<Comment> {
+    let finalEndpoint = `${this.endpoint}/Comment/addLike`;
+    const body = {
+      userId: userId,
+      targetId: targetId,
+    };
+    return this.httpClient.put<Comment>(finalEndpoint, body).pipe(
+      tap((res) => {
+        this.commentsObserver.next([
+          ...this.commentsObserver
+            .getValue()
+            .filter((item) => item.id !== targetId),
+          res,
+        ]);
+      })
+    );
+  }
+
   postCommentInArticle(comment: Comment): Observable<Comment> {
     let finalEndpoint = `${this.endpoint}/Comment/add`;
     return this.httpClient.post<Comment>(finalEndpoint, comment).pipe(
@@ -45,13 +78,13 @@ export class CommentService {
     return this.httpClient.delete<Comment>(finalEndpoint).pipe(
       tap(() => {
         this.commentsObserver.next([
-          ...comments.filter(item => item.id !== id)
+          ...comments.filter((item) => item.id !== id),
         ]);
       }),
       catchError(() => {
         console.log('failed');
         return EMPTY;
       })
-    );;
+    );
   }
 }

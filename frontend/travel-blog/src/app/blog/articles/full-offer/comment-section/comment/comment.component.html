@@ -6,18 +6,20 @@
         <p class="post-date">{{ posted | date : "dd/MM/yyyy" }}</p>
       </div>
 
-      <p>
+      <p *ngIf="!commentInEditMode">
         {{ message }}
       </p>
+      <input *ngIf="commentInEditMode" [(ngModel)]="message" />
+      <button *ngIf="commentInEditMode" (click)="saveEdit()">Apply</button>
     </div>
 
     <div>
-      <button *ngIf="(myComment)" mat-icon-button [matMenuTriggerFor]="menu">
+      <button *ngIf="myComment" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
 
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>Edit</button>
+        <button mat-menu-item (click)="onEdit()">Edit</button>
         <button
           id="commentToDelete{{ index }}"
           (click)="onDelete(id)"
@@ -30,9 +32,13 @@
   </div>
 
   <div class="action-button">
-    <button mat-raised-button>
+    <button mat-raised-button (click)="addLike(id)">
       <mat-icon>thumb_up</mat-icon>
-      <p>100</p>
+      <p>{{ numberOfLikes }}</p>
+    </button>
+    <button class="liked" mat-raised-button (click)="removeLike()">
+      <mat-icon>thumb_up</mat-icon>
+      <p>{{ numberOfLikes }}</p>
     </button>
   </div>
 </div>
