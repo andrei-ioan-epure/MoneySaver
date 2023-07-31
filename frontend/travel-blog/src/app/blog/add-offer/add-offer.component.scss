@@ -1,5 +1,6 @@
 div.top{
     align-items: center;
+    margin-left: 700px;
     display: flex;
     justify-content: center;
     flex-direction: column; 
@@ -14,28 +15,47 @@ h1{
     color: var(--heading, #212B27);
     text-align: center;
     font-family: 'Karla';
-    font-size: 55px;
+    font-size: 35px;
     font-style: normal;
     font-weight: 700;
     line-height: 70px; /* 130% */
 }
 
-
-.btn{
-    width: 326px;
-    background-color: #006400 !important;
-    color: #fff !important;
-    border-radius: 8px;
-    transition: 0.3s;
-    justify-content: space-between !important;
-    margin-left: 16px !important;
-    z-index: 0;
-    padding-left: 130px;
+.buttons{
+    display: flex;
+    justify-content: center;
+    flex-direction: row; 
+    gap:10px;
+    text-align: center;
 }
 
 
+.btn{
+    width: 260px;
+    background-color: #006400 !important;
+    color: #fff !important;
+    border-radius: 8px;
+    
+}
+.btncancel{
+    width: 260px;
+    background-color: white !important;
+    color: #006400 !important;
+    border:1px solid lightgray;
+    border-radius: 8px;
+}
+.addpage{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap:200px;
+}
+
+.ticket{
+    margin-top: -70px;
+}
 form{
-    align-items: center;
+    //align-items: center;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -61,7 +81,7 @@ form{
     display: flex;
     justify-content: left;
     flex-direction: row; 
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .backBtn{

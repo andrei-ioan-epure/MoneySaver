@@ -26,6 +26,7 @@ function checkLength(c: AbstractControl): ValidationErrors | null {
   styleUrls: ['./add-offer.component.scss'],
 })
 export class AddOfferComponent {
+  imagePath:string;
   articlesCreateSubscription!: Subscription;
   hide = true;
   formGroup: FormGroup = new FormGroup({});
@@ -52,7 +53,7 @@ export class AddOfferComponent {
     private router: Router,
     private readonly httpService: HttpService,
     private readonly authService : AuthService
-  ) {}
+  ) {this.imagePath='/assets/images/addOffer.png'}
 
   ngOnInit() {
     this.formGroup = new FormGroup({

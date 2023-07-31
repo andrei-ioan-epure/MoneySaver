@@ -19,6 +19,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./edit-offer.component.scss'],
 })
 export class EditOfferComponent{
+  imagePath:string;
   id!: number;
   article?: Article;
   userFullName: string | null=null;
@@ -51,7 +52,7 @@ export class EditOfferComponent{
     private router: Router,
     private readonly httpService: HttpService,
     private readonly authService: AuthService
-  ) {}
+  ) {this.imagePath='/assets/images/editOffer.png'}
 
  
 
