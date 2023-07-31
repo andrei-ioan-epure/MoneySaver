@@ -12,7 +12,7 @@ import { NavigationEnd, Router } from '@angular/router';
 export class HeaderComponent{
   ImagePath: string;
   public isLoggedIn: Observable<boolean>;
-  public active!: string;
+  public active: string="";
 
   constructor(
     private readonly authService: AuthService,
@@ -24,7 +24,7 @@ export class HeaderComponent{
 
     this.router.events.subscribe(events => {
       if (events instanceof NavigationEnd) {
-        this.active = router.url;
+        this.active = this.router.url;
       }
     }); 
   }

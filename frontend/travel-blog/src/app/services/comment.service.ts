@@ -18,12 +18,12 @@ export class CommentService {
   }
 
   postCommentInArticle(comment:Comment):Observable<Comment>{
+    console.log("hop peste debugger");
     let finalEndpoint = `${this.endpoint}/Comment/add`;
     return this.httpClient.post<Comment>(finalEndpoint, comment);
   }
 
   deleteComment(id:number):Observable<Comment>{
-    debugger
     let finalEndpoint = `${this.endpoint}/Comment/delete/${id}`;
     return this.httpClient.delete<Comment>(finalEndpoint); 
   }
