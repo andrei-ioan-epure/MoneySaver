@@ -86,8 +86,8 @@ export class FullOfferComponent implements OnInit {
       message: this.comment,
       posted: new Date(),
       creatorName: this.authService.getFullName() as string,
-      creatorID: this.authService.getId() as number,
-      articleID: this.id,
+      creatorId: this.authService.getId() as number,
+      articleId: this.id,
     };
     this.commentService
       .postCommentInArticle(comment)

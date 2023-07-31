@@ -67,6 +67,10 @@ export class AuthService {
     localStorage.removeItem('userId');
     localStorage.removeItem('userRole');
     localStorage.removeItem('userFullName');
+    this.userToken=null;
+    this.userId = null;
+    this.userFullName = null;
+    this.userRole = null;
     this.isLoggedSubject.next(false);
   }
 

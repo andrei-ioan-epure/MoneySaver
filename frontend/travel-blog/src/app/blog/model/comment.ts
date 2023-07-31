@@ -2,8 +2,8 @@ export type Comment = {
     message : string;
     posted : Date;
     creatorName : string;
-    creatorID: number;
-    articleID: number;
+    creatorId: number;
+    articleId: number;
     id?:number;
 };
 
