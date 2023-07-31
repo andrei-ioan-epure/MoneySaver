@@ -44,7 +44,7 @@ export class ArticleComponent implements OnInit {
       this.httpService
       .getFavoriteArticles(this.authService.getId() as number)
       .subscribe((data) => {
-        this.favoriteArticles = data;
+        this.favoriteArticles = data.sort((a, b) => (a.posted < b.posted ? 1 : -1));
 
         this.url = this.router.url;
         if (this.url.includes('favourites')) {
@@ -55,8 +55,8 @@ export class ArticleComponent implements OnInit {
           this.isNotFavouritesPage = !this.isFavouritesPage;
         } else {
           this.httpService.getArticles().subscribe((data) => {
-            this.articlesToShow = data;
-            this.articlesService.setArticles(data);
+            this.articlesToShow = data.sort((a, b) => (a.posted < b.posted ? 1 : -1));
+            this.articlesService.setArticles(this.articlesToShow);
 
             for (var item of this.articlesToShow) {
               if (
@@ -85,7 +85,7 @@ export class ArticleComponent implements OnInit {
 
   onDataReceived(articlesReceived: Articles) {
     console.log('Articles received from Child:', articlesReceived);
-    this.articles = articlesReceived;
+    this.articles = articlesReceived.sort((a, b) => (a.posted < b.posted ? 1 : -1));
     this.articlesService.setArticles(this.articles);
   }
 
@@ -93,7 +93,7 @@ export class ArticleComponent implements OnInit {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.articlesService.getFilteredArticles().subscribe((filteredArticles) => {
-      this.articlesToShow = filteredArticles?.slice(startIndex, endIndex);
+      this.articlesToShow = filteredArticles?.sort((a, b) => (a.posted < b.posted ? 1 : -1)).slice(startIndex, endIndex);
     });
   }
 

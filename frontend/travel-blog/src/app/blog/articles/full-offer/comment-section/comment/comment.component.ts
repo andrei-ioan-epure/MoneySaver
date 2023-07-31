@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-comment',
@@ -10,6 +11,15 @@ export class CommentComponent {
   @Input() posted?: Date;
   @Input() message?: string;
   @Input() creatorName?: string;
+  @Input() index?:number;
+  @Input() id?:number;
 
+  constructor(
+    private commentService:CommentService
+  ){}
 
+  onDelete(id?:number):void {
+    this.commentService.deleteComment(id as number).subscribe();
+    window.location.reload();
+  }
 }

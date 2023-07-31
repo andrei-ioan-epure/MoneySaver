@@ -12,8 +12,9 @@
 
     <div class="right">
 
-    <button routerLink="blog/favourites" id="fav">
-        <mat-icon class="custom-size">favorite_border</mat-icon>
+    <button  routerLink="blog/favourites" id="fav">
+        <mat-icon *ngIf="active.includes('favourites')" class="custom-size">favorite</mat-icon>
+        <mat-icon *ngIf="!active.includes('favourites')" class="custom-size">favorite_border</mat-icon>
     </button>
 
     <button id="blog" mat-raised-button routerLink="/blog/article-list" routerLinkActive="active_route" [routerLinkActiveOptions]="{exact:true}">Blog

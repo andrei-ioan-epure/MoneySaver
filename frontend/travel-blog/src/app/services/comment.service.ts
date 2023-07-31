@@ -21,4 +21,11 @@ export class CommentService {
     let finalEndpoint = `${this.endpoint}/Comment/add`;
     return this.httpClient.post<Comment>(finalEndpoint, comment);
   }
+
+  deleteComment(id:number):Observable<Comment>{
+    console.log("BAAAAAAA")
+    debugger
+    let finalEndpoint = `${this.endpoint}/Comment/delete/${id}`;
+    return this.httpClient.delete<Comment>(finalEndpoint); 
+  }
 }

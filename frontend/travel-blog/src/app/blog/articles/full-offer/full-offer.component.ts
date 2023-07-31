@@ -1,5 +1,4 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { OfferService } from 'src/app/services/offer.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { Article } from '../../model/article';
@@ -28,7 +27,6 @@ export class FullOfferComponent implements OnInit {
   creatorId?: number;
 
   constructor(
-    private offerService: OfferService,
     private activatedRoute: ActivatedRoute,
     private httpService: HttpService,
     private router: Router,
@@ -38,19 +36,10 @@ export class FullOfferComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //const offer = this.offerService.getParameter() as Article;
-    const url = this.activatedRoute.snapshot.url;
-    // if (offer) {
-    //   this.setArticle(offer);
-
-    //   this.id = Number(url[url.length - 1].path);
-    // } else {
-      //this.id = Number(url[url.length - 1].path);
       this.id = +(this.activatedRoute.snapshot.paramMap.get("id") as string);
       this.httpService.getArticle(this.id).subscribe((article) => {
         this.setArticle(article);
       });
-    //}
 
     console.log(this.id);
   }

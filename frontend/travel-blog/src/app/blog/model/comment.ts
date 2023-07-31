@@ -4,11 +4,7 @@ export type Comment = {
     creatorName : string;
     creatorID: number;
     articleID: number;
-};
-
-export interface ServerComment {
-    id:number;
+    id?:number;
 };
 
 export type Comments = Comment[];
-export type ServerComments = ServerComment[];

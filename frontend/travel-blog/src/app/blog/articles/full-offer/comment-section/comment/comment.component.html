@@ -22,7 +22,7 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Edit</button>
-      <button mat-menu-item>Delete</button>
+      <button id="commentToDelete{{index}}" (click)="onDelete(id)" mat-menu-item>Delete</button>
     </mat-menu>
   </div>
 </div>
