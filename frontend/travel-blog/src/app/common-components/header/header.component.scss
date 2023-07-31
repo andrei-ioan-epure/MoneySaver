@@ -5,7 +5,8 @@
     font-size: 30px;
     text-align: right;
     color:#006400;
-    border: 2px solid #006400;
+    //border: 2px solid #006400;
+    box-shadow: 0px 8px 8px lightgray;
     padding: 10px 24px 10px 24px;
 }
 
@@ -22,6 +23,7 @@
     height: 32px;
     border-radius: 16px;
     border: 1px #006400 solid;
+    padding-left: 10px;
 }
 
 .nav button:hover {

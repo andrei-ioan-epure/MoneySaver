@@ -11,10 +11,11 @@ option {
 .rectangle {
     left: 0px;
     width: 300px;
-    height: calc(87.5%);;
+    height: calc(100%);
     background-color: #B4D3B4;
     position: absolute;
-    border-radius: 16px;
+    margin-top: -8px;
+    //border-radius: 16px;
     //margin-right: 300px;
  }
  .rectangle > * {
