@@ -80,7 +80,7 @@ export class FullOfferComponent implements OnInit {
     const sanitizedStoreName = store.toLowerCase();
     return `../../../assets/images/${sanitizedStoreName}.jpg`;
   }
-<<<<<<< HEAD
+
 
   addComment():void{
     let input = document.getElementById('message') as HTMLInputElement;
@@ -94,7 +94,7 @@ export class FullOfferComponent implements OnInit {
     this.commentService.postCommentInArticle(comment).subscribe();
     window.location.reload();
   }
-=======
+
   goToWebsite() {
     if (this.store) {
       // Mapare între numele magazinului și link-ul corespunzător
@@ -170,5 +170,4 @@ export class FullOfferComponent implements OnInit {
   }
   
  
->>>>>>> Full_offer_Changes
 }
