@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class ContactResponseComponent {
 
+  ImagePath:string;
+  constructor(){
+  this.ImagePath = '/assets/images/thankyou.png';
+  }
 }
