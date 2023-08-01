@@ -36,7 +36,7 @@ export class HomeComponent implements AfterViewInit {
       slidesPerView: 1,
       spaceBetween: 0,
       loop: true,
-      effect: 'fade',
+      effect: 'slide',
       speed: 0,
       on: {
         slideChange: () => {

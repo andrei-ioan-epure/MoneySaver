@@ -59,6 +59,7 @@ p {
   cursor: pointer;
 }
 .swiper-container {
+  overflow: none;
   width: 100%;
   height: 300px; /* Set the height of your carousel */
   margin-top: 20px;
