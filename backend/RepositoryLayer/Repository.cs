@@ -19,6 +19,10 @@ namespace RepositoryLayer
         {
             return entityDbSet.AsEnumerable();
         }
+        public IEnumerable<T> GetAllWithLinkedEntities(string navPath)
+        {
+            return entityDbSet.Include(navPath).AsEnumerable();
+        }
 
         public T? GetWithLinkedEntities(int id, string navPath)
         {
@@ -53,15 +57,16 @@ namespace RepositoryLayer
             _blogDbContext.SaveChanges();
         }
       
-        public void Update(T entity)
+        public T Update(T entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity");
             }
 
-            entityDbSet.Update(entity);
+            var ent=entityDbSet.Update(entity);
             _blogDbContext.SaveChanges();
+            return ent.Entity;
         }  
 
         public void SaveChanges()

@@ -20,15 +20,12 @@ namespace ServiceLayer.Contracts
 
         bool IsCreator(int id);
 
-        void InsertFavoriteArticle(TargetDto favoriteArticle);
+         void InsertFavoriteArticle(TargetDto favoriteArticle);
 
-        List<ArticleDto>? GetFavoriteList(int id);
+        IEnumerable<ArticleDto>? GetFavoriteList(int id);
 
-        void DeleteFavoriteListItem(int userId, int articleId);
-        void InsertLikedComment(TargetDto likedComment);
-        void DeleteLikedCommentItem(int userId, int commentId);
-        List<CommentDto>? GetLikedComment(int id);
-
+        void DeleteFavoriteListItem(TargetDto favoriteArticle);
+  
 
     }
 }

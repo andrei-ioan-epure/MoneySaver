@@ -10,12 +10,14 @@ namespace RepositoryLayer
 
         T Insert(T entity);
 
-        void Update(T entity);
+        T Update(T entity);
 
         void Delete(int entityId);
 
         void SaveChanges();
 
         public T? GetWithLinkedEntities(int id, string navPath);
+
+        IEnumerable<T> GetAllWithLinkedEntities(string navPath);
     }
 }

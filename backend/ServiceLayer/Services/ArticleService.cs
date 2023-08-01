@@ -9,12 +9,17 @@ namespace ServiceLayer.Services
     public class ArticleService : IArticleService
     {
 
+        private readonly IRepository<User> _userRepository;
         private readonly IRepository<Article> _articleRepository;
+        private readonly IRepository<Comment> _commentRepository;
         private readonly IFilterService _filterService;
-        public ArticleService(IRepository<Article> articleRepository, IFilterService filterService)
+
+        public ArticleService(IRepository<Article> articleRepository, IFilterService filterService, IRepository<User> userRepository, IRepository<Comment> commentRepository)
         {
             _articleRepository = articleRepository;
             _filterService = filterService;
+            _userRepository = userRepository;
+            _commentRepository = commentRepository;
         }
         public void Delete(int entityId)
         {
@@ -66,7 +71,6 @@ namespace ServiceLayer.Services
             }
         }
 
-
         public IEnumerable<ArticleDto> GetFiltered(string authors, string category, string city, string store, string posted, string expiration)
         {
 
@@ -95,5 +99,39 @@ namespace ServiceLayer.Services
             return filteredArticles;
         }
 
+
+        public void InsertLikedComment(TargetDto likedComment)
+        {
+            var comment = _commentRepository.Get(likedComment.targetId);
+            var user = _userRepository.GetWithLinkedEntities(likedComment.userId, "LikedComments");
+
+            user.LikedComments.Add(comment);
+            _userRepository.Update(user);
+        }
+
+        public ArticleDto RemoveFavoriteListItem(TargetDto favoriteArticle)
+        {
+             var article = _articleRepository.GetWithLinkedEntities(favoriteArticle.targetId, "FavoriteUsers"); 
+            var user = _userRepository.Get(favoriteArticle.userId);
+            article.FavoriteUsers.Remove(user);
+            var responseArticle = _articleRepository.Update(article);
+
+            return new ArticleDto(responseArticle.Id, responseArticle.Title, responseArticle.Posted, responseArticle.Expiration,
+               responseArticle.City, responseArticle.Category, responseArticle.Code, responseArticle.Store,
+               responseArticle.Author, responseArticle.Content, responseArticle.CreatorId);
+        }
+
+        public ArticleDto InsertFavoriteArticle(TargetDto favoriteArticle)
+        {
+            var article = _articleRepository.GetWithLinkedEntities(favoriteArticle.targetId, "FavoriteUsers"); 
+            var user = _userRepository.Get(favoriteArticle.userId);
+
+            article.FavoriteUsers.Add(user);
+            var responseArticle = _articleRepository.Update(article);
+            return new ArticleDto(responseArticle.Id,responseArticle.Title,responseArticle.Posted,responseArticle.Expiration,
+                responseArticle.City,responseArticle.Category,responseArticle.Code,responseArticle.Store,
+                responseArticle.Author,responseArticle.Content,responseArticle.CreatorId);
+
+        }
     }
 }

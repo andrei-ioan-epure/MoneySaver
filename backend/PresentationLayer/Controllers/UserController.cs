@@ -80,31 +80,14 @@ namespace PresentationLayer.Controllers
             return Ok();
         }
 
-        [HttpDelete("deleteFavorite")]
-        public IActionResult DeleteFavoriteItem([FromQuery] int userId, [FromQuery] int targetId)
+        [HttpPut("deleteFavorite")]
+        public IActionResult DeleteFavoriteItem(TargetDto favoriteArticle)
         {
-            _userService.DeleteFavoriteListItem(userId, targetId);
+            _userService.DeleteFavoriteListItem(favoriteArticle);
             return Ok();
         }
 
 
 
-        [HttpPut("addLike")]
-        public IActionResult AddLikedComment(TargetDto likedComment)
-        {
-            _userService.InsertLikedComment(likedComment);
-            return Ok();
-        }
-        [HttpGet("getLike")]
-        public IActionResult GetLikedComments([FromQuery] int id)
-        {
-            return Ok(_userService.GetLikedComment(id));
-        }
-        [HttpDelete("deleteLike")]
-        public IActionResult DeleteLikedComment([FromQuery] int userId, [FromQuery] int targetId)
-        {
-            _userService.DeleteLikedCommentItem(userId, targetId);
-            return Ok();
-        }
     }
 }

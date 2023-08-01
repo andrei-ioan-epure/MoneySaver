@@ -34,7 +34,7 @@ namespace DomainLayer.Migrations
 
                     b.HasIndex("FavoriteUsersId");
 
-                    b.ToTable("ArticleUser");
+                    b.ToTable("ArticleUser", (string)null);
                 });
 
             modelBuilder.Entity("CommentUser", b =>
@@ -49,7 +49,7 @@ namespace DomainLayer.Migrations
 
                     b.HasIndex("LikedCommentsId");
 
-                    b.ToTable("CommentUser");
+                    b.ToTable("CommentUser", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Article", b =>
@@ -107,7 +107,7 @@ namespace DomainLayer.Migrations
 
                     b.HasIndex("CreatorId");
 
-                    b.ToTable("Articles");
+                    b.ToTable("Articles", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.Comment", b =>
@@ -142,7 +142,7 @@ namespace DomainLayer.Migrations
 
                     b.HasIndex("CreatorId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("DomainLayer.Models.User", b =>
@@ -185,7 +185,7 @@ namespace DomainLayer.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("ArticleUser", b =>

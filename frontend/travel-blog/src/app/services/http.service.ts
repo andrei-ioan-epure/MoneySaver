@@ -66,15 +66,22 @@ export class HttpService {
       );
   }
 
-  addArticleToFavorites(body: any): Observable<User> {
+  addArticleToFavorites(userId: number, targetId: number): Observable<User> {
     const finalEndpoint = `${this.endpoint}/User/addFavorite`;
+    const body = {
+      userId: userId,
+      targetId: targetId,
+    };
     return this.http.put<any>(finalEndpoint, body);
   }
 
-  deleteArticleFromFavorites(queryParams: any): void {
+  deleteArticleFromFavorites(userId: number, targetId: number): void {
     const finalEndpoint = `${this.endpoint}/User/deleteFavorite`;
-    console.log('Apelare');
-    this.http.delete(finalEndpoint, { params: queryParams }).subscribe((s) => {
+    const body = {
+      userId: userId,
+      targetId: targetId,
+    };
+    this.http.put(finalEndpoint, body).subscribe((s) => {
       console.log(s);
     });
   }
