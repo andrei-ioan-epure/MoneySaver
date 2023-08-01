@@ -1,17 +1,45 @@
-<img
-  id="img_home"
-  src="../assets/images/img_home.png"
-  alt="Nu s-a gasit imaginea"
-/>
+<div
+  class="swiper-container"
+  (mouseover)="stopAutoplay()"
+  (mouseout)="startAutoplay()"
+>
+  <div class="swiper-wrapper">
+    <!-- Add your carousel items here -->
+    <div
+      class="swiper-slide"
+      *ngFor="let slide of carouselSlides; let index = index"
+    >
+      <img
+        *ngIf="isActiveSlide(index)"
+        [src]="slide"
+        alt="Nu s-a gasit imaginea"
+      />
+    </div>
+  </div>
+  <div class="buttons_carousel">
+    <button (click)="goToPreviousSlide()">
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <div class="carousel-bullets">
+      <span
+        *ngFor="let slide of carouselSlides; let index = index"
+        class="bullet"
+        [class.active]="isActiveSlide(index)"
+        (click)="goToSlide(index)"
+      ></span>
+    </div>
+    <button (click)="goToNextSlide()">
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+</div>
+
 <div class="containter-right">
   <h1 class="money-saver">Money Saver</h1>
 </div>
-  <p class="content">
-    We help students save money by providing
-    <br />them with an easy way to find vouchers and<br />
-    discounts on products or services in all areas <br />of interest for thems.
-  </p>
-  <button mat-raised-button class="btn"  routerLink="/blog">
-    Go to blog
-  </button>
-
+<p class="content">
+  We help students save money by providing
+  <br />them with an easy way to find vouchers and<br />
+  discounts on products or services in all areas <br />of interest for thems.
+</p>
+<button mat-raised-button class="btn" routerLink="/blog">Go to blog</button>
