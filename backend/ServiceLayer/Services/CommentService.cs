@@ -94,17 +94,16 @@ namespace ServiceLayer.Services
         }
 
 
-        public void RemoveLikedComment(int userId, int commentId)
+        public CommentDto RemoveLikedComment(TargetDto likedComment)
         {
-            var user = _userRepository.GetWithLinkedEntities(userId, "LikedComments");
-            var comment = _commentRepository.Get(commentId);
-            if (user != null && comment != null)
-            {
-                user.LikedComments.Remove(comment);
-                _userRepository.Update(user);
+            var comment = _commentRepository.GetWithLinkedEntities(likedComment.targetId, "LikedBy");
+            var user = _userRepository.Get(likedComment.userId);
+
+            comment.LikedBy.Remove(user);
+            var responseComment = _commentRepository.Update(comment);
+            return new CommentDto(responseComment.Id, responseComment.Message, responseComment.Posted, responseComment.CreatorName, responseComment.CreatorId, responseComment.ArticleId, responseComment.LikedBy.Count(), responseComment.LikedBy.Select((u) => u.Id));
 
 
-            }
 
         }
 

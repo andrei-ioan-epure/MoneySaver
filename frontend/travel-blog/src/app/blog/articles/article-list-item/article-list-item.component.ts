@@ -48,10 +48,15 @@ export class ArticleListItemComponent {
 
         console.log(body);
 
-        this.httpService.addArticleToFavorites(body).subscribe();
+        this.httpService
+          .addArticleToFavorites(this.authService.getId() as number, targetId)
+          .subscribe();
       } else {
         favBtn.innerHTML = 'favorite_border';
-        this.httpService.deleteArticleFromFavorites(body);
+        this.httpService.deleteArticleFromFavorites(
+          this.authService.getId() as number,
+          targetId
+        );
       }
     }
   }
@@ -65,12 +70,10 @@ export class ArticleListItemComponent {
   }
 
   onRemoveFromFavorite(targetId: any): void {
-    const queryParams = {
-      userId: this.authService.getId(),
-      targetId: targetId,
-    };
-
-    this.httpService.deleteArticleFromFavorites(queryParams);
+    this.httpService.deleteArticleFromFavorites(
+      this.authService.getId() as number,
+      targetId
+    );
     window.location.reload();
   }
 }

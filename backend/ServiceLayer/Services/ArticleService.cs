@@ -109,5 +109,29 @@ namespace ServiceLayer.Services
             _userRepository.Update(user);
         }
 
+        public ArticleDto RemoveFavoriteListItem(TargetDto favoriteArticle)
+        {
+             var article = _articleRepository.GetWithLinkedEntities(favoriteArticle.targetId, "FavoriteUsers"); 
+            var user = _userRepository.Get(favoriteArticle.userId);
+            article.FavoriteUsers.Remove(user);
+            var responseArticle = _articleRepository.Update(article);
+
+            return new ArticleDto(responseArticle.Id, responseArticle.Title, responseArticle.Posted, responseArticle.Expiration,
+               responseArticle.City, responseArticle.Category, responseArticle.Code, responseArticle.Store,
+               responseArticle.Author, responseArticle.Content, responseArticle.CreatorId);
+        }
+
+        public ArticleDto InsertFavoriteArticle(TargetDto favoriteArticle)
+        {
+            var article = _articleRepository.GetWithLinkedEntities(favoriteArticle.targetId, "FavoriteUsers"); 
+            var user = _userRepository.Get(favoriteArticle.userId);
+
+            article.FavoriteUsers.Add(user);
+            var responseArticle = _articleRepository.Update(article);
+            return new ArticleDto(responseArticle.Id,responseArticle.Title,responseArticle.Posted,responseArticle.Expiration,
+                responseArticle.City,responseArticle.Category,responseArticle.Code,responseArticle.Store,
+                responseArticle.Author,responseArticle.Content,responseArticle.CreatorId);
+
+        }
     }
 }

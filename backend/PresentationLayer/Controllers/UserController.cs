@@ -80,10 +80,10 @@ namespace PresentationLayer.Controllers
             return Ok();
         }
 
-        [HttpDelete("deleteFavorite")]
-        public IActionResult DeleteFavoriteItem([FromQuery] int userId, [FromQuery] int targetId)
+        [HttpPut("deleteFavorite")]
+        public IActionResult DeleteFavoriteItem(TargetDto favoriteArticle)
         {
-            _userService.DeleteFavoriteListItem(userId, targetId);
+            _userService.DeleteFavoriteListItem(favoriteArticle);
             return Ok();
         }
 

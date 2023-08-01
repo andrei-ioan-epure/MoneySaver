@@ -9,7 +9,8 @@
     padding: 8px;
     border-radius: 5px;
     box-shadow: 5px 5px 5px #12121212, -1px -1px 5px #22222222;
-
+    overflow: auto;
+    
     .publisher-details {
         display: block;
         font-weight: bold;
@@ -34,7 +35,27 @@ p {
     margin-top: 8px;
     width: 20%;
     &.liked {
-      color: red !important;
+      color: blue !important;
     }
   }
+}
+textarea{
+     resize: none;
+      border: 1px solid #000000;
+      border-radius: 8px;
+      height: 250px;
+      width: 275px;
+}
+.apply-edit:hover {
+  background-color: #008000 !important;
+  cursor: pointer;
+}
+.apply-edit {
+    color: white;
+    background-color: #006400;
+    text-align: center;
+    border-radius: 8px;
+    border: none;
+    font-family: 'Karla';
+
 }

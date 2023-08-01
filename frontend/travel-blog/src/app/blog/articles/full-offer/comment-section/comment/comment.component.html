@@ -9,8 +9,19 @@
       <p *ngIf="!commentInEditMode">
         {{ message }}
       </p>
-      <input *ngIf="commentInEditMode" [(ngModel)]="message" />
-      <button *ngIf="commentInEditMode" (click)="saveEdit()">Apply</button>
+      <textarea
+        maxlength="512"
+        *ngIf="commentInEditMode"
+        [(ngModel)]="message"
+      ></textarea>
+      <button
+        mat-raised-button
+        *ngIf="commentInEditMode"
+        (click)="saveEdit()"
+        class="apply-edit"
+      >
+        Apply
+      </button>
     </div>
 
     <div>
@@ -36,7 +47,12 @@
       <mat-icon>thumb_up</mat-icon>
       <p>{{ numberOfLikes }}</p>
     </button>
-    <button class="liked" *ngIf="likeClicked" mat-raised-button (click)="removeLike()">
+    <button
+      class="liked"
+      *ngIf="likeClicked"
+      mat-raised-button
+      (click)="removeLike(id)"
+    >
       <mat-icon>thumb_up</mat-icon>
       <p>{{ numberOfLikes }}</p>
     </button>

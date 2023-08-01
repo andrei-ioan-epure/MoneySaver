@@ -46,7 +46,7 @@ namespace ServiceLayer.Services
             return user != null ? new UserDto(user.Id, user.UserName, user.FullName, user.Email, user.Password, user.IsCreator) : null;
         }
 
-        public List<ArticleDto>? GetFavoriteList(int id)
+        public IEnumerable<ArticleDto>? GetFavoriteList(int id)
         {
             var user = _userRepository.GetWithLinkedEntities(id, "FavoriteArticles");
 
@@ -63,10 +63,20 @@ namespace ServiceLayer.Services
             return null;
         }
 
-        public void DeleteFavoriteListItem(int userId, int articleId)
+        public void InsertFavoriteArticle(TargetDto favoriteArticle)
         {
-            var user = _userRepository.GetWithLinkedEntities(userId, "FavoriteArticles");
-            var article = _articleRepository.Get(articleId);
+            var article = _articleRepository.Get(favoriteArticle.targetId);
+            var user = _userRepository.GetWithLinkedEntities(favoriteArticle.userId, "FavoriteArticles");
+
+            user.FavoriteArticles.Add(article);
+            var responseArticle = _userRepository.Update(user);
+        }
+
+
+        public void DeleteFavoriteListItem(TargetDto favoriteArticle)
+        {
+            var user = _userRepository.GetWithLinkedEntities(favoriteArticle.userId, "FavoriteArticles");
+            var article = _articleRepository.Get(favoriteArticle.targetId);
             if (user != null && article != null)
             {
                 user.FavoriteArticles.Remove(article);
@@ -74,7 +84,18 @@ namespace ServiceLayer.Services
 
 
             }
+        }
 
+
+
+        public void Update(int id, UserDto entity)
+        {
+            var salt = _userRepository.Get(id).Salt;
+            var user = new User(entity.UserName, entity.FullName, entity.Email, entity.Password, entity.IsCreator, salt)
+            {
+                Id = id
+            };
+            _userRepository.Update(user);
         }
 
         public void Delete(int entityId)
@@ -121,24 +142,8 @@ namespace ServiceLayer.Services
             _userRepository.Insert(user);
         }
 
-        public void InsertFavoriteArticle(TargetDto favoriteArticle)
-        {
-            var article = _articleRepository.Get(favoriteArticle.targetId);
-            var user = _userRepository.GetWithLinkedEntities(favoriteArticle.userId, "FavoriteArticles");
-
-            user.FavoriteArticles.Add(article);
-            _userRepository.Update(user);
-        }
-
-        public void Update(int id, UserDto entity)
-        {
-            var salt = _userRepository.Get(id).Salt;
-            var user = new User(entity.UserName, entity.FullName, entity.Email, entity.Password, entity.IsCreator, salt)
-            {
-                Id = id
-            };
-            _userRepository.Update(user);
-        }
+      
+   
 
         public TokenDto? Login(UserLoginDto userDto)
         {
