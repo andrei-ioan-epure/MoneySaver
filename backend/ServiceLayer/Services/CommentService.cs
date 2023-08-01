@@ -47,7 +47,8 @@ namespace ServiceLayer.Services
                 Id = id
             };
             var responseComment = _commentRepository.Update(comment);
-            return new CommentDto(responseComment.Id, responseComment.Message, responseComment.Posted, responseComment.CreatorName, responseComment.CreatorId, responseComment.ArticleId);
+            return new CommentDto(responseComment.Id, responseComment.Message, responseComment.Posted, responseComment.CreatorName, responseComment.CreatorId, responseComment.ArticleId,
+                entity.NumberOfLikes, entity.LikedByUsers);
 
         }
 
@@ -88,7 +89,7 @@ namespace ServiceLayer.Services
             comment.LikedBy.Add(user);
             var responseComment=_commentRepository.Update(comment);
 
-            return new CommentDto(responseComment.Id, responseComment.Message, responseComment.Posted, responseComment.CreatorName, responseComment.CreatorId, responseComment.ArticleId,responseComment.LikedBy.Count());
+            return new CommentDto(responseComment.Id, responseComment.Message, responseComment.Posted, responseComment.CreatorName, responseComment.CreatorId, responseComment.ArticleId,responseComment.LikedBy.Count(), responseComment.LikedBy.Select((u)=>u.Id));
 
         }
 

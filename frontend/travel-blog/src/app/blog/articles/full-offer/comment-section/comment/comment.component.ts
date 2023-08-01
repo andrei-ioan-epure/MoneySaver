@@ -22,14 +22,15 @@ export class CommentComponent implements OnInit {
   likeClicked: boolean = false;
 
   public myComment: boolean = false;
-  // *ngIf="!likedByUsers?.includes(authService.getId()!)"
+
   constructor(
     private commentService: CommentService,
     public authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    //console.log(this.likedByUsers?.includes(this.authService.getId()!));
+    this.verifyLike();
+    console.log(this.likeClicked);
     if (
       this.authService.getId() === this.creatorId ||
       this.authService.getRole() === 'admin'
@@ -55,27 +56,29 @@ export class CommentComponent implements OnInit {
       articleId: this.articleId!,
       id: this.id!,
       numberOfLikes: this.numberOfLikes,
-      likedByUsers: this.likedByUsers,
+      likedByUsers: this.likedByUsers == null? []: this.likedByUsers,
     };
     this.commentService.putMessageComment(comment).subscribe();
   }
+
   onEdit() {
     this.commentInEditMode = true;
   }
+
   addLike(id?: number) {
     var userId = this.authService.getId();
     this.commentService
       .putLikeComment(userId as number, id as number)
       .subscribe();
-
-    console.log('Liked now ' + this.likeClicked);
   }
+
   removeLike() {
     var userId = this.authService.getId();
     // this.commentService
     //   .putLikeComment(userId as number, id as number)
     //   .subscribe();
   }
+  
   onDelete(id?: number): void {
     this.commentService.deleteComment(id as number).subscribe();
   }

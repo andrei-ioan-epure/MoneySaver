@@ -32,11 +32,11 @@
   </div>
 
   <div class="action-button">
-    <button mat-raised-button (click)="addLike(id)">
+    <button mat-raised-button *ngIf="!likeClicked" (click)="addLike(id)">
       <mat-icon>thumb_up</mat-icon>
       <p>{{ numberOfLikes }}</p>
     </button>
-    <button class="liked" mat-raised-button (click)="removeLike()">
+    <button class="liked" *ngIf="likeClicked" mat-raised-button (click)="removeLike()">
       <mat-icon>thumb_up</mat-icon>
       <p>{{ numberOfLikes }}</p>
     </button>
