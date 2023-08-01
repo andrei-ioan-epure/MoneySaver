@@ -29,6 +29,7 @@ export class FullOfferComponent implements OnInit {
   public comment: string = '';
   isAdmin = false;
   isUser = false;
+  ImagePath: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,7 +37,9 @@ export class FullOfferComponent implements OnInit {
     private router: Router,
     private commentService: CommentService,
     private authService: AuthService
-  ) {}
+  ) {
+    this.ImagePath = '/assets/images/fullOffer.png';
+  }
 
   ngOnInit(): void {
     this.id = +(this.activatedRoute.snapshot.paramMap.get('id') as string);
