@@ -25,7 +25,7 @@ export class CommentComponent implements OnInit {
 
   constructor(
     private commentService: CommentService,
-    public authService: AuthService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +56,7 @@ export class CommentComponent implements OnInit {
       articleId: this.articleId!,
       id: this.id!,
       numberOfLikes: this.numberOfLikes,
-      likedByUsers: this.likedByUsers == null? []: this.likedByUsers,
+      likedByUsers: this.likedByUsers == null ? [] : this.likedByUsers,
     };
     this.commentService.putMessageComment(comment).subscribe();
   }
@@ -72,13 +72,13 @@ export class CommentComponent implements OnInit {
       .subscribe();
   }
 
-  removeLike() {
+  removeLike(id?: number) {
     var userId = this.authService.getId();
-    // this.commentService
-    //   .putLikeComment(userId as number, id as number)
-    //   .subscribe();
+    this.commentService
+      .removeLikeComment(userId as number, id as number)
+      .subscribe();
   }
-  
+
   onDelete(id?: number): void {
     this.commentService.deleteComment(id as number).subscribe();
   }

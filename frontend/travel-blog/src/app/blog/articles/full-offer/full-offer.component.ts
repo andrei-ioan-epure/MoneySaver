@@ -27,6 +27,8 @@ export class FullOfferComponent implements OnInit {
   creatorId?: number;
   copied = false;
   public comment: string = '';
+  isAdmin = false;
+  isUser = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -41,6 +43,16 @@ export class FullOfferComponent implements OnInit {
     this.httpService.getArticle(this.id).subscribe((article) => {
       this.setArticle(article);
     });
+    if (this.authService.getRole() == 'admin') {
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
+    }
+    if (this.authService.getRole() == 'user') {
+      this.isUser = true;
+    } else {
+      this.isUser = false;
+    }
 
     console.log(this.id);
   }
@@ -89,11 +101,9 @@ export class FullOfferComponent implements OnInit {
       creatorId: this.authService.getId() as number,
       articleId: this.id,
       numberOfLikes: undefined,
-      likedByUsers: []
+      likedByUsers: [],
     };
-    this.commentService
-      .postCommentInArticle(comment)
-      .subscribe();
+    this.commentService.postCommentInArticle(comment).subscribe();
   }
 
   goToWebsite() {

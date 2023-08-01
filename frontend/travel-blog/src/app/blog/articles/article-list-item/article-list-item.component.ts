@@ -37,7 +37,6 @@ export class ArticleListItemComponent {
 
   onClickFavorite(index: any, targetId: any): void {
     var favBtn = document.getElementById('heart' + index);
-    console.log(favBtn);
     if (favBtn != null) {
       const body = {
         userId: this.authService.getId(),
@@ -48,10 +47,20 @@ export class ArticleListItemComponent {
 
         console.log(body);
 
-        this.httpService.addArticleToFavorites(body).subscribe();
+        this.httpService
+          .addArticleToFavorites(
+            this.authService.getId() as number,
+            targetId as number
+          )
+          .subscribe();
       } else {
         favBtn.innerHTML = 'favorite_border';
-        this.httpService.deleteArticleFromFavorites(body);
+        this.httpService
+          .deleteArticleFromFavorites(
+            this.authService.getId() as number,
+            targetId as number
+          )
+          .subscribe();
       }
     }
   }
@@ -65,12 +74,11 @@ export class ArticleListItemComponent {
   }
 
   onRemoveFromFavorite(targetId: any): void {
-    const queryParams = {
-      userId: this.authService.getId(),
-      targetId: targetId,
-    };
-
-    this.httpService.deleteArticleFromFavorites(queryParams);
-    window.location.reload();
+    this.httpService
+      .deleteArticleFromFavorites(
+        this.authService.getId() as number,
+        targetId as number
+      )
+      .subscribe();
   }
 }

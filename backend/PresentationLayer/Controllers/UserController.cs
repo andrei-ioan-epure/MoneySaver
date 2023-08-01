@@ -73,7 +73,7 @@ namespace PresentationLayer.Controllers
             return Ok(_userService.GetFavoriteList(id));
         }
 
-        [HttpPut("addFavorite")]
+       /* [HttpPut("addFavorite")]
         public IActionResult AddFavorites(TargetDto favoriteArticle)
         {
             _userService.InsertFavoriteArticle(favoriteArticle);
@@ -85,7 +85,7 @@ namespace PresentationLayer.Controllers
         {
             _userService.DeleteFavoriteListItem(userId, targetId);
             return Ok();
-        }
+        }*/
 
 
 

@@ -20,7 +20,7 @@ namespace ServiceLayer.Contracts
         IEnumerable<CommentDto> GetCommentsFromArticle(int articleID);
 
         CommentDto AddLikedComment(TargetDto likedComment);
-        void RemoveLikedComment(int userId, int commentId);
+        CommentDto RemoveLikedComment(TargetDto likedCommen);
 
 
     }

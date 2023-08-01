@@ -56,6 +56,29 @@ export class CommentService {
     );
   }
 
+  removeLikeComment(userId: number, targetId: number): Observable<Comment> {
+    let finalEndpoint = `${this.endpoint}/Comment/removeLike`;
+    const body = {
+      userId: userId,
+      targetId: targetId,
+    };
+    return this.httpClient.put<Comment>(finalEndpoint, body).pipe(
+      tap((res) => {
+        console.log(this.commentsObserver.getValue());
+        this.commentsObserver.next([
+          ...this.commentsObserver
+            .getValue()
+            .filter((item) => item.id !== targetId),
+          res,
+        ]);
+      }),
+      catchError(() => {
+        console.log('failed');
+        return EMPTY;
+      })
+    );
+  }
+
   postCommentInArticle(comment: Comment): Observable<Comment> {
     let finalEndpoint = `${this.endpoint}/Comment/add`;
     return this.httpClient.post<Comment>(finalEndpoint, comment).pipe(

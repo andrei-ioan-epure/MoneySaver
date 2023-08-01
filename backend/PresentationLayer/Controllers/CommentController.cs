@@ -67,11 +67,11 @@ namespace PresentationLayer.Controllers
             return Ok(commentDto);
         }
 
-        [HttpDelete("removeLike")]
-        public IActionResult RemoveLikedComment([FromQuery] int userId, [FromQuery] int targetId)
+        [HttpPut("removeLike")]
+        public IActionResult RemoveLikedComment(TargetDto likedComment)
         {
-            _commentService.RemoveLikedComment(userId, targetId);
-            return Ok();
+            var commentDto = _commentService.RemoveLikedComment(likedComment);
+            return Ok(commentDto);
         }
     }
 }

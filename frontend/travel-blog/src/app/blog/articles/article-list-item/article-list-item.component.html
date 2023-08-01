@@ -42,9 +42,7 @@
     </div>
   </div>
   <p>Valid until : {{ expiration | date : "dd/MM/yyyy" }}</p>
-  <button
-    [routerLink]="'/blog/article-list/full-offer/' + id"
-  >
+  <button [routerLink]="'/blog/article-list/full-offer/' + id">
     See Offer
   </button>
 </div>

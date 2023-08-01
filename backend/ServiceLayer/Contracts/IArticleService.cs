@@ -23,5 +23,9 @@ namespace ServiceLayer.Contracts
         void DeleteByCreatorId(int entityId);
 
         IEnumerable<ArticleDto> GetFiltered(string authors, string category, string city, string store, string posted, string expiration);
+
+        ArticleDto RemoveFavoriteListItem(TargetDto favoriteArticle);
+        ArticleDto InsertFavoriteArticle(TargetDto favoriteArticle);
+
     }
 }

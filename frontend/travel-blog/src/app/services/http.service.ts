@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { Article, ServerArticle } from '../blog/model/article';
 import { query } from '@angular/animations';
 import { User, ServerUser } from '../blog/model/user';
@@ -8,6 +8,10 @@ import { User, ServerUser } from '../blog/model/user';
   providedIn: 'root',
 })
 export class HttpService {
+  public favoritesObserver: BehaviorSubject<Article[]> = new BehaviorSubject<
+    Article[]
+  >([]);
+
   private readonly endpoint = 'https://localhost:7207/api';
   constructor(private readonly http: HttpClient) {}
 
@@ -60,23 +64,50 @@ export class HttpService {
       id: id,
     };
     return this.http
-      .get<ServerArticle[]>(finalEndpoint, { params: queryParams })
+      .get<Article[]>(finalEndpoint, { params: queryParams })
       .pipe(
-        map((serverArticles) => this.mapFromMultipleArticles(serverArticles))
+        tap((res) => {
+          this.favoritesObserver.next(res);
+        })
       );
   }
 
-  addArticleToFavorites(body: any): Observable<User> {
-    const finalEndpoint = `${this.endpoint}/User/addFavorite`;
-    return this.http.put<any>(finalEndpoint, body);
+  addArticleToFavorites(userId: number, targetId: number): Observable<Article> {
+    const finalEndpoint = `${this.endpoint}/Article/addFavorite`;
+    const body = {
+      userId: userId,
+      targetId: targetId,
+    };
+    return this.http.put<Article>(finalEndpoint, body).pipe(
+      tap((res) => {
+        this.favoritesObserver.next([
+          ...this.favoritesObserver
+            .getValue()
+            .filter((item) => item.id !== targetId),
+          res,
+        ]);
+      })
+    );
   }
 
-  deleteArticleFromFavorites(queryParams: any): void {
-    const finalEndpoint = `${this.endpoint}/User/deleteFavorite`;
-    console.log('Apelare');
-    this.http.delete(finalEndpoint, { params: queryParams }).subscribe((s) => {
-      console.log(s);
-    });
+  deleteArticleFromFavorites(
+    userId: number,
+    targetId: number
+  ): Observable<Article> {
+    const finalEndpoint = `${this.endpoint}/Article/removeFavorite`;
+    const body = {
+      userId: userId,
+      targetId: targetId,
+    };
+    return this.http.put<Article>(finalEndpoint, body).pipe(
+      tap((res) => {
+        this.favoritesObserver.next([
+          ...this.favoritesObserver
+            .getValue()
+            .filter((item) => item.id !== targetId),
+        ]);
+      })
+    );
   }
 
   private mapFromMultipleArticles(serverArticles: ServerArticle[]): Article[] {
