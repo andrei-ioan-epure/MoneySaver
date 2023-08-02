@@ -1,16 +1,21 @@
 <div class="content">
   <h1 class="title">Comments</h1>
-  <div *ngFor="let comment of comments; let i = index">
-    <app-comment
-      [creatorName]="comment.creatorName"
-      [posted]="comment.posted"
-      [message]="comment.message"
-      [index]="i"
-      [id]="comment.id"
-      [creatorId]="comment.creatorId"
-      [articleId]="comment.articleId"
-      [numberOfLikes]="comment.numberOfLikes"
-      [likedByUsers]="comment.likedByUsers"
-    ></app-comment>
+  <div *ngIf="comments!.length == 0" class="no-comments">
+    <p>Be the first one to give an opinion.</p>
+  </div>
+  <div *ngIf="comments!.length != 0">
+    <div *ngFor="let comment of comments; let i = index">
+      <app-comment
+        [creatorName]="comment.creatorName"
+        [posted]="comment.posted"
+        [message]="comment.message"
+        [index]="i"
+        [id]="comment.id"
+        [creatorId]="comment.creatorId"
+        [articleId]="comment.articleId"
+        [numberOfLikes]="comment.numberOfLikes"
+        [likedByUsers]="comment.likedByUsers"
+      ></app-comment>
+    </div>
   </div>
 </div>
