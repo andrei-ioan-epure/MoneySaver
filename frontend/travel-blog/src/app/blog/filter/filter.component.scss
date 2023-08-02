@@ -1,4 +1,14 @@
+h2, label{
+    font-family: 'Karla';
+}
 
+.clearbtn {
+    margin-left: 76px!important;
+    margin-bottom: 5px!important;
+    color:#006400 !important;
+    font-family: 'Karla';
+
+}
 .filter{
     display: flex;
     flex-wrap: wrap;
@@ -76,7 +86,10 @@ select {
   padding: 5px;
   font-size: 16px;
   margin-bottom: 16px;
+  border-radius: 8px;
+  font-family: 'Karla';
 }
+
  label span {
      font-weight: 500;
  }
@@ -85,5 +98,7 @@ select {
     margin-left: 56px;
     margin-right: 32px;
     margin-bottom: 0px;
-
+    color:#006400 !important;
+    font-family: 'Karla';
 }
+

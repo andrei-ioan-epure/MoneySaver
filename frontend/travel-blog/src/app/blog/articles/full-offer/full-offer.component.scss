@@ -86,10 +86,11 @@
 }
 
 .image {
-  border: 2px solid #838383;
+  //border: 2px solid #838383;
   width: 285px;
   height: 166px;
   text-align: center;
+  box-shadow: 7px 7px 10px #12121255, -1px -1px 5px #22222222;
 }
 
 .image img {
@@ -98,16 +99,17 @@
 }
 
 .details {
-  border: 2px solid #838383;
-  width: 500px;
-  height: 350px;
-  font-family: "Karla";
-  font-weight: bold;
-  padding-top: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
-  overflow: hidden;
-  margin-left: 20px;
+    box-shadow: 7px 7px 10px #12121255, -1px -1px 5px #22222222;
+    //border: 2px solid #838383;
+    width: 500px;
+    height: 350px;
+    font-family: "Karla";
+    font-weight: bold;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    overflow: hidden;
+    margin-left: 20px;
 }
 
 .det2 {

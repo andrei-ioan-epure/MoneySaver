@@ -3,7 +3,7 @@
   <!-- <button id="filterButton" (click)="onClickFilter()">Filters</button> -->
 
   <h2 class="title">Filters</h2>
-  <button (click)="resetFields()">Clear filters</button>
+  <button mat-raised-button class="clearbtn" (click)="resetFields()" >Clear filters</button>
 
   <form [formGroup]="form" (ngSubmit)="submit()">
     <h2 class="author-title">Author</h2>
@@ -83,6 +83,6 @@
         <option value="tazz">Tazz</option>
       </select>
     </div>
-    <button class="applyBtn">Apply filters</button>
+    <button mat-raised-button class="applyBtn">Apply filters</button>
   </form>
 </div>
