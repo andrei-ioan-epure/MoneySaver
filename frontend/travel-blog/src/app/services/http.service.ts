@@ -184,4 +184,14 @@ export class HttpService {
     const body = article;
     return this.http.post<Article>(url, body);
   }
+
+  emptyObserverAndSet(articles: Article[]){
+    this.favoritesObserver.next([]);
+    articles.forEach(article => {
+      this.favoritesObserver.next([
+        ...this.favoritesObserver.getValue(),
+        article
+      ])
+    }); 
+  }
 }

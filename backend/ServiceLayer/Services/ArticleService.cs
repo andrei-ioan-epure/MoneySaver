@@ -107,8 +107,11 @@ namespace ServiceLayer.Services
 
             foreach (var articledto in articles)
             {
-                var article = new Article(articledto.Title,articledto.Posted,articledto.Expiration,articledto.City,articledto.Category,
-                    articledto.Code,articledto.Store,articledto.Author,articledto.Content,articledto.CreatorId);
+                var article = new Article(articledto.Title, articledto.Posted, articledto.Expiration, articledto.City, articledto.Category,
+                    articledto.Code, articledto.Store, articledto.Author, articledto.Content, articledto.CreatorId)
+                {
+                    Id =(int)articledto.Id
+                };
                
                 if (_filterService.IsAuthorMatch(article, authors) &&
                     _filterService.IsCategoryMatch(article, category) &&
@@ -129,7 +132,7 @@ namespace ServiceLayer.Services
 
         public ArticleDto RemoveFavoriteListItem(TargetDto favoriteArticle)
         {
-             var article = _articleRepository.GetWithLinkedEntities(favoriteArticle.targetId, "FavoriteUsers"); 
+            var article = _articleRepository.GetWithLinkedEntities(favoriteArticle.targetId, "FavoriteUsers"); 
             var user = _userRepository.Get(favoriteArticle.userId);
             article.FavoriteUsers.Remove(user);
             var responseArticle = _articleRepository.Update(article);

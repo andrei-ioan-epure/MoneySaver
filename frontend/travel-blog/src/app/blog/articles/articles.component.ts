@@ -101,7 +101,9 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
 
   onDataReceived(articlesReceived: Articles) {
-    console.log('Articles received from Child:', articlesReceived);
+    //console.log('Articles received from Child:', articlesReceived);
+    this.httpService.emptyObserverAndSet(articlesReceived);
+    
     this.articlesToShow = articlesReceived.sort((a, b) =>
       a.posted < b.posted ? 1 : -1
     );
