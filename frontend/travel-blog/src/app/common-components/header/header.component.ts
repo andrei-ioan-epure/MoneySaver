@@ -15,6 +15,8 @@ export class HeaderComponent {
   public active: string = '';
   public user: string = ''; // Variabila pentru a stoca initiala utilizatorului logat
   public showLogout: boolean = false;
+  public showLogoutPopup: boolean = false;
+  public logoutResponse: boolean | null = null;
 
   constructor(
     private readonly authService: AuthService,
@@ -32,8 +34,7 @@ export class HeaderComponent {
   }
 
   logOut(): void {
-    this.authService.logOut();
-    this.showLogout = false;
+    this.showLogoutPopup = true;
   }
 
   performSearch(event: Event) {
@@ -56,5 +57,15 @@ export class HeaderComponent {
   }
   onClickIcon(): void {
     this.showLogout = !this.showLogout;
+  }
+  onLogoutConfirmation(response: boolean): void {
+    // Ascunde pop-up-ul de confirmare
+    this.showLogoutPopup = false;
+
+    // Daca utilizatorul a apasat pe OK, atunci sa facem logout
+    if (response === true) {
+      this.authService.logOut();
+      this.router.navigate(['/home']); // Redirectionăm către pagina de "home"
+    }
   }
 }
