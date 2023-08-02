@@ -1,5 +1,4 @@
-﻿using System;
-using DomainLayer.Models;
+﻿using DomainLayer.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

@@ -1,5 +1,4 @@
-﻿using DomainLayer.Context;
-using DomainLayer.Models;
+﻿using DomainLayer.Models;
 using RepositoryLayer;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;

@@ -1,17 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Articles } from '../model/article';
 import { ArticlesService } from 'src/app/services/articles.service';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/app/services/http.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Observable, elementAt } from 'rxjs';
+import { Observable, Subject, Subscriber, Subscription, elementAt } from 'rxjs';
 
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
   styleUrls: ['./articles.component.scss'],
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent implements OnInit, OnDestroy {
   @Input() articles?: Articles; // Adăugăm Input decorator pentru a primi articolele din componenta părinte
 
   url?: string;
@@ -24,6 +24,8 @@ export class ArticleComponent implements OnInit {
   currentPage: number = 1;
   totalPages: number = 1;
   public isLoggedIn: Observable<boolean>;
+  private subscription!:Subscription;
+
   constructor(
     private readonly articlesService: ArticlesService,
     private readonly router: Router,
@@ -33,42 +35,40 @@ export class ArticleComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn();
   }
 
-  ngOnInit() {
+  ngOnDestroy(): void {
+    this.url = this.router.url;
+    if(!this.url.includes('favourites') && this.subscription != null)
+      this.subscription.unsubscribe();
+  }
+
+  ngOnInit(){
     if (!this.authService.hasToken()) {
       this.httpService.getArticles().subscribe((data) => {
         this.articlesToShow = data;
         this.articlesService.setArticles(data);
       });
     } else {
-      this.httpService
-        .getFavoriteArticles(this.authService.getId() as number)
-        .subscribe();
-      this.httpService.favoritesObserver.subscribe((res) => {
-        this.favoriteArticles = res.sort((a, b) =>
-          a.posted < b.posted ? 1 : -1
-        );
-
+      this.httpService.getFavoriteArticles(this.authService.getId() as number).subscribe((res) => {
+        this.favoriteArticles = res;
+    
         this.url = this.router.url;
-        if (this.url.includes('favourites')) {
-          this.articlesToShow = this.favoriteArticles;
-          this.articlesService.setArticles(this.favoriteArticles);
-
-          this.isFavouritesPage = true;
-          this.isNotFavouritesPage = !this.isFavouritesPage;
-        } else {
-          this.httpService.getArticles().subscribe((data) => {
-            this.articlesToShow = data.sort((a, b) =>
-              a.posted < b.posted ? 1 : -1
-            );
-            this.articlesService.setArticles(this.articlesToShow);
-
+        if (!this.url.includes('favourites')) {
+          this.httpService.getArticles().subscribe((res) => {
+            this.articlesToShow = res.sort((a, b) => a.posted < b.posted ? 1 : -1);
+            this.articlesService.setArticles(res);
             for (var item of this.articlesToShow) {
-              if (
-                this.favoriteArticles!.some((article) => article.id === item.id)
-              ) {
+              if (this.favoriteArticles!.some((article) => article.id === item.id)) {
                 this.isFavorite.set(item.id!, true);
               }
             }
+          });
+        } else {
+          this.subscription = this.httpService.favoritesObserver.subscribe((res) => {
+            this.articlesToShow = res.sort((a, b) => a.posted < b.posted ? 1 : -1);
+            this.articlesService.setArticles(res);
+    
+            this.isFavouritesPage = true;
+            this.isNotFavouritesPage = !this.isFavouritesPage;
           });
         }
       });
@@ -99,9 +99,15 @@ export class ArticleComponent implements OnInit {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     this.articlesService.getFilteredArticles().subscribe((filteredArticles) => {
+      for (var item of filteredArticles) {
+        if (this.favoriteArticles!.some((article) => article.id === item.id)) {
+          this.isFavorite.set(item.id!, true);
+        }
+      }
       this.articlesToShow = filteredArticles
         ?.sort((a, b) => (a.posted < b.posted ? 1 : -1))
         .slice(startIndex, endIndex);
+      
     });
   }
 

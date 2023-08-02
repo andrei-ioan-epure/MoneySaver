@@ -1,5 +1,4 @@
-﻿using System;
-using DomainLayer.Models;
+﻿using DomainLayer.Models;
 using ServiceLayer.DtoModels;
 
 namespace ServiceLayer.Contracts

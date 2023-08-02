@@ -1,5 +1,4 @@
-﻿
-using ServiceLayer.DtoModels;
+﻿using ServiceLayer.DtoModels;
 
 namespace ServiceLayer.Contracts
 {
@@ -20,8 +19,7 @@ namespace ServiceLayer.Contracts
         IEnumerable<CommentDto> GetCommentsFromArticle(int articleID);
 
         CommentDto AddLikedComment(TargetDto likedComment);
+
         CommentDto RemoveLikedComment(TargetDto likedCommen);
-
-
     }
 }

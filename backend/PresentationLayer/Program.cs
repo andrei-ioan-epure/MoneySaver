@@ -27,14 +27,11 @@ namespace PresentationLayer
             #region Service Injected
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             builder.Services.AddScoped<IUserService, UserService>();
-            #endregion
-
-            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IArticleService, ArticleService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<IFilterService, FilterService>();
             builder.Services.AddScoped<IJwtUtils, JwtUtils>();
+            #endregion
 
             var app = builder.Build();
 
