@@ -1,4 +1,3 @@
-<!--Toolbar din Header-->
 <div class="nav">
   <a routerLink="/home">
     <img
@@ -19,6 +18,8 @@
   </div>
 
   <div class="right">
+    <!-- Afiseaza butonul "Sign In" doar daca utilizatorul nu este logat -->
+
     <button routerLink="blog/favourites" id="fav">
       <mat-icon *ngIf="active.includes('favourites')" class="custom-size"
         >favorite</mat-icon
@@ -45,7 +46,7 @@
       routerLinkActive="active_route"
     >
       Contact
-      <mat-icon class="mail_icon"> mail_outline</mat-icon>
+      <mat-icon class="mail_icon">mail_outline</mat-icon>
     </button>
     <button
       id="aboutus"
@@ -56,7 +57,6 @@
       About Us
       <mat-icon class="info_icon">error_outline</mat-icon>
     </button>
-
     <button
       *ngIf="!(isLoggedIn | async)"
       id="signin"
@@ -67,16 +67,14 @@
       Sign In
       <mat-icon class="signin_icon">person_outline</mat-icon>
     </button>
-    <!-- <p>{{isLoggedIn | async}}</p> -->
-    <button
-      *ngIf="isLoggedIn | async"
-      (click)="logOut()"
-      mat-raised-button
-      mat-raised-button
-      routerLink="/home"
-    >
-      Sign Out
-      <mat-icon class="signout_icon">exit_to_app</mat-icon>
-    </button>
+    <!-- Afiseaza iconita doar daca utilizatorul este logat -->
+    <div class="user-icon" (click)="onClickIcon()" *ngIf="isLoggedIn | async">
+      {{ getInitials() }}
+      <div class="logout-popup" *ngIf="showLogout">
+        <button mat-raised-button (click)="logOut()" routerLink="/home">
+          <mat-icon class="signout_icon">exit_to_app</mat-icon>Sign out
+        </button>
+      </div>
+    </div>
   </div>
 </div>

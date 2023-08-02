@@ -2,7 +2,7 @@
   padding: 16px;
   height: 670px;
   width: 1000px;
-  position: fixed; /* Adaugă această proprietate pentru a folosi "position: absolute" în clasa "money saver" */
+  position: fixed;
 }
 .container-right {
   align-items: center;
@@ -55,13 +55,13 @@ p {
   left: 1175px;
 }
 .btn:hover {
-  background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+  background-color: #008000 !important;
   cursor: pointer;
 }
 .swiper-container {
   overflow: none;
   width: 100%;
-  height: 300px; /* Set the height of your carousel */
+  height: 300px;
   margin-top: 20px;
   margin-left: 150px;
 }
@@ -76,48 +76,6 @@ p {
   margin-left: 10px;
 }
 
-// .buttons_carousel {
-//   display: flex;
-//   align-items: center; /* Aliniere pe verticală pe aceeași linie */
-//   justify-content: left; /* Aliniere pe orizontală pe aceeași linie */
-//   margin-top: 250px; /* Poți ajusta spațierea dintre butoane și bule */
-
-//   margin-left: 150px;
-// }
-
-// /* Stilizează butoanele Previous și Next */
-// .buttons_carousel button {
-//   background: none;
-//   border: none;
-//   cursor: pointer;
-//   font-size: 24px;
-// }
-
-// /* Stilizează bulinele de paginare */
-// .carousel-bullets {
-//   display: flex;
-//   align-items: lef; /* Aliniere pe verticală pe aceeași linie */
-// }
-
-// .carousel-bullets .bullet {
-//   width: 8px;
-//   height: 8px;
-//   background-color: #000;
-//   opacity: 0.6;
-//   border-radius: 50%;
-//   margin: 0 5px;
-//   cursor: pointer;
-//   transition: transform 0.2s;
-// }
-
-// .carousel-bullets .bullet.active {
-//   opacity: 1;
-// }
-// .carousel-bullets .bullet:hover {
-//   transform: scale(1.7); /* Mărește  la hover */
-// }
-
-/* Add this CSS code */
 .buttons_carousel {
   display: flex;
   align-items: center;
@@ -137,16 +95,16 @@ p {
   cursor: pointer;
   font-size: 24px;
   color: #000;
-  width: 40px; /* Adjust the width to make the circle smaller */
-  height: 40px; /* Adjust the height to make the circle smaller */
+  width: 40px;
+  height: 40px;
   margin-right: 10px;
 }
 
 .buttons_carousel button::before {
   content: "";
-  display: flex; /* Use flex to center the arrow */
-  align-items: center; /* Center the arrow vertically */
-  justify-content: center; /* Center the arrow horizontally */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -188,7 +146,7 @@ p {
 
 .carousel-bullets {
   display: flex;
-  align-items: left; /* Aliniere pe verticală pe aceeași linie */
+  align-items: left;
 }
 
 .carousel-bullets .bullet {

@@ -41,9 +41,17 @@
             >Expire Date: {{ expiration | date : "dd/MM/yyyy" }}</label
           ><br /><br /><br />
           <div class="codewbtn">
-            <label id="code">CODE: {{ code }}</label><br /><br /><br />
-            <button mat-raised-button type="submit" class="copyBtn" id="copyButton" [disabled]="copied" (click)="copyCode()">
-              {{ copied ? 'Copied' : 'Copy' }}
+            <label id="code">CODE: {{ code }}</label
+            ><br /><br /><br />
+            <button
+              mat-raised-button
+              type="submit"
+              class="copyBtn"
+              id="copyButton"
+              [disabled]="copied"
+              (click)="copyCode()"
+            >
+              {{ copied ? "Copied" : "Copy" }}
               <mat-icon *ngIf="copied">check_circle</mat-icon>
             </button>
           </div>
@@ -59,43 +67,19 @@
         </div>
       </div>
       <div class="addComment">
-        <input id="message" type="text" class="comment" placeholder="Add a comment.." [(ngModel)]="comment"/>
-        <button mat-raised-button (click)="addComment()" class="addBtn">Add</button>
+        <input
+          id="message"
+          type="text"
+          class="comment"
+          placeholder="Add a comment.."
+          [(ngModel)]="comment"
+        />
+        <button mat-raised-button (click)="addComment()" class="addBtn">
+          Add
+        </button>
       </div>
     </div>
-    
-    <app-comment-section>
-    </app-comment-section>
-    <!-- <div class="comments">
-      <h2>Comments</h2>
-      <div class="comm">
-        <label>Comentariu</label>
-        <div class="buttons">
-          <button mat-raised-button class="like">
-            <mat-icon class="likeicon">thumb_up</mat-icon>
-          </button>
-          <button mat-raised-button class="dislike">
-            <mat-icon class="dislikeicon">thumb_down</mat-icon>
-          </button>
 
-          <button
-            mat-icon-button
-            [matMenuTriggerFor]="menu"
-            aria-label="Example icon-button with a menu"
-          >
-            <mat-icon class="menuComm">more_vert</mat-icon>
-          </button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>
-              <span>Edit</span>
-            </button>
-            <button mat-menu-item>
-              <span>Delete</span>
-            </button>
-          </mat-menu>
-        </div>
-      </div> 
-    </div> -->
+    <app-comment-section> </app-comment-section>
   </div>
 </div>
-
