@@ -7,6 +7,7 @@ h1{
     font-style: normal;
     font-weight: 700;
     line-height: 70px;   
+    margin-left: 700px;
 }
 
 h3{
@@ -14,7 +15,18 @@ h3{
     font-family: 'Karla';
     color:#32403B ;
     font-size: 25px;
+    margin-left: 700px;
+}
 
+.contactpage{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap:200px;
+}
+
+.imgcontact{
+    margin-top: -100px;
 }
 
 form{

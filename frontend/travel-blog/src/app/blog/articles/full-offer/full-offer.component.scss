@@ -7,9 +7,9 @@
 
 .up-buttons{
     display: flex;
-    justify-content: center;
-    gap:1150px;
-    margin-top: 20px;
+    justify-content: space-between;
+   // gap:1150px;
+    margin: 16px 100px 0px 100px;
 }
 
 .backBtn{
@@ -269,4 +269,15 @@ h2{
 {
     position: relative;
    bottom: 3.5px;
+}
+
+textarea{
+ 
+    width:  760px;
+    min-height: 121px;
+    
+    resize: none;
+    border: 1px solid #000000;
+    border-radius: 8px;
+      
 }
