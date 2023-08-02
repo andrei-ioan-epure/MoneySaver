@@ -159,7 +159,7 @@ namespace UnitTests
 
 
         [Fact]
-        public void Delete_ShouldCallDeleteMethodOnRepository()
+        public void Delete_ShouldSucceed_WhenIdValid()
         {
             // Arrange
             int entityIdToDelete = 1;
@@ -187,7 +187,7 @@ namespace UnitTests
 
 
         [Fact]
-        public void DeleteByCreatorId_ShouldDeleteArticlesWithMatchingCreatorId()
+        public void DeleteByCreatorId_ShouldDeleteArticles_WhenMatchingCreatorId()
         {
             // Arrange
             int creatorIdToDelete = 1;
@@ -224,7 +224,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void DeleteByCreatorId_NegativeId_ShouldNotDeleteAnyArticles()
+        public void DeleteByCreatorId_ShouldNotDeleteAnyArticles_WhenNegativeId()
         {
             // Arrange
             int negativeCreatorId = -1;
@@ -238,7 +238,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void DeleteByCreatorId_ZeroId_ShouldNotDeleteAnyArticles()
+        public void DeleteByCreatorId_ShouldNotDeleteAnyArticles_WhenIdZero()
         {
             // Arrange
             int zeroCreatorId = 0;
@@ -352,6 +352,63 @@ namespace UnitTests
 
 
         }
+
+
+        [Fact]
+        public void GetFiltered_ShouldReturnList_WhenMatchValid()
+        {
+
+            //Arrange
+
+            string authors = "All";
+            string category = "All";
+            string city = "All";
+            string store = "All";
+            string posted= "All";
+            string expiration = "All";
+
+            var articles = new List<Article>
+            {
+                new Article ("Article 1", DateTime.Now, DateTime.Now.AddDays(7), "City 1", "Category 1", "Code 1", "Store 1", "Author 1", "Content 1", 1)
+               {
+                    Id=1
+                },
+                 new Article ("Article 2", DateTime.Now, DateTime.Now.AddDays(7), "City 1", "Category 1", "Code 1", "Store 1", "Author 1", "Content 1", 2)
+                  {
+                    Id=2
+                },
+                new Article ("Article 3", DateTime.Now, DateTime.Now.AddDays(7), "City 1", "Category 1", "Code 1", "Store 1", "Author 1", "Content 1", 1)
+                 {
+                    Id=3
+                },
+                new Article ("Article 4", DateTime.Now, DateTime.Now.AddDays(7), "City 1", "Category 1", "Code 1", "Store 1", "Author 1", "Content 1", 3)
+                 {
+                    Id=4
+                },
+             };
+
+            var articleDtos = new List<ArticleDto>
+            {
+                new ArticleDto (1,"Article 1", articles[0].Posted,articles[0].Expiration, "City 1", "Category 1", "Code 1", "Store 1", "Author 1", "Content 1", 1)
+              ,
+                 new ArticleDto (2,"Article 2", articles[1].Posted,articles[1].Expiration, "City 1", "Category 1", "Code 1", "Store 1", "Author 1", "Content 1", 2)
+                ,
+                new ArticleDto (3,"Article 3", articles[2].Posted,articles[2].Expiration, "City 1", "Category 1", "Code 1", "Store 1", "Author 1", "Content 1", 1)
+                ,
+                new ArticleDto (4,"Article 4", articles[3].Posted,articles[3].Expiration, "City 1", "Category 1", "Code 1", "Store 1", "Author 1", "Content 1", 3)
+               
+             };
+
+            _articleRepositoryMock.Setup((r) => r.GetAll()).Returns(articles);
+
+            //Act
+            var result = _systemUnderTest.GetFiltered(authors, category, city,
+             store, posted, expiration);
+
+            //Assert
+
+            result.Should().BeEquivalentTo(articleDtos);
+            }
 
     }
 

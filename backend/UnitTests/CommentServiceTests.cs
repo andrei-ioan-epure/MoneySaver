@@ -24,7 +24,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Delete_CallsCommentRepositoryDelete_WithCorrectEntityId()
+        public void Delete_ShouldDelete_WhenIDValid()
         {
             // Arrange
             int entityIdToDelete = 123;
@@ -36,7 +36,7 @@ namespace UnitTests
             _commentRepositoryMock.Verify(repo => repo.Delete(entityIdToDelete), Times.Once);
         }
         [Fact]
-        public void Get_Returns_Null_When_CommentNotFound()
+        public void Get_ShouldReturnNull_WhenCommentNotFound()
         {
             // Arrange
             int commentId = 123;
@@ -50,7 +50,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Get_Returns_CommentDto_When_CommentFound()
+        public void Get_ShouldReturn_WhenCommentFound()
         {
             // Arrange
             int commentId = 123;
@@ -69,7 +69,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void GetAll_Returns_All_Comments_As_CommentDtos()
+        public void Get_ShouldReturnAllComments_WhenRequest()
         {
             // Arrange
             var comments = new List<Comment>
@@ -104,7 +104,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Insert_Returns_Expected_CommentDto_After_Insertion()
+        public void Insert_ShouldSucceed_WhenInputValid()
         {
             // Arrange
             var commentDto = new CommentDto(1, "Test message", new DateTime(), "Test", 1, 1);
@@ -124,7 +124,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void Update_Returns_Updated_CommentDto_After_Update()
+        public void Update_ShouldSucceed_WhenInputValid()
         {
             // Arrange
             int commentId = 1;
@@ -147,7 +147,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void DeleteByCreatorId_Deletes_Comments_By_CreatorId()
+        public void Delete_ShouldSucceed_WhenIdValid ()
         {
             // Arrange
             int creatorId = 1;
@@ -186,7 +186,7 @@ namespace UnitTests
             }
         }
         [Fact]
-        public void GetCommentsFromArticle_Returns_CommentDtos_From_Specified_Article()
+        public void GetCommentsFromArticle_ShoudSucceed_WhenArticleValid()
         {
             // Arrange
             int articleId = 1;
@@ -237,7 +237,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void AddLikedComment_Adds_User_To_LikedBy_And_Returns_Updated_CommentDto()
+        public void AddLikedComment_ShouldAdd_WhenIdsValid()
         {
             // Arrange
             int targetCommentId = 1;
@@ -275,7 +275,7 @@ namespace UnitTests
         }
 
         [Fact]
-        public void RemoveLikedComment_Removes_User_From_LikedBy_And_Returns_Updated_CommentDto()
+        public void RemoveLikedComment_ShouldRemove_WhenIdsValid()
         {
             // Arrange
             int targetCommentId = 1;
