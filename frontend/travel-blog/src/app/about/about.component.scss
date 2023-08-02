@@ -1,37 +1,37 @@
-.title{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 24px;
-    margin-top: 24px;
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  margin-top: 24px;
 }
-h1{
-    font-family: 'Karla';
-    text-align: center;
-    font-size: 55px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 70px;
-    color: var(--heading, #212B27);
-}
-
-.cards1{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40vh;
+h1 {
+  font-family: "Karla";
+  text-align: center;
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 70px;
+  color: var(--heading, #212b27);
 }
 
-.cards2{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40vh;
-    margin-top: 30px;
+.cards1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40vh;
 }
 
-.content{
-    background-image: url("../../assets/images/aboutv5.png");  
-    height: 91%;
-    background-size: cover;  
-    background-repeat: no-repeat;
+.cards2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40vh;
+  margin-top: 30px;
+}
+
+.content {
+  background-image: url("../../assets/images/about.png");
+  height: 91%;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
