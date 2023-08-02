@@ -31,6 +31,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize("user")]
         public IActionResult Add(CommentDto comment)
         {
             var commentDto = _commentService.Insert(comment);
@@ -38,6 +39,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPut("update/{id}")]
+        [Authorize("user")]
         public IActionResult Update(int id, CommentDto comment)
         {
             var commentDto=_commentService.Update(id, comment);
@@ -45,6 +47,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize("user")]
         public IActionResult Delete(int id)
         {
             _commentService.Delete(id);
@@ -61,6 +64,7 @@ namespace PresentationLayer.Controllers
 
 
         [HttpPut("addLike")]
+        [Authorize("user")]
         public IActionResult AddLikedComment(TargetDto likedComment)
         {
             var commentDto= _commentService.AddLikedComment(likedComment);
@@ -68,6 +72,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPut("removeLike")]
+        [Authorize("user")]
         public IActionResult RemoveLikedComment(TargetDto likedComment)
         {
             var commentDto = _commentService.RemoveLikedComment(likedComment);

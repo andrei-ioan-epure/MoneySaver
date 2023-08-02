@@ -65,6 +65,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpGet("getFavorite")]
+        [Authorize("user")]
         public IActionResult GetFavorites([FromQuery]  int id)
         {
             return Ok(_userService.GetFavoriteList(id));

@@ -20,8 +20,6 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpGet("get")]
-        //[AllowAnonymous]
-        //[Authorize("admin")]
         public IActionResult GetAll()
         {
             return Ok(_articleService.GetAll());
@@ -35,7 +33,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPost("add")]
-        //[Authorize("admin")]
+        [Authorize("admin")]
         public IActionResult Add(ArticleDto article)
         {
             _articleService.Insert(article);
@@ -43,6 +41,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPut("update/{id}")]
+        [Authorize("admin")]
         public IActionResult Update(int id, ArticleDto article)
         {
             _articleService.Update(id, article);
@@ -50,11 +49,13 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpDelete("delete/{id}")]
+        [Authorize("admin")]
         public IActionResult Delete(int id)
         {
             _articleService.Delete(id);
             return Ok();
         }
+
         [HttpGet("getFiltered")]
         public IActionResult GetFiltered([FromQuery] string authors, [FromQuery] string category, [FromQuery] string city,
             [FromQuery] string store, [FromQuery] string posted, [FromQuery] string expiration)
@@ -64,6 +65,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPut("addFavorite")]
+        [Authorize("user")]
         public IActionResult AddFavorites(TargetDto favoriteArticle)
         {
             var articleDto=_articleService.InsertFavoriteArticle(favoriteArticle);
@@ -71,6 +73,7 @@ namespace PresentationLayer.Controllers
         }
 
         [HttpPut("removeFavorite")]
+        [Authorize("user")]
         public IActionResult DeleteFavoriteItem(TargetDto favoriteArticle)
         {
             var articleDto = _articleService.RemoveFavoriteListItem(favoriteArticle);
