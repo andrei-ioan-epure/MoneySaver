@@ -33,6 +33,7 @@ export class HeaderComponent {
 
   logOut(): void {
     this.authService.logOut();
+    this.showLogout = false;
   }
 
   performSearch(event: Event) {
