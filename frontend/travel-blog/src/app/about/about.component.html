@@ -1,26 +1,27 @@
 <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet" />
-<br>
-<h1>About us</h1>
-<br>
-<div class="cards1">
-    <div class="cardsfirstrow" *ngFor="let card of cards | slice: 0 : 3">
-        <app-card
-            [img]="card.img"
-            [lname]="card.lname"
-            [fname]="card.fname"
-            [description]="card.description"
-        ></app-card>
+<div class="content">
+  <div class="title">
+    <h1>About us</h1>
+  </div>
+  <div class="cards1">
+    <div class="cardsfirstrow" *ngFor="let card of cards | slice : 0 : 3">
+      <app-card
+        [img]="card.img"
+        [lname]="card.lname"
+        [fname]="card.fname"
+        [description]="card.description"
+      ></app-card>
     </div>
-</div>
+  </div>
 
-<div class="cards2">
-    <div *ngFor="let card of cards | slice: 3 : 5">
-        <app-card
-            [img]="card.img"
-            [lname]="card.lname"
-            [fname]="card.fname"
-            [description]="card.description"
-        ></app-card>
+  <div class="cards2">
+    <div *ngFor="let card of cards | slice : 3 : 5">
+      <app-card
+        [img]="card.img"
+        [lname]="card.lname"
+        [fname]="card.fname"
+        [description]="card.description"
+      ></app-card>
     </div>
+  </div>
 </div>
-
