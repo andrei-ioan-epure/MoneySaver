@@ -12,6 +12,8 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
 import { Users } from '../model/user';
 import { Articles } from '../model/article';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-filter',
@@ -32,7 +34,12 @@ export class FilterComponent {
   comboboxIds = ['datePosted', 'expirationDate', 'category', 'city', 'store'];
   selectedValues: { [key: string]: any } = {};
 
-  constructor(fb: FormBuilder, private readonly httpService: HttpService) {
+  constructor(
+    fb: FormBuilder,
+    private readonly httpService: HttpService,
+    private readonly router: Router,
+    private readonly authService: AuthService
+  ) {
     this.form = fb.group({
       selectedAuthors: new FormArray([]),
     });
@@ -79,29 +86,52 @@ export class FilterComponent {
     const selectedAuthors = this.form.get('selectedAuthors') as FormArray;
     selectedAuthors.clear();
 
-    this.httpService.getFilteredArticles().subscribe((data) => {
-      console.log(data);
-      this.dataEmitter.emit(data);
+    this.comboboxIds.forEach((id) => {
+      this.selectedValues[id] = 'All';
     });
+    if (!this.router.url.includes('favourites')) {
+      this.httpService.getFilteredArticles().subscribe((data) => {
+        this.dataEmitter.emit(data);
+      });
+    } else {
+      this.httpService
+        .getFilteredFavoriteArticles(this.authService.getId() as number)
+        .subscribe((data) => {
+          this.dataEmitter.emit(data);
+        });
+    }
   }
 
   submit() {
     this.selectedValues['authors'] = this.form.get('selectedAuthors')?.value;
-    // console.log("Info:");
-    // console.log(this.selectedValues);
 
-    this.httpService
-      .getFilteredArticles(
-        this.selectedValues['authors'].join(','),
-        this.selectedValues['category'],
-        this.selectedValues['city'],
-        this.selectedValues['store'],
-        this.selectedValues['datePosted'],
-        this.selectedValues['expirationDate']
-      )
-      .subscribe((data) => {
-        //console.log(data)
-        this.dataEmitter.emit(data);
-      });
+    if (!this.router.url.includes('favourites')) {
+      this.httpService
+        .getFilteredArticles(
+          this.selectedValues['authors'].join(','),
+          this.selectedValues['category'],
+          this.selectedValues['city'],
+          this.selectedValues['store'],
+          this.selectedValues['datePosted'],
+          this.selectedValues['expirationDate']
+        )
+        .subscribe((data) => {
+          this.dataEmitter.emit(data);
+        });
+    } else {
+      this.httpService
+        .getFilteredFavoriteArticles(
+          this.authService.getId() as number,
+          this.selectedValues['authors'].join(','),
+          this.selectedValues['category'],
+          this.selectedValues['city'],
+          this.selectedValues['store'],
+          this.selectedValues['datePosted'],
+          this.selectedValues['expirationDate']
+        )
+        .subscribe((data) => {
+          this.dataEmitter.emit(data);
+        });
+    }
   }
 }

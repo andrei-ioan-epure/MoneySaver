@@ -19,6 +19,8 @@ namespace ServiceLayer.Contracts
 
         IEnumerable<ArticleDto> GetFiltered(string authors, string category, string city, string store, string posted, string expiration);
 
+        IEnumerable<ArticleDto> GetFilteredFavorite(int id, string authors, string category, string city, string store, string posted, string expiration);
+     
         ArticleDto RemoveFavoriteListItem(TargetDto favoriteArticle);
 
         ArticleDto InsertFavoriteArticle(TargetDto favoriteArticle);

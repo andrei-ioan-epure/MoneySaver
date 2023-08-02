@@ -102,10 +102,10 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   onDataReceived(articlesReceived: Articles) {
     console.log('Articles received from Child:', articlesReceived);
-    this.articles = articlesReceived.sort((a, b) =>
+    this.articlesToShow = articlesReceived.sort((a, b) =>
       a.posted < b.posted ? 1 : -1
     );
-    this.articlesService.setArticles(this.articles);
+    this.articlesService.setArticles(this.articlesToShow);
   }
 
   private paginateArticles() {

@@ -12,13 +12,14 @@ namespace ServiceLayer.Services
         private readonly IRepository<Article> _articleRepository;
         private readonly IRepository<Comment> _commentRepository;
         private readonly IFilterService _filterService;
-
-        public ArticleService(IRepository<Article> articleRepository, IFilterService filterService, IRepository<User> userRepository, IRepository<Comment> commentRepository)
+        private readonly IUserService _userService;
+        public ArticleService(IRepository<Article> articleRepository, IFilterService filterService, IRepository<User> userRepository, IRepository<Comment> commentRepository, IUserService userService)
         {
             _articleRepository = articleRepository;
             _filterService = filterService;
             _userRepository = userRepository;
             _commentRepository = commentRepository;
+            _userService = userService;
         }
         public void Delete(int entityId)
         {
@@ -78,8 +79,6 @@ namespace ServiceLayer.Services
             List<ArticleDto> filteredArticles = new List<ArticleDto>();
             foreach (var article in articles)
             {
-         
-                var author = article.Author;
 
                 if (_filterService.IsAuthorMatch(article, authors) &&
                     _filterService.IsCategoryMatch(article, category) &&
@@ -89,10 +88,40 @@ namespace ServiceLayer.Services
                     _filterService.IsExpirationMatch(article, expiration))
                 {
                     var articleDto = new ArticleDto(article.Id, article.Title, article.Posted, article.Expiration,
-                        article.City, article.Category, article.Code, article.Store, author, article.Content, article.CreatorId);
+                        article.City, article.Category, article.Code, article.Store, article.Author, article.Content, article.CreatorId);
 
                     filteredArticles.Add(articleDto);
               
+                }
+            }
+            return filteredArticles;
+        }
+
+
+        public IEnumerable<ArticleDto> GetFilteredFavorite(int id,string authors, string category, string city, string store, string posted, string expiration)
+        {
+
+        
+            List<ArticleDto> articles = _userService.GetFavoriteList(id).ToList();
+            List<ArticleDto> filteredArticles = new List<ArticleDto>();
+
+            foreach (var articledto in articles)
+            {
+                var article = new Article(articledto.Title,articledto.Posted,articledto.Expiration,articledto.City,articledto.Category,
+                    articledto.Code,articledto.Store,articledto.Author,articledto.Content,articledto.CreatorId);
+               
+                if (_filterService.IsAuthorMatch(article, authors) &&
+                    _filterService.IsCategoryMatch(article, category) &&
+                    _filterService.IsCityMatch(article, city) &&
+                    _filterService.IsStoreMatch(article, store) &&
+                    _filterService.IsPostedMatch(article, posted) &&
+                    _filterService.IsExpirationMatch(article, expiration))
+                {
+                    var articleDto = new ArticleDto(article.Id, article.Title, article.Posted, article.Expiration,
+                        article.City, article.Category, article.Code, article.Store, article.Author, article.Content, article.CreatorId);
+
+                    filteredArticles.Add(articleDto);
+
                 }
             }
             return filteredArticles;

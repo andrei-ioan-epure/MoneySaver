@@ -64,6 +64,14 @@ namespace PresentationLayer.Controllers
             return Ok(_articleService.GetFiltered(authors, category, city, store, posted, expiration));
         }
 
+        [HttpGet("getFilteredFavorite")]
+        public IActionResult GetFilteredFavorite([FromQuery] int id,[FromQuery] string authors, [FromQuery] string category, [FromQuery] string city,
+         [FromQuery] string store, [FromQuery] string posted, [FromQuery] string expiration)
+        {
+
+            return Ok(_articleService.GetFilteredFavorite(id,authors, category, city, store, posted, expiration));
+        }
+
         [HttpPut("addFavorite")]
         [Authorize("user")]
         public IActionResult AddFavorites(TargetDto favoriteArticle)
