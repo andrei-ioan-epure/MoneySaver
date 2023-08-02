@@ -12,7 +12,5 @@ namespace ServiceLayer.Contracts
         bool IsStoreMatch(Article article, string store);
         bool IsPostedMatch(Article article, string posted);
         bool IsExpirationMatch(Article article, string expiration);
-
-
     }
 }

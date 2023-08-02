@@ -1,5 +1,4 @@
-﻿using DomainLayer.Models;
-using ServiceLayer.DtoModels;
+﻿using ServiceLayer.DtoModels;
 
 namespace ServiceLayer.Contracts
 {
@@ -20,12 +19,6 @@ namespace ServiceLayer.Contracts
 
         bool IsCreator(int id);
 
-         void InsertFavoriteArticle(TargetDto favoriteArticle);
-
         IEnumerable<ArticleDto>? GetFavoriteList(int id);
-
-        void DeleteFavoriteListItem(TargetDto favoriteArticle);
-  
-
     }
 }

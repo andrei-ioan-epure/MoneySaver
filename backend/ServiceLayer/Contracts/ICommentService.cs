@@ -1,5 +1,4 @@
-﻿
-using ServiceLayer.DtoModels;
+﻿using ServiceLayer.DtoModels;
 
 namespace ServiceLayer.Contracts
 {
@@ -21,7 +20,5 @@ namespace ServiceLayer.Contracts
 
         CommentDto AddLikedComment(TargetDto likedComment);
         CommentDto RemoveLikedComment(TargetDto likedCommen);
-
-
     }
 }

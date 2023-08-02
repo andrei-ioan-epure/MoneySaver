@@ -1,5 +1,4 @@
-﻿using DomainLayer.Context;
-using DomainLayer.Models;
+﻿using DomainLayer.Models;
 using RepositoryLayer;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
@@ -97,16 +96,6 @@ namespace ServiceLayer.Services
                 }
             }
             return filteredArticles;
-        }
-
-
-        public void InsertLikedComment(TargetDto likedComment)
-        {
-            var comment = _commentRepository.Get(likedComment.targetId);
-            var user = _userRepository.GetWithLinkedEntities(likedComment.userId, "LikedComments");
-
-            user.LikedComments.Add(comment);
-            _userRepository.Update(user);
         }
 
         public ArticleDto RemoveFavoriteListItem(TargetDto favoriteArticle)

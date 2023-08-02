@@ -93,7 +93,6 @@ namespace ServiceLayer.Services
 
         }
 
-
         public CommentDto RemoveLikedComment(TargetDto likedComment)
         {
             var comment = _commentRepository.GetWithLinkedEntities(likedComment.targetId, "LikedBy");
@@ -102,11 +101,7 @@ namespace ServiceLayer.Services
             comment.LikedBy.Remove(user);
             var responseComment = _commentRepository.Update(comment);
             return new CommentDto(responseComment.Id, responseComment.Message, responseComment.Posted, responseComment.CreatorName, responseComment.CreatorId, responseComment.ArticleId, responseComment.LikedBy.Count(), responseComment.LikedBy.Select((u) => u.Id));
-
-
-
         }
-
     }
 }
 

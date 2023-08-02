@@ -1,9 +1,4 @@
 ﻿using ServiceLayer.DtoModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLayer.Contracts
 {
@@ -24,8 +19,8 @@ namespace ServiceLayer.Contracts
 
         IEnumerable<ArticleDto> GetFiltered(string authors, string category, string city, string store, string posted, string expiration);
 
-      /*  ArticleDto RemoveFavoriteListItem(TargetDto favoriteArticle);
+        ArticleDto RemoveFavoriteListItem(TargetDto favoriteArticle);
+
         ArticleDto InsertFavoriteArticle(TargetDto favoriteArticle);
-*/
     }
 }

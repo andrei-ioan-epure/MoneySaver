@@ -27,14 +27,14 @@
 
       <button
         class="favBtn"
-        *ngIf="(isLoggedIn | async) && hideFavoriteBtn && !isFavorite"
+        *ngIf="(isLoggedIn | async) && hideFavoriteBtn && !mapFavorite?.get(id!)"
         (click)="onClickFavorite(index, articleId)"
       >
         <mat-icon id="heart{{ index }}">favorite_border</mat-icon>
       </button>
       <button
         class="favBtn"
-        *ngIf="(isLoggedIn | async) && hideFavoriteBtn && isFavorite"
+        *ngIf="(isLoggedIn | async) && hideFavoriteBtn && mapFavorite?.get(id!)"
         (click)="onClickFavorite(index, articleId)"
       >
         <mat-icon id="heart{{ index }}">favorite</mat-icon>

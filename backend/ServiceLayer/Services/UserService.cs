@@ -1,13 +1,6 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
 using DomainLayer.Models;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using RepositoryLayer;
 using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
@@ -17,8 +10,6 @@ namespace ServiceLayer.Services
     public class UserService : IUserService
     {
         private readonly IRepository<User> _userRepository;
-        private readonly IRepository<Article> _articleRepository;
-        private readonly IRepository<Comment> _commentRepository;
 
         private const int keySize = 32;
         private const int iterations = 7;
@@ -26,11 +17,9 @@ namespace ServiceLayer.Services
         private byte[] passwordSalt;
         private JwtUtils jwtUtils = new JwtUtils();
 
-        public UserService(IRepository<User> userRepository, IRepository<Article> articleRepository, IRepository<Comment> commentRepository)
+        public UserService(IRepository<User> userRepository)
         {
             _userRepository = userRepository;
-            _articleRepository = articleRepository;
-            _commentRepository = commentRepository;
         }
 
         public IEnumerable<UserDto> GetAll()
@@ -62,31 +51,6 @@ namespace ServiceLayer.Services
             }
             return null;
         }
-
-        public void InsertFavoriteArticle(TargetDto favoriteArticle)
-        {
-            var article = _articleRepository.Get(favoriteArticle.targetId);
-            var user = _userRepository.GetWithLinkedEntities(favoriteArticle.userId, "FavoriteArticles");
-
-            user.FavoriteArticles.Add(article);
-            var responseArticle = _userRepository.Update(user);
-        }
-
-
-        public void DeleteFavoriteListItem(TargetDto favoriteArticle)
-        {
-            var user = _userRepository.GetWithLinkedEntities(favoriteArticle.userId, "FavoriteArticles");
-            var article = _articleRepository.Get(favoriteArticle.targetId);
-            if (user != null && article != null)
-            {
-                user.FavoriteArticles.Remove(article);
-                _userRepository.Update(user);
-
-
-            }
-        }
-
-
 
         public void Update(int id, UserDto entity)
         {
@@ -142,9 +106,6 @@ namespace ServiceLayer.Services
             _userRepository.Insert(user);
         }
 
-      
-   
-
         public TokenDto? Login(UserLoginDto userDto)
         {
             TokenDto token = null;
@@ -174,7 +135,5 @@ namespace ServiceLayer.Services
             }
             return null;
         }
-
-
     }
 }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { HttpService } from 'src/app/services/http.service';
 @Component({
@@ -23,7 +23,7 @@ export class ArticleListItemComponent {
   @Input() index?: number;
   @Input() articleId?: number;
   @Input() creatorId?: number;
-  @Input() isFavorite?: boolean;
+  @Input() mapFavorite?: Map<number, boolean>
 
   public isLoggedIn: Observable<boolean>;
 
@@ -37,26 +37,25 @@ export class ArticleListItemComponent {
 
   onClickFavorite(index: any, targetId: any): void {
     var favBtn = document.getElementById('heart' + index);
-    console.log(favBtn);
     if (favBtn != null) {
-      const body = {
-        userId: this.authService.getId(),
-        targetId: targetId,
-      };
       if (favBtn.innerHTML === 'favorite_border') {
+        this.mapFavorite?.set(targetId,true);
         favBtn.innerHTML = 'favorite';
-
-        console.log(body);
-
         this.httpService
-          .addArticleToFavorites(this.authService.getId() as number, targetId)
+          .addArticleToFavorites(
+            this.authService.getId() as number,
+            targetId as number
+          )
           .subscribe();
       } else {
+        this.mapFavorite?.set(targetId,false);
         favBtn.innerHTML = 'favorite_border';
-        this.httpService.deleteArticleFromFavorites(
-          this.authService.getId() as number,
-          targetId
-        );
+        this.httpService
+          .deleteArticleFromFavorites(
+            this.authService.getId() as number,
+            targetId as number
+          )
+          .subscribe();
       }
     }
   }
@@ -70,10 +69,11 @@ export class ArticleListItemComponent {
   }
 
   onRemoveFromFavorite(targetId: any): void {
-    this.httpService.deleteArticleFromFavorites(
-      this.authService.getId() as number,
-      targetId
-    );
-    window.location.reload();
+    this.httpService
+      .deleteArticleFromFavorites(
+        this.authService.getId() as number,
+        targetId as number
+      )
+      .subscribe();
   }
 }

@@ -57,9 +57,6 @@ namespace PresentationLayer.Controllers
             return Ok();
         }
 
-    
-
-
         [HttpPut("login")]
         public IActionResult LogIn(UserLoginDto user)
         {
@@ -72,22 +69,5 @@ namespace PresentationLayer.Controllers
         {
             return Ok(_userService.GetFavoriteList(id));
         }
-
-        [HttpPut("addFavorite")]
-        public IActionResult AddFavorites(TargetDto favoriteArticle)
-        {
-            _userService.InsertFavoriteArticle(favoriteArticle);
-            return Ok();
-        }
-
-        [HttpPut("deleteFavorite")]
-        public IActionResult DeleteFavoriteItem(TargetDto favoriteArticle)
-        {
-            _userService.DeleteFavoriteListItem(favoriteArticle);
-            return Ok();
-        }
-
-
-
     }
 }

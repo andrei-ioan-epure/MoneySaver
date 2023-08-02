@@ -63,7 +63,7 @@ namespace PresentationLayer.Controllers
             return Ok(_articleService.GetFiltered(authors, category, city, store, posted, expiration));
         }
 
-      /*  [HttpPut("addFavorite")]
+        [HttpPut("addFavorite")]
         public IActionResult AddFavorites(TargetDto favoriteArticle)
         {
             var articleDto=_articleService.InsertFavoriteArticle(favoriteArticle);
@@ -75,7 +75,7 @@ namespace PresentationLayer.Controllers
         {
             var articleDto = _articleService.RemoveFavoriteListItem(favoriteArticle);
             return Ok(articleDto);
-        }*/
+        }
 
 
     }
