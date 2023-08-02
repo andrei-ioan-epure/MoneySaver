@@ -12,7 +12,7 @@ export class AuthService {
   private userToken: string | null = null;
   private userId: number | null = null;
   private userRole: string | null = null;
-  private userFullName : string | null = null;
+  private userFullName: string | null = null;
   private isLoggedSubject = new BehaviorSubject<boolean>(this.hasToken());
 
   constructor(private readonly http: HttpClient) {}
@@ -32,28 +32,29 @@ export class AuthService {
     return this.userToken;
   }
 
-  getRole(){
+  getRole() {
     if (!this.userRole) this.userRole = localStorage.getItem('userRole');
     return this.userRole;
   }
 
-  getId(){
+  getId() {
     if (!this.userId) {
       let userId = localStorage.getItem('userId');
-      this.userId = userId !== null? parseInt(userId) : null;
+      this.userId = userId !== null ? parseInt(userId) : null;
     }
     return this.userId;
   }
 
-  getFullName(){
-    if (!this.userFullName) this.userFullName = localStorage.getItem('userFullName');
+  getFullName() {
+    if (!this.userFullName)
+      this.userFullName = localStorage.getItem('userFullName');
     return this.userFullName;
   }
 
   setLoginResponse(response: LoginResponse) {
     localStorage.setItem('jwt', response.token);
     localStorage.setItem('userId', response.id.toString());
-    localStorage.setItem('userRole',response.role);
+    localStorage.setItem('userRole', response.role);
     localStorage.setItem('userFullName', response.fullName);
     this.userToken = response.token;
     this.userId = response.id;
@@ -62,23 +63,29 @@ export class AuthService {
     this.isLoggedSubject.next(true);
   }
 
-  logOut():void{
+  logOut(): void {
     localStorage.removeItem('jwt');
     localStorage.removeItem('userId');
     localStorage.removeItem('userRole');
     localStorage.removeItem('userFullName');
-    this.userToken=null;
+    this.userToken = null;
     this.userId = null;
     this.userFullName = null;
     this.userRole = null;
     this.isLoggedSubject.next(false);
   }
 
-  isLoggedIn(): Observable<boolean>{
+  isLoggedIn(): Observable<boolean> {
     return this.isLoggedSubject.asObservable();
   }
 
-  hasToken():boolean{
+  hasToken(): boolean {
     return !!localStorage.getItem('jwt');
+  }
+  getUserInitials(): string | null {
+    if (!this.userFullName) {
+      this.userFullName = localStorage.getItem('userFullName');
+    }
+    return this.userFullName;
   }
 }

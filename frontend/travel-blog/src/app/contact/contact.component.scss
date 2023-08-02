@@ -1,75 +1,60 @@
-h1{
-    text-align: center;
-    font-family: 'Karla';
-    color: #212B27;
-    text-align: center;
-    font-size: 55px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 70px;   
-    margin-left: 700px;
+h1 {
+  text-align: center;
+  font-family: "Karla";
+  color: #212b27;
+  text-align: center;
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 70px;
+  // margin-left: 700px;
 }
 
-h3{
-    text-align: center;
-    font-family: 'Karla';
-    color:#32403B ;
-    font-size: 25px;
-    margin-left: 700px;
+h3 {
+  text-align: center;
+  font-family: "Karla";
+  color: #32403b;
+  font-size: 25px;
 }
 
-.contactpage{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    gap:200px;
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
-.imgcontact{
-    margin-top: -100px;
+.input {
+  margin-bottom: 10px;
+  width: 528px;
+  height: 70px;
 }
 
-form{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+.message {
+  width: 528px;
+  height: 100px;
 }
 
-.input{
-    margin-bottom: 10px;
-    width: 528px;
-    height: 70px;
-}
-
-.message{
-    width: 528px;
-    height: 100px;
-}
-
-
-
-.sendBtn{
-    width: 326px;
-    height: 40px;
-    background-color: #006400 !important;
-    color: #ffffff !important;
-    border-radius: 10px;
-    padding: 10px 20px; 
-    font-size: 16px; 
-    margin-top: 25px;
-    font-weight: bold;
-    font-family: 'Karla';
+.sendBtn {
+  width: 326px;
+  height: 40px;
+  background-color: #006400 !important;
+  color: #ffffff !important;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 25px;
+  font-weight: bold;
+  font-family: "Karla";
 }
 .sendBtn:hover {
-    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
-    cursor: pointer;
-  }
-.sendBtn:disabled{
-    background-color: lightgray !important;
+  background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+  cursor: pointer;
+}
+.sendBtn:disabled {
+  background-color: lightgray !important;
 }
 
-
-.textareamsg{
-    height:68px !important;
+.textareamsg {
+  height: 68px !important;
 }

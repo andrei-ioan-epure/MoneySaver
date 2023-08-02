@@ -1,46 +1,102 @@
-<!--Toolbar din Header-->
 <div class="nav">
+  <a routerLink="/home">
+    <img
+      align="left"
+      [src]="ImagePath"
+      style="width: 160px; height: 40px"
+      class="logo"
+    />
+  </a>
 
-    <a routerLink="/home">
-        <img align="left" [src]="ImagePath" style="width:160px;height:40px;">
-      </a>
+  <div class="search">
+    <input
+      type="text"
+      placeholder="Search..."
+      (keyup)="performSearch($event)"
+    />
+    <mat-icon class="lupa">search</mat-icon>
+  </div>
 
-      <div class="search">
-        <input type="text" placeholder="Search..." (keyup)="performSearch($event)" />
-      </div>
-    
-
-    <div class="right">
-
-    <button  routerLink="blog/favourites" id="fav">
-        <mat-icon *ngIf="active.includes('favourites')" class="custom-size">favorite</mat-icon>
-        <mat-icon *ngIf="!active.includes('favourites')" class="custom-size">favorite_border</mat-icon>
+  <div class="right">
+    <button *ngIf="isLoggedIn | async" routerLink="blog/favourites" id="fav">
+      <mat-icon *ngIf="active.includes('favourites')" class="custom-size"
+        >favorite</mat-icon
+      >
+      <mat-icon *ngIf="!active.includes('favourites')" class="custom-size"
+        >favorite_border</mat-icon
+      >
     </button>
 
-    <button id="blog" mat-raised-button routerLink="/blog/article-list" routerLinkActive="active_route" [routerLinkActiveOptions]="{exact:true}">Blog
-      <mat-icon class="blog_icon">wysiwyg</mat-icon>  </button> 
-
-    <button id="contact" mat-raised-button routerLink="/contact" routerLinkActive="active_route">Contact
-      <mat-icon class="mail_icon"> mail_outline</mat-icon>
-
+    <button
+      id="blog"
+      mat-raised-button
+      routerLink="/blog/article-list"
+      routerLinkActive="active_route"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Blog <mat-icon class="blog_icon">wysiwyg</mat-icon>
     </button>
-    <button id="aboutus" mat-raised-button routerLink="/about" routerLinkActive="active_route">About Us
+
+    <button
+      id="contact"
+      mat-raised-button
+      routerLink="/contact"
+      routerLinkActive="active_route"
+    >
+      Contact
+      <mat-icon class="mail_icon">mail_outline</mat-icon>
+    </button>
+    <button
+      id="aboutus"
+      mat-raised-button
+      routerLink="/about"
+      routerLinkActive="active_route"
+    >
+      About Us
       <mat-icon class="info_icon">error_outline</mat-icon>
-
     </button>
-    
-  
-      <button *ngIf="!(isLoggedIn | async)" id="signin" mat-raised-button routerLink="/signin" routerLinkActive="active_route">Sign In
-        <mat-icon class="signin_icon">person_outline</mat-icon>
-
-      </button>
-    <!-- <p>{{isLoggedIn | async}}</p> -->
-    <button *ngIf="(isLoggedIn | async)" (click)="logOut()" mat-raised-button mat-raised-button routerLink="/home">Sign Out
-      <mat-icon class="signout_icon">exit_to_app</mat-icon>
-
+    <button
+      *ngIf="!(isLoggedIn | async)"
+      id="signin"
+      mat-raised-button
+      routerLink="/signin"
+      routerLinkActive="active_route"
+    >
+      Sign In
+      <mat-icon class="signin_icon">person_outline</mat-icon>
     </button>
-
+    <!-- Afiseaza iconita doar daca utilizatorul este logat -->
+    <div class="user-icon" (click)="onClickIcon()" *ngIf="isLoggedIn | async">
+      {{ getInitials() }}
+      <div class="logout-popup" *ngIf="showLogout">
+        <button mat-raised-button (click)="logOut()">
+          <mat-icon class="signout_icon">exit_to_app</mat-icon>Sign out
+        </button>
+      </div>
     </div>
-    
-    
+    <div class="confirm-popup" *ngIf="showLogoutPopup">
+      <div class="confirm-content">
+        <div class="confirm-message">Are you sure you want to sign out?</div>
+        <div class="confirm-buttons">
+          <button
+            mat-raised-button
+            class="confirm-btn-cancel"
+            (click)="onLogoutConfirmation(false)"
+          >
+            Cancel
+          </button>
+          <button
+            mat-raised-button
+            class="confirm-btn"
+            (click)="onLogoutConfirmation(true)"
+          >
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fundal semi-transparent pentru a acoperi restul paginii -->
+    <div class="page-overlay" *ngIf="showLogoutPopup"></div>
+  </div>
 </div>
