@@ -3,6 +3,7 @@ using DomainLayer.Models;
 using FluentAssertions;
 using Moq;
 using RepositoryLayer;
+using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
 using ServiceLayer.Services;
 
@@ -170,6 +171,110 @@ namespace UnitTests
 			//Assert
 			_userRepositoryMock.Verify(r => r.Get(1), Times.Once);
             _userRepositoryMock.Verify(r => r.Update(It.IsAny<User>()), Times.Once);
+        }
+
+		[Fact]
+		public void Delete_ShouldSucced_WhenIdValid()
+		{
+			//Arange
+			var id = 1;
+
+			_userRepositoryMock.Setup(r => r.Delete(id));
+
+			//Act
+			_systemUnderTest.Delete(id);
+
+            //Assert
+            _userRepositoryMock.Verify(r => r.Delete(id), Times.Once);
+        }
+
+		[Fact]
+		public void Insert_ShouldInsertUser_WhenTransmitedUserDto()
+		{
+			//Arrage
+			var userDto = new UserDto(1, "test", "test", "test", "test", true);
+
+			_userRepositoryMock.Setup(r => r.Insert(It.IsAny<User>()));
+
+			//Act
+			_systemUnderTest.Insert(userDto);
+
+			//Assert
+			_userRepositoryMock.Verify(r => r.Insert(It.IsAny<User>()), Times.Once);
+
+		}
+
+		//[Fact]
+		//public void Login_ShouldReturnToken_WhenCredentialsValid()
+		//{
+		//	//Arrange
+		//	var userLoginDto = new UserLoginDto("jale@gmail.com","parolatare");
+
+		//	var token = new TokenDto("testToken", 1, "admin", "test");
+
+  //          var user = new User("test","test","test","test",true, null)
+  //          {
+  //              Id = 1,
+  //          };
+
+  //          var mockJwtUtils = new Mock<IJwtUtils>();
+  //          mockJwtUtils.Setup(j => j.CreateToken(It.IsAny<User>())).Returns("testToken");
+
+  //          //Act
+  //          var response = _systemUnderTest.Login(userLoginDto);
+
+		//	//Assert
+		//	Assert.NotNull(response);
+  //          Assert.Equal("testToken", response.Token);
+  //      }
+
+        [Fact]
+        public void Login_ShouldReturnNull_WhenCredentialsInvalid()
+        {
+            //Arrange
+            var userLoginDto = new UserLoginDto("test", "test");
+
+            //Act
+            var response = _systemUnderTest.Login(userLoginDto);
+
+            //Assert
+            Assert.Null(response);
+        }
+
+		[Fact]
+		public void IsCreator_ShouldReturnTrue_WhenIdIsCreator()
+		{
+			//Arrange
+            var user = new User("test", "test", "test", "test", true, null)
+            {
+                Id = 1,
+            };
+
+			_userRepositoryMock.Setup(r => r.Get(It.IsAny<int>())).Returns(user);
+
+			//Act
+			var response = _systemUnderTest.IsCreator(1);
+
+			//Assert
+			response.Should().BeTrue();
+        }
+
+        [Fact]
+        public void IsCreator_ShouldReturnFalse_WhenIdIsCreator()
+        {
+            //Arrange
+            var user = new User("test", "test", "test", "test", false, null)
+            {
+                Id = 1,
+            };
+
+            _userRepositoryMock.Setup(r => r.Get(It.IsAny<int>())).Returns(user);
+
+            //Act
+            var response = _systemUnderTest.IsCreator(1);
+
+            //Assert
+            response.Should().BeFalse();
         }
     }
 }
