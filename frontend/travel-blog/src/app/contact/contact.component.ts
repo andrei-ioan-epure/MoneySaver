@@ -25,8 +25,8 @@ export class ContactComponent {
   email:FormControl=new FormControl('',[Validators.required,Validators.email]);
   msgsj:FormControl=new FormControl('',[Validators.required]);
   message:FormControl=new FormControl('',[Validators.required]);
-  
-  constructor(private router:Router){}
+  imagePath:string;
+  constructor(private router:Router){this.imagePath='/assets/images/contact.png'}
 
   ngOnInit(){
     this.formGroup=new FormGroup({
