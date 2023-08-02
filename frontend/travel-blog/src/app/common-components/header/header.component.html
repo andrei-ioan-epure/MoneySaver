@@ -18,9 +18,7 @@
   </div>
 
   <div class="right">
-    <!-- Afiseaza butonul "Sign In" doar daca utilizatorul nu este logat -->
-
-    <button routerLink="blog/favourites" id="fav">
+    <button *ngIf="isLoggedIn | async" routerLink="blog/favourites" id="fav">
       <mat-icon *ngIf="active.includes('favourites')" class="custom-size"
         >favorite</mat-icon
       >
