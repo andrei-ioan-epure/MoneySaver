@@ -28,6 +28,7 @@ export class FullOfferComponent implements OnInit {
   copied = false;
   public comment: string = '';
   isAdmin = false;
+  isMyArticle?: boolean;
   isUser = false;
   ImagePath: string;
 
@@ -45,19 +46,20 @@ export class FullOfferComponent implements OnInit {
     this.id = +(this.activatedRoute.snapshot.paramMap.get('id') as string);
     this.httpService.getArticle(this.id).subscribe((article) => {
       this.setArticle(article);
-    });
-    if (this.authService.getRole() == 'admin') {
-      this.isAdmin = true;
-    } else {
-      this.isAdmin = false;
-    }
-    if (this.authService.getRole() == 'user') {
-      this.isUser = true;
-    } else {
-      this.isUser = false;
-    }
+      if (this.authService.getRole() == 'admin') {
+        this.isAdmin = true;
+        this.isMyArticle = this.authService.getId() === this.creatorId;
+      } else {
+        this.isAdmin = false;
+      }
+      if (this.authService.getRole() == 'user') {
+        this.isUser = true;
+      } else {
+        this.isUser = false;
+      }
 
-    console.log(this.id);
+      console.log(this.id);
+    });
   }
 
   private setArticle(offer: Article) {
