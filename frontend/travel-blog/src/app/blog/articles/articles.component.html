@@ -24,7 +24,10 @@
         Next
       </button>
     </div>
-    <div class="article-container">
+    <div *ngIf="articlesToShow!.length == 0" class="no-articles">
+      <p>No Results Found</p>
+    </div>
+    <div *ngIf="articlesToShow!.length != 0" class="article-container">
       <div *ngFor="let article of articlesToShow; let i = index">
         <app-article-list-item
           [id]="article.id"
@@ -41,14 +44,14 @@
           [creatorId]="article.creatorId"
           [articleId]="article.id"
           [showDeleteBtn]="isFavouritesPage"
-          [hideFavoriteBtn]="isNotFavouritesPage"
+          [hideFavoriteBtn]="!isFavouritesPage"
           [index]="i"
           [mapFavorite]="isFavorite"
         ></app-article-list-item>
       </div>
     </div>
     <div
-      *ngIf="isLoggedIn | async"
+      *ngIf="(isLoggedIn | async) && isAdmin"
       class="semicerc-button"
       routerLink="/add-offer"
     >

@@ -13,10 +13,9 @@ import { Observable, Subject, Subscriber, Subscription, elementAt } from 'rxjs';
 })
 export class ArticleComponent implements OnInit, OnDestroy {
   @Input() articles?: Articles; // Adăugăm Input decorator pentru a primi articolele din componenta părinte
-
+  @Input() isAdmin: boolean = false;
   url?: string;
   isFavouritesPage?: boolean = false;
-  isNotFavouritesPage?: boolean = true;
   isFavorite: Map<number, boolean> = new Map<number, boolean>();
   favoriteArticles?: Articles = [];
   articlesToShow?: Articles = [];
@@ -24,7 +23,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   currentPage: number = 1;
   totalPages: number = 1;
   public isLoggedIn: Observable<boolean>;
-  private subscription!:Subscription;
+  private subscription!: Subscription;
 
   constructor(
     private readonly articlesService: ArticlesService,
@@ -37,41 +36,55 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.url = this.router.url;
-    if(!this.url.includes('favourites') && this.subscription != null)
+    if (!this.url.includes('favourites') && this.subscription != null)
       this.subscription.unsubscribe();
   }
 
-  ngOnInit(){
+  ngOnInit() {
     if (!this.authService.hasToken()) {
       this.httpService.getArticles().subscribe((data) => {
         this.articlesToShow = data;
         this.articlesService.setArticles(data);
       });
     } else {
-      this.httpService.getFavoriteArticles(this.authService.getId() as number).subscribe((res) => {
-        this.favoriteArticles = res;
-    
-        this.url = this.router.url;
-        if (!this.url.includes('favourites')) {
-          this.httpService.getArticles().subscribe((res) => {
-            this.articlesToShow = res.sort((a, b) => a.posted < b.posted ? 1 : -1);
-            this.articlesService.setArticles(res);
-            for (var item of this.articlesToShow) {
-              if (this.favoriteArticles!.some((article) => article.id === item.id)) {
-                this.isFavorite.set(item.id!, true);
+      if (this.authService.getRole() == 'admin') {
+        this.isAdmin = true;
+      }
+      this.httpService
+        .getFavoriteArticles(this.authService.getId() as number)
+        .subscribe((res) => {
+          this.favoriteArticles = res;
+
+          this.url = this.router.url;
+          if (!this.url.includes('favourites')) {
+            this.httpService.getArticles().subscribe((res) => {
+              this.articlesToShow = res.sort((a, b) =>
+                a.posted < b.posted ? 1 : -1
+              );
+              this.articlesService.setArticles(res);
+              for (var item of this.articlesToShow) {
+                if (
+                  this.favoriteArticles!.some(
+                    (article) => article.id === item.id
+                  )
+                ) {
+                  this.isFavorite.set(item.id!, true);
+                }
               }
-            }
-          });
-        } else {
-          this.subscription = this.httpService.favoritesObserver.subscribe((res) => {
-            this.articlesToShow = res.sort((a, b) => a.posted < b.posted ? 1 : -1);
-            this.articlesService.setArticles(res);
-    
-            this.isFavouritesPage = true;
-            this.isNotFavouritesPage = !this.isFavouritesPage;
-          });
-        }
-      });
+            });
+          } else {
+            this.subscription = this.httpService.favoritesObserver.subscribe(
+              (res) => {
+                this.articlesToShow = res.sort((a, b) =>
+                  a.posted < b.posted ? 1 : -1
+                );
+                this.articlesService.setArticles(res);
+
+                this.isFavouritesPage = true;
+              }
+            );
+          }
+        });
     }
 
     this.articlesService.searchArticles(''); // Afisăm inițial toate articolele
@@ -107,7 +120,6 @@ export class ArticleComponent implements OnInit, OnDestroy {
       this.articlesToShow = filteredArticles
         ?.sort((a, b) => (a.posted < b.posted ? 1 : -1))
         .slice(startIndex, endIndex);
-      
     });
   }
 

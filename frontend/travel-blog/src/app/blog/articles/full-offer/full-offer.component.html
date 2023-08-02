@@ -9,7 +9,7 @@
       </div>
       <div class="rightBtn">
         <button
-          *ngIf="isAdmin"
+          *ngIf="isAdmin && isMyArticle"
           mat-raised-button
           class="editOfferBtn"
           (click)="toEditOffer()"
@@ -17,7 +17,7 @@
           Edit
         </button>
         <button
-          *ngIf="isAdmin"
+          *ngIf="isAdmin && isMyArticle"
           mat-raised-button
           class="deleteOfferBtn"
           (click)="deleteOffer()"
