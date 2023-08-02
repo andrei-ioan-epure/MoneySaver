@@ -76,9 +76,17 @@ export class FullOfferComponent implements OnInit {
   }
 
   toEditOffer() {
-    this.router.navigate([
-      'blog/article-list/full-offer/' + this.id + '/edit-offer',
-    ]);
+    if(this.creatorId === (this.authService.getId() as number))
+    {
+      this.router.navigate([
+        'blog/article-list/full-offer/' + this.id + '/edit-offer',
+      ]);
+    }
+    else{
+      this.router.navigate([
+        'blog/article-list/full-offer' + this.id,
+      ]);
+    }
   }
   deleteOffer() {
     console.log('Delete article');

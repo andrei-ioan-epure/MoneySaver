@@ -9,6 +9,8 @@ import { ContactResponseComponent } from './contact/contact-response/contact-res
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignUpResponseComponent } from './sign-up/sign-up-response/sign-up-response.component';
 import { AddOfferComponent } from './blog/add-offer/add-offer.component';
+import { adminGuard } from './guards/admin.guard';
+import { notauthGuard } from './guards/notauth.guard';
 
 const routes: Routes = [
   {
@@ -17,11 +19,13 @@ const routes: Routes = [
   },
   {
     path:'signin',
-    component:SigninComponent
+    component:SigninComponent,
+    canActivate:[notauthGuard]
   },
   {
     path:'reset-pass',
-    component:ResetPassComponent
+    component:ResetPassComponent,
+    canActivate:[notauthGuard]
   },
   {
     path:'contact',
@@ -41,15 +45,18 @@ const routes: Routes = [
   },
   {
     path:'sign-up',
-    component: SignUpComponent
+    component: SignUpComponent,
+    canActivate:[notauthGuard]
   },
   {
     path:'sign-up-response',
-    component:SignUpResponseComponent
+    component:SignUpResponseComponent,
+    canActivate:[notauthGuard]
   },
   {
     path:'add-offer',
-    component: AddOfferComponent
+    component: AddOfferComponent,
+    canActivate: [adminGuard]
   },
   {
     path: '**',

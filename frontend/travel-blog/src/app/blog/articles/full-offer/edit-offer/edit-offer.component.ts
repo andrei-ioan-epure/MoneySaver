@@ -82,6 +82,11 @@ export class EditOfferComponent{
         store: article.store,
         creatorId: article.creatorId,
       };
+      if(this.article?.creatorId !== (this.authService.getId() as number)){
+        this.router.navigate([
+          'home',
+        ]);
+      }
 
       this.offername.setValue(this.article.title);
       this.about.setValue(this.article.content);
