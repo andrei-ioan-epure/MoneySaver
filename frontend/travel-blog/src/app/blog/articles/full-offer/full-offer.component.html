@@ -1,102 +1,99 @@
 <div class="fullOffer">
-<div class="offer">
-  <div class="up-buttons">
-    <div class="leftBtn">
-      <button mat-raised-button class="backBtn" routerLink="/blog">
-        <mat-icon class="iconBack">arrow_back</mat-icon>
-        Back
-      </button>
-    </div>
-    <div class="rightBtn">
-      <button
-        *ngIf="isAdmin"
-        mat-raised-button
-        class="editOfferBtn"
-        (click)="toEditOffer()"
-      >
-        Edit
-      </button>
-      <button
-        *ngIf="isAdmin"
-        mat-raised-button
-        class="deleteOfferBtn"
-        (click)="deleteOffer()"
-      >
-        <mat-icon class="iconDelete">delete_outline</mat-icon>
-        Delete
-      </button>
-    </div>
-  </div>
-
-  <div class="full">
-    <div class="full-offercomm">
-      <div class="full-offer">
-        <div class="imgdet2">
-          <div class="image">
-            <img [src]="getImagePathByStore(store)" alt="{{ title }}" />
-          </div>
-          <div class="det2">
-            <label>Category: {{ category }} </label>
-            <label>Author: {{ author }} </label>
-            <label>Date: {{ posted | date : "dd/MM/yyyy" }}</label>
-          </div>
-        </div>
-
-        <div class="details">
-          <label id="title">{{ title }}</label>
-          <label id="content"> | {{ content }}</label>
-          <br /><br /><br />
-          <label id="city">City: {{ city }}</label
-          ><br /><br /><br />
-          <label id="expdate"
-            >Expire Date: {{ expiration | date : "dd/MM/yyyy" }}</label
-          ><br /><br /><br />
-          <div class="codewbtn">
-            <label id="code">CODE: {{ code }}</label
-            ><br /><br /><br />
-            <button
-              mat-raised-button
-              type="submit"
-              class="copyBtn"
-              id="copyButton"
-              [disabled]="copied"
-              (click)="copyCode()"
-            >
-              {{ copied ? "Copied" : "Copy" }}
-              <mat-icon *ngIf="copied">check_circle</mat-icon>
-            </button>
-          </div>
-
-          <button
-            mat-raised-button
-            type="button"
-            class="webBtn"
-            (click)="goToWebsite()"
-          >
-            Go to website
-          </button>
-        </div>
+  <div class="offer">
+    <div class="up-buttons">
+      <div class="leftBtn">
+        <button mat-raised-button class="backBtn" routerLink="/blog">
+          <mat-icon class="iconBack">arrow_back</mat-icon>
+          Back
+        </button>
       </div>
-      <div *ngIf="isAdmin || isUser" class="addComment">
-        <textarea
-          id="message"
-          type="text"
-          class="comment"
-          placeholder="Add a comment.."
-          maxlength="512"
-          [(ngModel)]="comment"
+      <div class="rightBtn">
+        <button
+          *ngIf="isAdmin"
+          mat-raised-button
+          class="editOfferBtn"
+          (click)="toEditOffer()"
         >
-        </textarea>
-        <button mat-raised-button (click)="addComment()" class="addBtn">
-          Add
+          Edit
+        </button>
+        <button
+          *ngIf="isAdmin"
+          mat-raised-button
+          class="deleteOfferBtn"
+          (click)="deleteOffer()"
+        >
+          <mat-icon class="iconDelete">delete_outline</mat-icon>
+          Delete
         </button>
       </div>
     </div>
 
-    <app-comment-section> </app-comment-section>
+    <div class="full">
+      <div class="full-offercomm">
+        <div class="full-offer">
+          <div class="imgdet2">
+            <div class="image">
+              <img [src]="getImagePathByStore(store)" alt="{{ title }}" />
+            </div>
+            <div class="det2">
+              <label>Category: {{ category }} </label>
+              <label>Author: {{ author }} </label>
+              <label>Date: {{ posted | date : "dd/MM/yyyy" }}</label>
+            </div>
+          </div>
+
+          <div class="details">
+            <label id="title">{{ title }}</label>
+            <label id="content"> | {{ content }}</label>
+            <br /><br /><br />
+            <label id="city">City: {{ city }}</label
+            ><br /><br /><br />
+            <label id="expdate"
+              >Expire Date: {{ expiration | date : "dd/MM/yyyy" }}</label
+            ><br /><br /><br />
+            <div class="codewbtn">
+              <label id="code">CODE: {{ code }}</label
+              ><br /><br /><br />
+              <button
+                mat-raised-button
+                type="submit"
+                class="copyBtn"
+                id="copyButton"
+                [disabled]="copied"
+                (click)="copyCode()"
+              >
+                {{ copied ? "Copied" : "Copy" }}
+                <mat-icon *ngIf="copied">check_circle</mat-icon>
+              </button>
+            </div>
+
+            <button
+              mat-raised-button
+              type="button"
+              class="webBtn"
+              (click)="goToWebsite()"
+            >
+              Go to website
+            </button>
+          </div>
+        </div>
+        <div *ngIf="isAdmin || isUser" class="addComment">
+          <textarea
+            id="message"
+            type="text"
+            class="comment"
+            placeholder="Add a comment.."
+            maxlength="512"
+            [(ngModel)]="comment"
+          >
+          </textarea>
+          <button mat-raised-button (click)="addComment()" class="addBtn">
+            Add
+          </button>
+        </div>
+      </div>
+
+      <app-comment-section> </app-comment-section>
+    </div>
   </div>
 </div>
-<<<<<<< HEAD
-</div>
-=======
->>>>>>> backend
