@@ -2,6 +2,7 @@ using DomainLayer.Models;
 using FluentAssertions;
 using Moq;
 using RepositoryLayer;
+using ServiceLayer.Contracts;
 using ServiceLayer.DtoModels;
 using ServiceLayer.Services;
 using System.ComponentModel;
@@ -14,14 +15,16 @@ namespace UnitTests
         private Mock<IRepository<Article>> _articleRepositoryMock;
         private Mock<IRepository<User>> _userRepositoryMock;
         private Mock<IRepository<Comment>> _commentRepositoryMock;
-        private FilterService _filterService;
+        private IFilterService _filterService;
+        private IUserService _userService;
         public ArticleServiceTests()
         {
             _articleRepositoryMock = new Mock<IRepository<Article>>();
             _commentRepositoryMock = new Mock<IRepository<Comment>>();
             _userRepositoryMock = new Mock<IRepository<User>>();
             _filterService = new FilterService(_userRepositoryMock.Object);
-            _systemUnderTest = new ArticleService(_articleRepositoryMock.Object, _filterService, _userRepositoryMock.Object, _commentRepositoryMock.Object);
+            _userService = new UserService(_userRepositoryMock.Object);
+            _systemUnderTest = new ArticleService(_articleRepositoryMock.Object, _filterService, _userRepositoryMock.Object, _commentRepositoryMock.Object,_userService);
         }
 
   
