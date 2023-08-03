@@ -11,7 +11,7 @@
 
 <div class="addpage">
   <div class="ticket">
-    <img [src]="imagePath" style="width: 500px; height: 850px;">
+    <img [src]="imagePath" style="width: 500px; height: 850px" />
   </div>
 
   <div class="addform">
@@ -110,7 +110,9 @@
       </mat-form-field>
     </form>
     <div class="buttons">
-      <button mat-raised-button class="btncancel" routerLink="/blog">Cancel</button>
+      <button mat-raised-button class="btncancel" routerLink="/blog">
+        Cancel
+      </button>
       <button mat-raised-button class="btn" (click)="submitForm()">
         Add offer
       </button>

@@ -1,25 +1,40 @@
 import { Component } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-reset-pass',
   templateUrl: './reset-pass.component.html',
-  styleUrls: ['./reset-pass.component.scss']
+  styleUrls: ['./reset-pass.component.scss'],
 })
 export class ResetPassComponent {
   formGroup: FormGroup = new FormGroup({});
-  email: FormControl = new FormControl('',[Validators.required,Validators.email]);
+  email: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+  isSent: boolean = false;
+  timer: any;
+
   constructor(private router: Router) {}
-  ngOnInit(){
+
+  ngOnInit() {
     this.formGroup = new FormGroup({
-      email: this.email
+      email: this.email,
     });
   }
-  submitForm_reset(){
+
+  submitForm_reset() {
     if (this.formGroup.valid) {
       console.log(this.formGroup.value);
-      //this.router.navigate(['signin']); //redirect catre sign in
-    }
 
+      // Show "Sent" text on the button
+      this.isSent = true;
+
+      // Reset the button after 5 seconds
+      this.timer = setTimeout(() => {
+        this.isSent = false;
+      }, 5000);
+    }
   }
 }

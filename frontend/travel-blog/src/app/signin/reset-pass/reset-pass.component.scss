@@ -1,80 +1,77 @@
-.top{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column; 
+.top {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-h1{
-    margin-bottom: 0px;
-    position: relative;
-    text-align: center;
-    flex-shrink: 0;
-    color: var(--heading, #212B27);
-    font-family: 'Karla';
-    font-size: 55px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 70px; 
-    top:30px;
+h1 {
+  margin-bottom: 0px;
+  position: relative;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--heading, #212b27);
+  font-family: "Karla";
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 70px;
+  top: 30px;
 }
-div p{
-    margin-top: 0px;
-    text-align: center;
-    flex-shrink: 0;
-    color: var(--paragraph, #32403B);
-    text-align: center;
-    font-family: 'Karla';
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px; /* 130% */
-    padding-top:60px;
+div p {
+  margin-top: 0px;
+  text-align: center;
+  flex-shrink: 0;
+  color: var(--paragraph, #32403b);
+  text-align: center;
+  font-family: "Karla";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 130% */
+  padding-top: 60px;
 }
-form{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 47px; 
-    
-}
-
-.input{
-    margin-bottom: 16px;
-    width: 528px;
-    
+form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 47px;
 }
 
-.btn{
-    width: 326px;
-    height: 40px;
-    background-color: #006400 !important;
-    color: #ffffff !important;
-    border-radius: 10px;
-    padding: 10px 20px; 
-    font-size: 16px; 
-    font-weight: bold;
-    font-family: 'Karla';
+.input {
+  margin-bottom: 16px;
+  width: 528px;
+}
+
+.btn {
+  width: 326px;
+  height: 40px;
+  background-color: #006400 !important;
+  color: #ffffff !important;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Karla";
 }
 .btn:hover {
-    background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
-    cursor: pointer;
-  }
-  
-.btn:disabled{
-    background-color: lightgray !important;
+  background-color: #008000 !important; /* Schimba culoarea de fundal la hover */
+  cursor: pointer;
 }
-  #back
-  {
-      top:50px;
-      left:185px;
-      position: relative;
-      flex-shrink: 0;
-      color: var(--heading, #212B27);
-      font-family: 'Karla';
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 800;
-      line-height: 24px; 
-  }
+
+.btn:disabled {
+  background-color: lightgray !important;
+}
+#back {
+  top: 50px;
+  left: 185px;
+  position: relative;
+  flex-shrink: 0;
+  color: var(--heading, #212b27);
+  font-family: "Karla";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px;
+}

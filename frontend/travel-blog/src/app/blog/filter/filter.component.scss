@@ -1,80 +1,76 @@
-h2, label{
-    font-family: 'Karla';
+h2,
+label {
+  font-family: "Karla";
 }
 
 .clearbtn {
-    margin-left: 76px!important;
-    margin-bottom: 5px!important;
-    color:#006400 !important;
-    font-family: 'Karla';
-
+  margin-left: 76px !important;
+  margin-bottom: 5px !important;
+  color: #006400 !important;
+  font-family: "Karla";
 }
-.filter{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 option {
-    font-size: 16px;
+  font-size: 16px;
 }
 .rectangle {
-    left: 0px;
-    width: 300px;
-    height: calc(100%);
-    background-color: #B4D3B4;
-    position: absolute;
-    margin-top: -8px;
-    //border-radius: 16px;
-    //margin-right: 300px;
- }
- .rectangle > * {
-     margin-left: 20px;
- }
- .title{
-    margin-left: 0;
-    margin-right: 32px;
-    margin-top: 32px;
-    font-weight: bold;
-    text-align: center;
-   
- }
-
- button {
-     font-weight: bold;
-     width: 126px;
-     height: 24px;
-     margin-bottom: 16px;
- }
-
-
-.authorFilter{
-    margin-bottom: 16px;
+  left: 0px;
+  width: 300px;
+  height: calc(110%);
+  background-color: #b4d3b4;
+  position: absolute;
+  margin-top: -8px;
+  //border-radius: 16px;
+  //margin-right: 300px;
 }
- .author-title {
-    font-size: 20px;
-    font-weight: bold;
-     margin-bottom: 10px;
- }
+.rectangle > * {
+  margin-left: 20px;
+}
+.title {
+  margin-left: 0;
+  margin-right: 32px;
+  margin-top: 32px;
+  font-weight: bold;
+  text-align: center;
+}
 
- .author-checkbox {
-     display: block;
-     margin-bottom: 8px;
-     margin-left: 20px;
- }
+button {
+  font-weight: bold;
+  width: 126px;
+  height: 24px;
+  margin-bottom: 16px;
+}
 
+.authorFilter {
+  margin-bottom: 16px;
+}
+.author-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
- .author-checkbox input[type="checkbox"] {
-     margin-right: 8px;
-     width: 16px;
-     height: 16px;
- }
+.author-checkbox {
+  display: block;
+  margin-bottom: 8px;
+  margin-left: 20px;
+}
+
+.author-checkbox input[type="checkbox"] {
+  margin-right: 8px;
+  width: 16px;
+  height: 16px;
+}
 
 .form-field {
   margin-bottom: 10px;
 }
 
- .form-field label {
+.form-field label {
   font-weight: bold;
   display: block;
   font-size: 20px;
@@ -87,18 +83,17 @@ select {
   font-size: 16px;
   margin-bottom: 16px;
   border-radius: 8px;
-  font-family: 'Karla';
+  font-family: "Karla";
 }
 
- label span {
-     font-weight: 500;
- }
+label span {
+  font-weight: 500;
+}
 
 .applyBtn {
-    margin-left: 56px;
-    margin-right: 32px;
-    margin-bottom: 0px;
-    color:#006400 !important;
-    font-family: 'Karla';
+  margin-left: 56px;
+  margin-right: 32px;
+  margin-bottom: 0px;
+  color: #006400 !important;
+  font-family: "Karla";
 }
-
