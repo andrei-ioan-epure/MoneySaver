@@ -57,8 +57,8 @@ namespace ServiceLayer.Services
         {
             if (authors.ToLower() != "all")
             {
-                var creatorName = _userRepository.Get(article.CreatorId);
-                return creatorName == null ? false : Array.Exists(authors.Split(","), element => element == article.Author);
+                var user = _userRepository.Get(article.CreatorId);
+                return user == null ? false : Array.Exists(authors.Split(","), element => element == article.Author);
             }
             return true;
 
