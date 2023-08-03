@@ -1,12 +1,15 @@
+using System.Text;
 using DomainLayer.Context;
 using DomainLayer.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PresentationLayer;
+using RepositoryLayer;
 using ServiceLayer.DtoModels;
-using System.Net.Http;
+using ServiceLayer.Services;
 
 namespace IntegrationTests
 {
@@ -17,7 +20,7 @@ namespace IntegrationTests
         private IList<User> _usersToBeRemoved = new List<User>();
 
         public UserControllerTests() {
-            var connectionString = @"Server=.\SQLExpress;Database=MoneySaverSP23DB;Trusted_Connection=True;TrustServerCertificate=true";
+            var connectionString = "Server=localhost,1433;Database=MoneySaverSP23DB;User=SA;Password=Admin123;TrustServerCertificate=True;Encrypt=false;";
             var options = new DbContextOptionsBuilder<BlogDbContext>()
                 .UseSqlServer(new SqlConnection(connectionString))
                 .Options;
@@ -36,20 +39,19 @@ namespace IntegrationTests
 
             
         }
+
         [Fact]
         public async Task GetAll_ShouldReturnAllUsers_WhenRequestAsync()
         {
-            var user = new User("test", "test", "test", "test", false, null)
-            {
-                Id = 1
-            };
+            var user = new User("test", "test", "test", "test", false, new byte[] { 0x12 });
+
             _blogDbContext.Users.Add(user);
             _blogDbContext.SaveChanges();
 
             _usersToBeRemoved.Add(user);
 
             //Act
-            var response = await _httpClient.GetAsync("/User/get");
+            var response = await _httpClient.GetAsync("api/User/get");
 
             //Assert
             var responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -63,5 +65,65 @@ namespace IntegrationTests
             Assert.True(response.IsSuccessStatusCode);
             Assert.True(allUsers?.Count() > 0);
         }
+
+        [Fact]
+        public async Task GetUserById_ShouldReturnUser_WhenRequestValid()
+        {
+            var user = new User("test", "test", "test", "test", false, new byte[] { 0x12 });
+
+            _blogDbContext.Users.Add(user);
+            _blogDbContext.SaveChanges();
+
+            _usersToBeRemoved.Add(user);
+
+            //Act
+            var response = await _httpClient.GetAsync("api/User/get/"+user.Id);
+
+            //Assert
+            var responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            
+            UserDto User= null;
+            if (!string.IsNullOrWhiteSpace(responseContent))
+            {
+                User = JsonConvert.DeserializeObject<UserDto>(responseContent);
+            }
+
+            Assert.True(response.IsSuccessStatusCode);
+            Assert.NotNull(User);
+        }
+
+        //[Fact]
+        //public async Task AddUser_ShouldSucceed_WhenInputValid()
+        //{
+        //    var userDto = new UserDto(1, "test", "test", "test", "test", false);
+
+        //    var objectData = new Dictionary<string, dynamic>
+        //    {
+        //        {"userName", userDto.UserName.ToString() },
+        //        {"fullName", userDto.FullName.ToString()},
+        //        {"email", userDto.Email.ToString()},
+        //        {"password", userDto.Password.ToString() },
+        //        {"isCreator", userDto.IsCreator }
+        //    };
+
+        //    //Act
+        //    var response = await _httpClient.PostAsync("api/User/add", CreateDtoRequestContent(objectData));
+        //    //Assert
+        //    _usersToBeRemoved.Add(new User(userDto.UserName, userDto.FullName,
+        //        userDto.Email, userDto.Password, userDto.IsCreator, )
+        //    {
+        //        Id = 
+        //    });
+
+        //    Assert.True(response.IsSuccessStatusCode);
+        //}
+
+        //public StringContent CreateDtoRequestContent(Dictionary<string, dynamic> objectData)
+        //{
+        //    var jsonCreateCustomer = JObject.FromObject(objectData);
+        //    var createCustomerRequestContent = new StringContent(jsonCreateCustomer.ToString(), Encoding.UTF8, "application/json");
+
+        //    return createCustomerRequestContent;
+        //}
     }
 }
