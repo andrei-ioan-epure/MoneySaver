@@ -64,6 +64,33 @@ namespace IntegrationTests
             Assert.True(response.IsSuccessStatusCode);
             Assert.True(allArticles?.Count() > 0);
         }
+
+
+        [Fact]
+        public async Task GetArticleById_ShouldReturnArticle_WhenRequestValid()
+        {
+            var article = new Article("test", new DateTime(), new DateTime(), "test", "test", "test", "test", "test", "test", 1);
+
+            _blogDbContext.Articles.Add(article);
+            _blogDbContext.SaveChanges();
+
+            _articlesToBeRemoved.Add(article);
+
+            //Act
+            var response = await _httpClient.GetAsync("api/Article/get/" + article.Id);
+
+            //Assert
+            var responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+            ArticleDto articleDto = null;
+            if (!string.IsNullOrWhiteSpace(responseContent))
+            {
+                articleDto = JsonConvert.DeserializeObject<ArticleDto>(responseContent);
+            }
+
+            Assert.True(response.IsSuccessStatusCode);
+            Assert.NotNull(articleDto);
+        }
     }
 }
 

@@ -19,7 +19,8 @@ namespace IntegrationTests
         private HttpClient _httpClient;
         private IList<User> _usersToBeRemoved = new List<User>();
 
-        public UserControllerTests() {
+        public UserControllerTests()
+        {
             var connectionString = "Server=localhost,1433;Database=MoneySaverSP23DB;User=SA;Password=Admin123;TrustServerCertificate=True;Encrypt=false;";
             var options = new DbContextOptionsBuilder<BlogDbContext>()
                 .UseSqlServer(new SqlConnection(connectionString))
@@ -32,12 +33,13 @@ namespace IntegrationTests
         {
             CleanupDatabase();
         }
-        private void CleanupDatabase() {
+        private void CleanupDatabase()
+        {
 
             _blogDbContext.Users.RemoveRange(_usersToBeRemoved);
             _blogDbContext.SaveChanges();
 
-            
+
         }
 
         [Fact]
@@ -77,12 +79,16 @@ namespace IntegrationTests
             _usersToBeRemoved.Add(user);
 
             //Act
-            var response = await _httpClient.GetAsync("api/User/get/"+user.Id);
+            var response = await _httpClient.GetAsync("api/User/get/" + user.Id);
+            var result = await response.Content.ReadAsStringAsync();
+
+            //Assert
+            int.TryParse(result, out var petId);
 
             //Assert
             var responseContent = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            
-            UserDto User= null;
+
+            UserDto User = null;
             if (!string.IsNullOrWhiteSpace(responseContent))
             {
                 User = JsonConvert.DeserializeObject<UserDto>(responseContent);
@@ -92,38 +98,47 @@ namespace IntegrationTests
             Assert.NotNull(User);
         }
 
-        //[Fact]
-        //public async Task AddUser_ShouldSucceed_WhenInputValid()
-        //{
-        //    var userDto = new UserDto(1, "test", "test", "test", "test", false);
+        /*  [Fact]
+          public async Task AddUser_ShouldSucceed_WhenInputValid()
+                 {
+              //Arrange
+              var userDto = new UserDto(1, "test", "test", "test", "test", false);
 
-        //    var objectData = new Dictionary<string, dynamic>
-        //    {
-        //        {"userName", userDto.UserName.ToString() },
-        //        {"fullName", userDto.FullName.ToString()},
-        //        {"email", userDto.Email.ToString()},
-        //        {"password", userDto.Password.ToString() },
-        //        {"isCreator", userDto.IsCreator }
-        //    };
+              var objectData = new Dictionary<string, dynamic>
+              {
+                  {"userName", userDto.UserName },
+                  {"fullname", userDto.FullName},
+                  {"email", userDto.Email},
+                  {"password", userDto.Password },
+                  {"iscreator", userDto.IsCreator }
+             };
 
-        //    //Act
-        //    var response = await _httpClient.PostAsync("api/User/add", CreateDtoRequestContent(objectData));
-        //    //Assert
-        //    _usersToBeRemoved.Add(new User(userDto.UserName, userDto.FullName,
-        //        userDto.Email, userDto.Password, userDto.IsCreator, )
-        //    {
-        //        Id = 
-        //    });
+              //Act
+              var response = await _httpClient.PostAsync("api/user/add", createdtorequestcontent(objectData));
 
-        //    Assert.True(response.IsSuccessStatusCode);
-        //}
 
-        //public StringContent CreateDtoRequestContent(Dictionary<string, dynamic> objectData)
-        //{
-        //    var jsonCreateCustomer = JObject.FromObject(objectData);
-        //    var createCustomerRequestContent = new StringContent(jsonCreateCustomer.ToString(), Encoding.UTF8, "application/json");
+              var result = await response.Content.ReadAsStringAsync();
 
-        //    return createCustomerRequestContent;
-        //}
+              //Assert
+              int.TryParse(result, out var petId);
+
+              _usersToBeRemoved.Add(new User(userDto.UserName, userDto.FullName,
+                    userDto.Email, userDto.Password, userDto.IsCreator,null )
+               {
+                  Id =19
+                });
+
+              Assert.True(response.IsSuccessStatusCode);
+          }
+
+
+          public StringContent createdtorequestcontent(Dictionary<string, dynamic> objectdata)
+          {
+              var jsoncreatecustomer = JObject.FromObject(objectdata);
+              var createcustomerrequestcontent = new StringContent(jsoncreatecustomer.ToString(), Encoding.UTF8, "application/json");
+
+              return createcustomerrequestcontent;
+          }
+      */
     }
 }
