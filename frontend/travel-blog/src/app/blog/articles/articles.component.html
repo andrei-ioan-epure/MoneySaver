@@ -1,0 +1,61 @@
+<div class="blog">
+  <div class="left">
+    <app-filter
+      [filteredArticles]="articles"
+      (dataEmitter)="onDataReceived($event)"
+    ></app-filter>
+  </div>
+
+  <div class="right">
+    <div class="pagination">
+      <button
+        (click)="previousPage()"
+        [disabled]="currentPage === 1"
+        class="btn btn-primary"
+      >
+        Previous
+      </button>
+      <span>{{ currentPage }} / {{ totalPages }}</span>
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+        class="btn btn-primary"
+      >
+        Next
+      </button>
+    </div>
+    <div *ngIf="articlesToShow!.length == 0" class="no-articles">
+      <p>No Results Found</p>
+    </div>
+    <div *ngIf="articlesToShow!.length != 0" class="article-container">
+      <div *ngFor="let article of articlesToShow; let i = index">
+        <app-article-list-item
+          [id]="article.id"
+          [title]="article.title"
+          [content]="article.content"
+          [store]="article.store"
+          [posted]="article.posted"
+          [city]="article.city"
+          [code]="article.code"
+          [store]="article.store"
+          [expiration]="article.expiration"
+          [category]="article.category"
+          [author]="article.author"
+          [creatorId]="article.creatorId"
+          [articleId]="article.id"
+          [showDeleteBtn]="isFavouritesPage"
+          [hideFavoriteBtn]="!isFavouritesPage"
+          [index]="i"
+          [mapFavorite]="isFavorite"
+        ></app-article-list-item>
+      </div>
+    </div>
+    <div
+      *ngIf="(isLoggedIn | async) && isAdmin"
+      class="semicerc-button"
+      routerLink="/add-offer"
+    >
+      <span class="plus-icon">+</span>
+    </div>
+  </div>
+</div>
